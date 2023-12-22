@@ -1,0 +1,98 @@
+from PyQt5 import QtCore, QtGui, QtWidgets
+
+
+class Ui_MainWindow(object):
+    def setupUi(self, MainWindow):
+        MainWindow.setObjectName("Gobblet")
+        MainWindow.resize(1083, 838)
+        MainWindow.setStyleSheet("background-color:rgb(255, 255, 255)")
+        MainWindow.setUnifiedTitleAndToolBarOnMac(False)
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.centralwidget.setObjectName("centralwidget")
+        self.gameLogo = QtWidgets.QLabel(self.centralwidget)
+        self.gameLogo.setGeometry(QtCore.QRect(390, 60, 361, 191))
+        self.gameLogo.setText("")
+        self.gameLogo.setPixmap(QtGui.QPixmap(":/Images/Logo.png"))
+        self.gameLogo.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.gameLogo.setObjectName("gameLogo")
+
+        self.PVPImage = QtWidgets.QLabel(self.centralwidget)
+        self.PVPImage.setGeometry(QtCore.QRect(60, 170, 221, 151))
+        self.PVPImage.setStyleSheet("image: url(:/Images/PVP.png);")
+        self.PVPImage.setText("")
+        self.PVPImage.setObjectName("PVPImage")
+
+        self.PVCImage = QtWidgets.QLabel(self.centralwidget)
+        self.PVCImage.setGeometry(QtCore.QRect(90, 350, 231, 151))
+        self.PVCImage.setStyleSheet("image: url(:/Images/PVC.png);")
+        self.PVCImage.setText("")
+        self.PVCImage.setObjectName("PVCImage")
+
+        self.CVCImage = QtWidgets.QLabel(self.centralwidget)
+        self.CVCImage.setGeometry(QtCore.QRect(30, 510, 301, 231))
+        self.CVCImage.setStyleSheet("image: url(:/Images/CVC.png);")
+        self.CVCImage.setText("")
+        self.CVCImage.setObjectName("CVCImage")
+
+        self.Player1Name = QtWidgets.QTextEdit(self.centralwidget)
+        self.Player1Name.setGeometry(QtCore.QRect(490, 310, 231, 41))
+        self.Player1Name.setStyleSheet("font: 10pt \"Supply Center\";\n"
+"color: rgb(0, 0, 255);")
+        self.Player1Name.setObjectName("Player1Name")
+        self.Player1Name.hide()
+
+        self.Player2Name = QtWidgets.QTextEdit(self.centralwidget)
+        self.Player2Name.setGeometry(QtCore.QRect(730, 310, 231, 41))
+        self.Player2Name.setStyleSheet("font: 10pt \"Supply Center\";\n"
+"color: rgb(255, 0, 0);")
+        self.Player2Name.setObjectName("Player2Name")
+        self.Player2Name.hide()
+
+        self.PVPImage.mousePressEvent = self.showPlayersNames
+        self.PVCImage.mousePressEvent = self.showPlayerName
+        MainWindow.setCentralWidget(self.centralwidget)
+
+
+
+        self.retranslateUi(MainWindow)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+     
+    def showPlayersNames(self, event):
+        # Define a method to show both QPlainTextEdits when label_2 is clicked
+        self.Player1Name.show()
+        self.Player2Name.show()   
+
+    def showPlayerName(self, event):
+        # Define a method to show both QPlainTextEdits when label_2 is clicked
+        self.Player1Name.show()
+
+    def retranslateUi(self, MainWindow):
+        _translate = QtCore.QCoreApplication.translate
+        MainWindow.setWindowTitle(_translate("MainWindow", "Gobblet"))
+        self.Player1Name.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"hr { height: 1px; border-width: 0; }\n"
+"li.unchecked::marker { content: \"\\2610\"; }\n"
+"li.checked::marker { content: \"\\2612\"; }\n"
+"</style></head><body style=\" font-family:\'Supply Center\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Player 1 NAME</p></body></html>"))
+        self.Player2Name.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"hr { height: 1px; border-width: 0; }\n"
+"li.unchecked::marker { content: \"\\2610\"; }\n"
+"li.checked::marker { content: \"\\2612\"; }\n"
+"</style></head><body style=\" font-family:\'Supply Center\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Player 1 NAME</p></body></html>"))
+import Images
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec_())
