@@ -1,4 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QApplication, QMainWindow
+from board import BoardWindow
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -27,6 +29,7 @@ class Ui_MainWindow(object):
         self.PVPImage.setStyleSheet("image: url(:/Images/PVP.png);")
         self.PVPImage.setText("")
         self.PVPImage.setObjectName("PVPImage")
+        self.PVPImage.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
         # Player Versus Computer Mode
         self.PVCImage = QtWidgets.QLabel(self.centralwidget)
@@ -34,6 +37,7 @@ class Ui_MainWindow(object):
         self.PVCImage.setStyleSheet("image: url(:/Images/PVC.png);")
         self.PVCImage.setText("")
         self.PVCImage.setObjectName("PVCImage")
+        self.PVCImage.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
         # Computer Versus Computer Mode
         self.CVCImage = QtWidgets.QLabel(self.centralwidget)
@@ -41,6 +45,7 @@ class Ui_MainWindow(object):
         self.CVCImage.setStyleSheet("image: url(:/Images/CVC.png);")
         self.CVCImage.setText("")
         self.CVCImage.setObjectName("CVCImage")
+        self.CVCImage.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
         # Adding text edits for player names
         self.Player1Name = QtWidgets.QTextEdit(self.centralwidget)
@@ -66,17 +71,21 @@ class Ui_MainWindow(object):
         font.setPointSize(16)
         font.setBold(True)
         self.StartButton.setFont(font)
-        self.StartButton.setStyleSheet("color: rgb(0, 255, 0);")
+        self.StartButton.setStyleSheet("background-color: rgb(0, 220, 0);")
         self.StartButton.setObjectName("StartButton")
         self.StartButton.hide()
+        self.StartButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
 
         # Connecting mouse press events to show player names and start button
         self.PVPImage.mousePressEvent = self.showPlayersNames
         self.PVCImage.mousePressEvent = self.showPlayerName
         self.CVCImage.mousePressEvent = self.showComputerName
+        self.StartButton.mousePressEvent = self.showBoardWindow
 
-        
+        # Set board window to None
+        self.board_window = None
+
         # Setting the central widget for the main window
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -98,6 +107,15 @@ class Ui_MainWindow(object):
     def showComputerName(self, event):
         # Show start button when CVC label is clicked
         self.StartButton.show()
+
+    def showBoardWindow(self, event):
+         if self.board_window is None or not self.board_window.isVisible():
+            # Create and show the BoardWindow
+            self.board_window = QtWidgets.QMainWindow()
+            ui = BoardWindow()
+            ui.setupUi(self.board_window)
+            self.board_window.show()
+            MainWindow.close()    
 
     def retranslateUi(self, MainWindow):
         # Translating window title and setting initial text for player names
