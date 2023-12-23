@@ -3,12 +3,13 @@ import tkinter as tk
 
 
 class BoardWindow(object):
-    def setupUi(self, Gobblet,player1,player2):
+    def setupUi(self, Gobblet, player1, player2):
         Gobblet.setObjectName("Gobblet")
         Gobblet.resize(1083, 838)
         Gobblet.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
         self.centralwidget = QtWidgets.QWidget(Gobblet)
         self.centralwidget.setObjectName("centralwidget")
+
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setEnabled(False)
         self.label.setGeometry(QtCore.QRect(10, 50, 200, 51))
@@ -458,6 +459,18 @@ class BoardWindow(object):
         self.Button16.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.Button16.setText("")
         self.Button16.setObjectName("Button16")
+        self.up_finger = QtWidgets.QLabel(self.centralwidget)
+        self.up_finger.setGeometry(QtCore.QRect(50, 470, 100, 100))
+        self.up_finger.setText("")
+        self.up_finger.setPixmap(QtGui.QPixmap("Images/up_finger.png"))
+        self.up_finger.setScaledContents(True)
+        self.up_finger.setObjectName("label_3")
+        self.down_finger = QtWidgets.QLabel(self.centralwidget)
+        self.down_finger.setGeometry(QtCore.QRect(900, 210, 100, 100))
+        self.down_finger.setText("")
+        self.down_finger.setPixmap(QtGui.QPixmap("Images/down_finger.png"))
+        self.down_finger.setScaledContents(True)
+        self.down_finger.setObjectName("label_4")
         Gobblet.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(Gobblet)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1083, 26))
@@ -466,12 +479,7 @@ class BoardWindow(object):
         self.statusbar = QtWidgets.QStatusBar(Gobblet)
         self.statusbar.setObjectName("statusbar")
         Gobblet.setStatusBar(self.statusbar)
-        disabled_style = """
-    QPushButton:disabled {
-        background-color: #cccccc; /* Set the background color for disabled state */
-        color: #666666; /* Set the text color for disabled state */
-    }
-"""
+        
 
         # Setting the central widget for the main window
         Gobblet.setCentralWidget(self.centralwidget)
@@ -500,7 +508,7 @@ class BoardWindow(object):
 
         self.startGame(self, P1BlueButtons, P2RedButtons, boardButtons,playerRound)
     
-    
+        self.down_finger.hide()
     
         
     def startGame(self, event, P1BlueButtons, P2RedButtons, boardButtons,playerRound):
@@ -603,6 +611,8 @@ class BoardWindow(object):
             btn.setEnabled(False)
 
         if(playerRound == "player1"):
+                self.down_finger.show()
+                self.up_finger.hide()
                 playerRound = "player2"
                 for btn in P1BlueButtons:
                         btn.setEnabled(False)
@@ -612,6 +622,8 @@ class BoardWindow(object):
                         btn.mousePressEvent = lambda event, button=btn: self.handleButtonPress(event, button, P1BlueButtons, P2RedButtons, boardButtons, playerRound)
                 
         elif(playerRound == "player2"):
+                self.up_finger.show()
+                self.down_finger.hide()
                 playerRound = "player1"
                 for btn in P2RedButtons:
                         btn.setEnabled(False)

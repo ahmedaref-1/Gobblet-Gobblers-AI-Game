@@ -4,5 +4,7 @@
     <file>PVP.png</file>
     <file>PVC.png</file>
     <file>CVC.png</file>
+    <file>up_finger.png</file>
+    <file>down_finger.png</file>
   </qresource>
 </RCC>
