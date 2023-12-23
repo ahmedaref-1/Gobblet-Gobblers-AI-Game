@@ -12,8 +12,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class BoardWindow(object):
-    def setupUi(self, MainWindow):
-        MainWindow.setObjectName("MainWindow")
+    def setupUi(self, MainWindow, player1_name, player2_name):
+        MainWindow.setObjectName("Gobblet")
         MainWindow.resize(1083, 838)
         MainWindow.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -126,6 +126,8 @@ class BoardWindow(object):
         self.Player1G4_1.setGeometry(QtCore.QRect(90, 160, 30, 30))
         font = QtGui.QFont()
         font.setPointSize(11)
+        self.label.setText(player1_name)
+        self.label_2.setText( player2_name)
         self.Player1G4_1.setFont(font)
         self.Player1G4_1.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.Player1G4_1.setStyleSheet("QPushButton {\n"
@@ -431,8 +433,7 @@ class BoardWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.label.setText(_translate("MainWindow", "Player 1"))
-        self.label_2.setText(_translate("MainWindow", "Player 2"))
+        
         self.Player1G4_1.setText(_translate("MainWindow", "4"))
         self.Player1G3_1.setText(_translate("MainWindow", "3"))
         self.Player1G2_1.setText(_translate("MainWindow", "2"))

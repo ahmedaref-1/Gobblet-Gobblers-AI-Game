@@ -113,7 +113,7 @@ class Ui_MainWindow(object):
             # Create and show the BoardWindow
             self.board_window = QtWidgets.QMainWindow()
             ui = BoardWindow()
-            ui.setupUi(self.board_window)
+            ui.setupUi(self.board_window, self.Player1Name.toPlainText(), self.Player2Name.toPlainText())
             self.board_window.show()
             MainWindow.close()    
 
