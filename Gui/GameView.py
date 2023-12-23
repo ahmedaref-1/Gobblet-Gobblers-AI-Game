@@ -10,6 +10,7 @@ class Ui_MainWindow(object):
         MainWindow.setStyleSheet("background-color:rgb(255, 255, 255)")
         MainWindow.setUnifiedTitleAndToolBarOnMac(False)
 
+
         # Creating the central widget
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -102,10 +103,13 @@ class Ui_MainWindow(object):
     def showPlayerName(self, event):
         # Show player names and start button when PVC label is clicked
         self.Player1Name.show()
+        self.Player2Name.setText("Computer")
         self.StartButton.show()
 
     def showComputerName(self, event):
         # Show start button when CVC label is clicked
+        self.Player1Name.setText("Computer-1")
+        self.Player2Name.setText("Computer-2")
         self.StartButton.show()
 
     def showBoardWindow(self, event):
