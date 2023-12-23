@@ -48,6 +48,9 @@
       <height>151</height>
      </rect>
     </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
     <property name="styleSheet">
      <string notr="true">image: url(:/Images/PVP.png);</string>
     </property>
@@ -63,6 +66,9 @@
       <width>231</width>
       <height>151</height>
      </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="styleSheet">
      <string notr="true">image: url(:/Images/PVC.png);</string>
@@ -80,6 +86,9 @@
       <height>231</height>
      </rect>
     </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
     <property name="styleSheet">
      <string notr="true">image: url(:/Images/CVC.png);</string>
     </property>
@@ -95,6 +104,9 @@
       <width>231</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="cursor" stdset="0">
+     <cursorShape>IBeamCursor</cursorShape>
     </property>
     <property name="styleSheet">
      <string notr="true">font: 18pt &quot;Supply Centerl&quot;;
@@ -119,6 +131,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <width>231</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="cursor" stdset="0">
+     <cursorShape>IBeamCursor</cursorShape>
     </property>
     <property name="styleSheet">
      <string notr="true">font: 18pt &quot;DS-Digital&quot;;
@@ -150,6 +165,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
       <pointsize>16</pointsize>
       <bold>true</bold>
      </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="styleSheet">
      <string notr="true">color: rgb(0, 255, 0);</string>
