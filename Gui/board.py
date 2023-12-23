@@ -1,5 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-import tkinter as tk
+import Images
 
 
 class BoardWindow(object):
@@ -10,33 +10,33 @@ class BoardWindow(object):
         self.centralwidget = QtWidgets.QWidget(Gobblet)
         self.centralwidget.setObjectName("centralwidget")
 
-        self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setEnabled(False)
-        self.label.setGeometry(QtCore.QRect(10, 50, 200, 51))
-        font = QtGui.QFont()
-        font.setFamily("Monotype Corsiva")
-        font.setPointSize(22)
-        font.setItalic(True)
-        self.label.setFont(font)
-        self.label.setScaledContents(False)
-        self.label.setAlignment(QtCore.Qt.AlignCenter)
-        self.label.setTextInteractionFlags(QtCore.Qt.LinksAccessibleByMouse)
-        self.label.setObjectName("label")
-        self.label_2 = QtWidgets.QLabel(self.centralwidget)
-        self.label_2.setEnabled(False)
-        self.label_2.setGeometry(QtCore.QRect(850, 700, 200, 51))
-        font = QtGui.QFont()
-        font.setFamily("Monotype Corsiva")
-        font.setPointSize(22)
-        font.setItalic(True)
-        self.label_2.setFont(font)
-        self.label_2.setScaledContents(False)
-        self.label_2.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_2.setTextInteractionFlags(QtCore.Qt.LinksAccessibleByMouse)
-        self.label_2.setObjectName("label_2")
-        self.label.setText(player1)
-        self.label_2.setText(player2)
+        # Player 1 Name Label
+        self.Player1Name = QtWidgets.QLabel(self.centralwidget)
+        self.Player1Name.setEnabled(False)
+        self.Player1Name.setGeometry(QtCore.QRect(10, 50, 200, 51))
+        self.Player1Name.setScaledContents(False)
+        self.Player1Name.setAlignment(QtCore.Qt.AlignCenter)
+        self.Player1Name.setTextInteractionFlags(QtCore.Qt.LinksAccessibleByMouse)
+        self.Player1Name.setObjectName("Player1Name")
 
+        # Player 2 Name Label
+        self.Player2Name = QtWidgets.QLabel(self.centralwidget)
+        self.Player2Name.setEnabled(False)
+        self.Player2Name.setGeometry(QtCore.QRect(850, 700, 200, 51))
+        self.Player2Name.setScaledContents(False)
+        self.Player2Name.setAlignment(QtCore.Qt.AlignCenter)
+        self.Player2Name.setTextInteractionFlags(QtCore.Qt.LinksAccessibleByMouse)
+        self.Player2Name.setObjectName("Player2Name")
+        self.Player1Name.setStyleSheet("font: 10pt \"Supply Center\";\n"
+                                       "color: rgb(0, 0, 255);")
+        self.Player2Name.setStyleSheet("font: 10pt \"Supply Center\";\n"
+                                       "color: rgb(255, 0, 0);")
+        # Set Players Names
+        self.Player1Name.setText(player1)
+        self.Player2Name.setText(player2)
+
+
+        # Player 1 Buttons
         self.Player1G4_1 = QtWidgets.QPushButton(self.centralwidget)
         self.Player1G4_1.setGeometry(QtCore.QRect(90, 160, 30, 30))
         font = QtGui.QFont()
@@ -51,6 +51,8 @@ class BoardWindow(object):
             "}"
         )
         self.Player1G4_1.setObjectName("Player1G4_1")
+
+
         self.Player1G3_1 = QtWidgets.QPushButton(self.centralwidget)
         self.Player1G3_1.setGeometry(QtCore.QRect(80, 150, 50, 50))
         font = QtGui.QFont()
@@ -65,6 +67,8 @@ class BoardWindow(object):
             "}"
         )
         self.Player1G3_1.setObjectName("Player1G3_1")
+
+
         self.Player1G2_1 = QtWidgets.QPushButton(self.centralwidget)
         self.Player1G2_1.setGeometry(QtCore.QRect(70, 140, 70, 70))
         font = QtGui.QFont()
@@ -79,6 +83,8 @@ class BoardWindow(object):
             "}"
         )
         self.Player1G2_1.setObjectName("Player1G2_1")
+
+
         self.Player1G1_1 = QtWidgets.QPushButton(self.centralwidget)
         self.Player1G1_1.setGeometry(QtCore.QRect(60, 130, 90, 90))
         font = QtGui.QFont()
@@ -94,6 +100,8 @@ class BoardWindow(object):
         )
         self.Player1G1_1.setCheckable(False)
         self.Player1G1_1.setObjectName("Player1G1_1")
+
+
         self.Player1G4_2 = QtWidgets.QPushButton(self.centralwidget)
         self.Player1G4_2.setGeometry(QtCore.QRect(90, 280, 30, 30))
         font = QtGui.QFont()
@@ -108,6 +116,8 @@ class BoardWindow(object):
             "}"
         )
         self.Player1G4_2.setObjectName("Player1G4_2")
+
+
         self.Player1G3_2 = QtWidgets.QPushButton(self.centralwidget)
         self.Player1G3_2.setGeometry(QtCore.QRect(80, 270, 50, 50))
         font = QtGui.QFont()
@@ -122,6 +132,8 @@ class BoardWindow(object):
             "}"
         )
         self.Player1G3_2.setObjectName("Player1G3_2")
+
+
         self.Player1G2_2 = QtWidgets.QPushButton(self.centralwidget)
         self.Player1G2_2.setGeometry(QtCore.QRect(70, 260, 70, 70))
         font = QtGui.QFont()
@@ -136,6 +148,8 @@ class BoardWindow(object):
             "}"
         )
         self.Player1G2_2.setObjectName("Player1G2_2")
+
+
         self.Player1G1_2 = QtWidgets.QPushButton(self.centralwidget)
         self.Player1G1_2.setGeometry(QtCore.QRect(60, 250, 90, 90))
         font = QtGui.QFont()
@@ -151,6 +165,8 @@ class BoardWindow(object):
         )
         self.Player1G1_2.setCheckable(False)
         self.Player1G1_2.setObjectName("Player1G1_2")
+
+
         self.Player1G4_3 = QtWidgets.QPushButton(self.centralwidget)
         self.Player1G4_3.setGeometry(QtCore.QRect(90, 400, 30, 30))
         font = QtGui.QFont()
@@ -165,6 +181,8 @@ class BoardWindow(object):
             "}"
         )
         self.Player1G4_3.setObjectName("Player1G4_3")
+
+
         self.Player1G3_3 = QtWidgets.QPushButton(self.centralwidget)
         self.Player1G3_3.setGeometry(QtCore.QRect(80, 390, 50, 50))
         font = QtGui.QFont()
@@ -179,6 +197,8 @@ class BoardWindow(object):
             "}"
         )
         self.Player1G3_3.setObjectName("Player1G3_3")
+
+
         self.Player1G2_3 = QtWidgets.QPushButton(self.centralwidget)
         self.Player1G2_3.setGeometry(QtCore.QRect(70, 380, 70, 70))
         font = QtGui.QFont()
@@ -193,6 +213,8 @@ class BoardWindow(object):
             "}"
         )
         self.Player1G2_3.setObjectName("Player1G2_3")
+
+
         self.Player1G1_3 = QtWidgets.QPushButton(self.centralwidget)
         self.Player1G1_3.setGeometry(QtCore.QRect(60, 370, 90, 90))
         font = QtGui.QFont()
@@ -208,6 +230,8 @@ class BoardWindow(object):
         )
         self.Player1G1_3.setCheckable(False)
         self.Player1G1_3.setObjectName("Player1G1_3")
+
+
         self.Player2G4_1 = QtWidgets.QPushButton(self.centralwidget)
         self.Player2G4_1.setGeometry(QtCore.QRect(940, 590, 30, 30))
         font = QtGui.QFont()
@@ -222,6 +246,8 @@ class BoardWindow(object):
             "}"
         )
         self.Player2G4_1.setObjectName("Player2G4_1")
+
+
         self.Player2G4_2 = QtWidgets.QPushButton(self.centralwidget)
         self.Player2G4_2.setGeometry(QtCore.QRect(940, 470, 30, 30))
         font = QtGui.QFont()
@@ -236,6 +262,8 @@ class BoardWindow(object):
             "}"
         )
         self.Player2G4_2.setObjectName("Player2G4_2")
+
+
         self.Player2G4_3 = QtWidgets.QPushButton(self.centralwidget)
         self.Player2G4_3.setGeometry(QtCore.QRect(940, 350, 30, 30))
         font = QtGui.QFont()
@@ -250,6 +278,8 @@ class BoardWindow(object):
             "}"
         )
         self.Player2G4_3.setObjectName("Player2G4_3")
+
+
         self.Player2G3_1 = QtWidgets.QPushButton(self.centralwidget)
         self.Player2G3_1.setGeometry(QtCore.QRect(930, 580, 50, 50))
         font = QtGui.QFont()
@@ -264,6 +294,8 @@ class BoardWindow(object):
             "}"
         )
         self.Player2G3_1.setObjectName("Player2G3_1")
+
+
         self.Player2G3_2 = QtWidgets.QPushButton(self.centralwidget)
         self.Player2G3_2.setGeometry(QtCore.QRect(930, 460, 50, 50))
         font = QtGui.QFont()
@@ -278,6 +310,8 @@ class BoardWindow(object):
             "}"
         )
         self.Player2G3_2.setObjectName("Player2G3_2")
+
+
         self.Player2G3_3 = QtWidgets.QPushButton(self.centralwidget)
         self.Player2G3_3.setGeometry(QtCore.QRect(930, 340, 50, 50))
         font = QtGui.QFont()
@@ -292,6 +326,8 @@ class BoardWindow(object):
             "}"
         )
         self.Player2G3_3.setObjectName("Player2G3_3")
+
+
         self.Player2G2_1 = QtWidgets.QPushButton(self.centralwidget)
         self.Player2G2_1.setGeometry(QtCore.QRect(920, 570, 70, 70))
         font = QtGui.QFont()
@@ -306,6 +342,8 @@ class BoardWindow(object):
             "}"
         )
         self.Player2G2_1.setObjectName("Player2G2_1")
+
+
         self.Player2G2_2 = QtWidgets.QPushButton(self.centralwidget)
         self.Player2G2_2.setGeometry(QtCore.QRect(920, 450, 70, 70))
         font = QtGui.QFont()
@@ -320,6 +358,8 @@ class BoardWindow(object):
             "}"
         )
         self.Player2G2_2.setObjectName("Player2G2_2")
+
+
         self.Player2G2_3 = QtWidgets.QPushButton(self.centralwidget)
         self.Player2G2_3.setGeometry(QtCore.QRect(920, 330, 70, 70))
         font = QtGui.QFont()
@@ -334,6 +374,8 @@ class BoardWindow(object):
             "}"
         )
         self.Player2G2_3.setObjectName("Player2G2_3")
+
+
         self.Player2G1_1 = QtWidgets.QPushButton(self.centralwidget)
         self.Player2G1_1.setGeometry(QtCore.QRect(910, 560, 90, 90))
         font = QtGui.QFont()
@@ -349,6 +391,8 @@ class BoardWindow(object):
         )
         self.Player2G1_1.setCheckable(False)
         self.Player2G1_1.setObjectName("Player2G1_1")
+
+
         self.Player2G1_2 = QtWidgets.QPushButton(self.centralwidget)
         self.Player2G1_2.setGeometry(QtCore.QRect(910, 320, 90, 90))
         font = QtGui.QFont()
@@ -364,6 +408,8 @@ class BoardWindow(object):
         )
         self.Player2G1_2.setCheckable(False)
         self.Player2G1_2.setObjectName("Player2G1_2")
+
+
         self.Player2G1_3 = QtWidgets.QPushButton(self.centralwidget)
         self.Player2G1_3.setGeometry(QtCore.QRect(910, 440, 90, 90))
         font = QtGui.QFont()
@@ -379,6 +425,9 @@ class BoardWindow(object):
         )
         self.Player2G1_3.setCheckable(False)
         self.Player2G1_3.setObjectName("Player2G1_3")
+
+        
+        # Board Buttons 
         self.Button1 = QtWidgets.QPushButton(self.centralwidget)
         self.Button1.setGeometry(QtCore.QRect(250, 90, 150, 150))
         self.Button1.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
@@ -459,6 +508,8 @@ class BoardWindow(object):
         self.Button16.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.Button16.setText("")
         self.Button16.setObjectName("Button16")
+
+
         self.up_finger = QtWidgets.QLabel(self.centralwidget)
         self.up_finger.setGeometry(QtCore.QRect(50, 470, 100, 100))
         self.up_finger.setText("")
@@ -488,22 +539,25 @@ class BoardWindow(object):
         self.retranslateUi(Gobblet)
         QtCore.QMetaObject.connectSlotsByName(Gobblet)
 
-
+        # Set Player 1 Buttons
         P1BlueButtons = [self.Player1G1_1, self.Player1G1_2, self.Player1G1_3,
                        self.Player1G2_1, self.Player1G2_2, self.Player1G2_3,
                        self.Player1G3_1, self.Player1G3_2, self.Player1G3_3,
                        self.Player1G4_1, self.Player1G4_2, self.Player1G4_3]
         
+        # Set Player 2 Buttons
         P2RedButtons = [self.Player2G1_1, self.Player2G1_2, self.Player2G1_3,
                         self.Player2G2_1, self.Player2G2_2, self.Player2G2_3,
                         self.Player2G3_1, self.Player2G3_2, self.Player2G3_3,
                         self.Player2G4_1, self.Player2G4_2, self.Player2G4_3]
         
+        # Set Board Buttons
         boardButtons = [self.Button1, self.Button2, self.Button3, self.Button4,
                         self.Button5, self.Button6, self.Button7, self.Button8,
                         self.Button9, self.Button10, self.Button11, self.Button12,
                         self.Button13, self.Button14, self.Button15, self.Button16]
         
+        # Varaiable to indicate player round 
         playerRound = "player1"
 
         self.startGame(self, P1BlueButtons, P2RedButtons, boardButtons,playerRound)
@@ -520,6 +574,7 @@ class BoardWindow(object):
         "border: 1px solid black;\n"
         "}") 
         
+        # Enable buttons based on the current player's round and set their event handler
         if(playerRound == "player1"):
                 for btn in P1BlueButtons:
                         btn.setEnabled(True)
@@ -548,6 +603,7 @@ class BoardWindow(object):
         "border: 1px solid black;\n"
         "}")
             
+        # Disable buttons for both players    
         for btn in P1BlueButtons:
             btn.setEnabled(False)
         
@@ -558,7 +614,19 @@ class BoardWindow(object):
         for btn in boardButtons:
             btn.mousePressEvent = lambda event, board_button=btn: self.placeButton(event, board_button, P1BlueButtons, P2RedButtons, boardButtons, button, playerRound)
 
+
+    def is_collision(self,button1, button2):
+        rect1 = button1.geometry()
+        rect2 = button2.geometry()
+        return rect1.intersects(rect2)
+
     def placeButton(self, event, board_button, P1BlueButtons, P2RedButtons, boardButtons, button, playerRound):
+
+        # Check for collisions with other buttons on the board
+        #for btn in P1BlueButtons + P2RedButtons + boardButtons:
+        #   if btn != board_button and self.is_collision(board_button, btn):
+        #        return  # Do not place the button if there is a collision
+
         # Place the button on the board
         for btn in boardButtons:
                btn.lower()
@@ -568,6 +636,7 @@ class BoardWindow(object):
         "border: 1px solid black;\n"
         "}")
         
+        # Set the position of the button on the board
         buttonWidth = button.width()
         buttonHeight = button.height()
         boardX = board_button.x()
@@ -582,6 +651,7 @@ class BoardWindow(object):
         "border: 1px solid black;\n"
         "}")
         
+        # Lower other buttons based on their sizes
         for btn in P1BlueButtons + P2RedButtons:
                 if(btn.width() == 90):
                         btn.lower()
@@ -598,6 +668,7 @@ class BoardWindow(object):
                 if(btn.width() == 30):
                         btn.lower()
         
+        # Disable all buttons on the board
         for btn in boardButtons:
                btn.lower()
                btn.setStyleSheet(
@@ -610,6 +681,7 @@ class BoardWindow(object):
         for btn in boardButtons:
             btn.setEnabled(False)
 
+        # Switch player turns and update button visibility
         if(playerRound == "player1"):
                 self.down_finger.show()
                 self.up_finger.hide()
@@ -666,12 +738,4 @@ class BoardWindow(object):
         self.Player2G1_3.setText(_translate("Gobblet", "1"))
 
 
-if __name__ == "__main__":
-    import sys
 
-    app = QtWidgets.QApplication(sys.argv)
-    Gobblet = QtWidgets.QMainWindow()
-    ui = BoardWindow()
-    ui.setupUi(Gobblet)
-    Gobblet.show()
-    sys.exit(app.exec_())

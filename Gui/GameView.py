@@ -1,5 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QMainWindow
+# Importing image resources
+import Images
 from board import BoardWindow
 
 class Ui_MainWindow(object):
@@ -143,8 +145,6 @@ class Ui_MainWindow(object):
                                 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Player 1 NAME</p></body></html>"))
         self.StartButton.setText(_translate("MainWindow", "Start"))
 
-# Importing image resources
-import Images
 
 # Application entry point
 if __name__ == "__main__":
