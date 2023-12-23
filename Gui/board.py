@@ -3,7 +3,7 @@ import Images
 
 
 class BoardWindow(object):
-    def setupUi(self, Gobblet, player1, player2):
+    def setupUi(self, Gobblet):
         Gobblet.setObjectName("Gobblet")
         Gobblet.resize(1083, 838)
         Gobblet.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
@@ -32,8 +32,8 @@ class BoardWindow(object):
         self.Player2Name.setStyleSheet("font: 10pt \"Supply Center\";\n"
                                        "color: rgb(255, 0, 0);")
         # Set Players Names
-        self.Player1Name.setText(player1)
-        self.Player2Name.setText(player2)
+        self.Player1Name.setText(f"player1")
+        self.Player2Name.setText(f"player2")
 
 
         # Player 1 Buttons
@@ -615,21 +615,26 @@ class BoardWindow(object):
             btn.mousePressEvent = lambda event, board_button=btn: self.placeButton(event, board_button, P1BlueButtons, P2RedButtons, boardButtons, button, playerRound)
 
 
-    def is_collision(self,button1, button2):
-        rect1 = button1.geometry()
-        rect2 = button2.geometry()
-        return rect1.intersects(rect2)
+    def is_collision(self,board_button, btn, pressedbutton):
+        rect1 = board_button.geometry()
+        rect2 = btn.geometry()
+        # return rect1.intersects(rect2)
+        if(rect1.intersects(rect2)):
+                if(btn.width() < pressedbutton.width()):
+                        return False
+                else:
+                        return True
 
     def placeButton(self, event, board_button, P1BlueButtons, P2RedButtons, boardButtons, button, playerRound):
 
         # Check for collisions with other buttons on the board
-        #for btn in P1BlueButtons + P2RedButtons + boardButtons:
-        #   if btn != board_button and self.is_collision(board_button, btn):
-        #        return  # Do not place the button if there is a collision
+        for btn in P1BlueButtons + P2RedButtons:
+            if self.is_collision(board_button, btn, button):
+                return  # Do not place the button if there is a collision
 
         # Place the button on the board
         for btn in boardButtons:
-               btn.lower()
+            #    btn.lower()
                btn.setStyleSheet(
         "QPushButton {\n"
         "background-color: rgba(0, 0, 0, 10%);\n"  # 50% transparency (adjust as needed)
@@ -704,11 +709,6 @@ class BoardWindow(object):
                 for btn in P1BlueButtons:
                         btn.mousePressEvent = lambda event, button=btn: self.handleButtonPress(event, button, P1BlueButtons, P2RedButtons, boardButtons, playerRound)
 
-        
-        
-
-    
-
     def retranslateUi(self, Gobblet):
         _translate = QtCore.QCoreApplication.translate
         Gobblet.setWindowTitle(_translate("Gobblet", "Gobblet"))
@@ -737,5 +737,12 @@ class BoardWindow(object):
         self.Player2G1_2.setText(_translate("Gobblet", "1"))
         self.Player2G1_3.setText(_translate("Gobblet", "1"))
 
-
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    Gobblet = QtWidgets.QMainWindow()
+    ui = BoardWindow()
+    ui.setupUi(Gobblet)
+    Gobblet.show()
+    sys.exit(app.exec_())
 
