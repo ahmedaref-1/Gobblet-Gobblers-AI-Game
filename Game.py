@@ -1,3 +1,6 @@
+import Gobblet
+import BoardItem
+
 class Game:
     def __init__(self, player1_name, player2_name, NumberOfGobbletsInitValue=24, BoardSizeInitValue=16):
         """
