@@ -59,19 +59,23 @@ class Game:
         Parameters:
         - player_index (int): Index representing the player (0 or 1)
         """
-        # Initialize the CreatedGobbletSize to 1
-        CreatedGobbletSize = 1
+        # Initialize the CreatedGobbletSize to 4
+        CreatedGobbletSize = 4
         # Loop through the number of Gobblets per player
         for i in range(self.NumberOfGobbletsperPlayer):
             # Create a new Gobblet object
             gobblet = Gobblet.Gobblet(i, player_index, CreatedGobbletSize)
 
-            # Increment the CreatedGobbletSize by 1
-            CreatedGobbletSize+=1
+            # Decrement the CreatedGobbletSize by 1
+            CreatedGobbletSize-=1
 
-            # Reset the CreatedGobbletSize to 1 if it is greater than 4
-            if CreatedGobbletSize > 4:
-                CreatedGobbletSize = 1
+            # Reset the CreatedGobbletSize to 4 if it is less than 1
+            if CreatedGobbletSize < 1:
+                CreatedGobbletSize = 4
+
+            # Set the isOnTop flag to True if the current Gobblet is of the size 4
+            if gobblet.Size == 4:
+                gobblet.IsOnTop = True
 
             # Add the new Gobblet object to the appropriate list
             if player_index == 0:
