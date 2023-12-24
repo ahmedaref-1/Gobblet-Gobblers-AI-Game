@@ -9,7 +9,7 @@ class Game:
         Parameters:
         - player1_name              (str): Name of player 1
         - player2_name              (str): Name of player 2
-        - NumberOfGobbletsInitValue (int): Total number of gobblets per player (default is 24)
+        - NumberOfGobbletsInitValue (int): Total number of gobblets per player (default is 12)
         - BoardSizeInitValue        (int): Size of the game board (default is 16)
         """
         self.PlayerNames = [player1_name, player2_name]  # List containing names of both players
