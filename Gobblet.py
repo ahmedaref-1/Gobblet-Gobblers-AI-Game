@@ -68,16 +68,16 @@ class Gobblet:
         # If empty, the current Gobblet can be moved to the specified board item position; otherwise, it cannot.
         return board_item.IsEmpty() or self.Size > board_item.OnTopGobbletSize
 
-    def GetGobbletPosition(self):
+    def GetGobbletOwnedPositionIndex(self):
         """
         Get the position of the current Gobblet.
 
         Returns:
         - The position of the current Gobblet.
         """
-        # Check if the current Gobblet is on the board.
+        # Check if the current Gobblet is on the board and on the top of the stack of this bord position.
         # If so, return the current board position index; otherwise, return None.
-        if self.IsOnBoard():
+        if self.IsOnBoard() and self.IsOnTopOfStack():
             return self.CurrentBoardPositionIndex
         else:
             return None
