@@ -96,7 +96,7 @@ class Game:
             self.BoardItemsArray.append(board_item)
 
 
-     def ListPossibleMoves(self, CurrentGobblet:Gobblet) -> list:
+    def ListPossibleMoves(self, CurrentGobblet:Gobblet) -> list:
         """
         Checks the positions on board that the gobblet can move to.
 
@@ -106,13 +106,13 @@ class Game:
 
         # Initialize an empty array to store possible moves
         possible_moves = []
-        #Iterate around all squares on board
+        # Iterate around all squares on board
         for SquareID in range(self.BoardSizeInitValue):
-            #Check if the gobblet can move to the position on board
-            if  Gobblet.IsPossibleMove(self, SquareID):
+            # Check if the gobblet can move to the position on board
+            if Gobblet.IsPossibleMove(self, SquareID):
                 # Add SquareID to the array if move is possible
                 possible_moves.append(SquareID)
-                
+
         return possible_moves
 
     

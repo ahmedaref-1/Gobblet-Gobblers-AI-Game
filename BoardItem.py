@@ -66,7 +66,7 @@ class BoardItem:
         # Check if the stack is empty or if the size of the specified Gobblet is greater than
         # the size of the Gobblet on top of the stack.
         # If so, the specified Gobblet can be moved to the current board item position; otherwise, it cannot.
-        return self.IsEmpty() or gobblet.Size > self.OnTopGobbletSize  
+        return self.IsEmpty() or ( not self.IsFull() and gobblet.Size > self.OnTopGobbletSize )  
 
     def AddGobbletOnTop(self, gobblet):
         """
