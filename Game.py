@@ -158,7 +158,7 @@ class Game:
         current_gobblet: The Gobblet to be moved.
         required_position: The target position on the board where the Gobblet should be moved.
         """
-        # Check that the gobblet on top and that it is already placed on board
+        # Check that the gobblet on top and that it is NOT placed on board
         if CuurentGobbler.IsOnTopOfStack is True and CuurentGobbler.IsOnBoard is False:
             # Check that it is possible to move the gobbled to the specified position
             if CuurentGobbler.IsPossibleGobbletMovement(self, RequiredPosition.index) is True:
@@ -173,7 +173,9 @@ class Game:
         current_gobblet: The Gobblet to be placed on the board.
         required_position: The target position where the Gobblet should be placed.
         """
+        # If the position on board can the gobblet be placed on
         if RequiredPosition.IsPossibleBoardMovement(self, CuurentGobbler) is True:
+            # Add the gobblet to the top of the new postion
             RequiredPosition.AddGobbletOnTop(self, CuurentGobbler)   
 
     def MoveInternalGobblet (self,CuurentGobbler:Gobblet, RequiredPosition:BoardItem):
@@ -184,8 +186,11 @@ class Game:
         current_gobblet: The Gobblet to be moved, which must already be on the board.
         required_position: The target position where the Gobblet should be moved.
         """
+        # Check that the gobblet on top of stack and that it is already on the board
         if CuurentGobbler.IsOnTopOfStack is True and CuurentGobbler.IsOnBoard is True:
+            # Check that the gobblet can be placed on the board
             if CuurentGobbler.IsPossibleGobbletMovement(self, RequiredPosition.index) is True:
+                # Call the function PlaceInternalGobblet to place the gobblet on board
                 self.PlaceInternalGobblet
 
 
@@ -197,8 +202,11 @@ class Game:
        - CuurentGobbler (Gobblet): The Gobblet to be placed.
        - RequiredPosition (BoardItem): The BoardItem position where the Gobblet should be placed.
    """
+        # If the position on board can the gobblet be placed on
         if RequiredPosition.IsPossibleBoardMovement(self, CuurentGobbler) is True:
+            # Remove the goblet from the top of its current position
             RequiredPosition.RemoveGobbletOnTop(self)
+            # Add the gobblet to the top of the new postion
             RequiredPosition.AddGobbletOnTop(self, CuurentGobbler)          
 
     
