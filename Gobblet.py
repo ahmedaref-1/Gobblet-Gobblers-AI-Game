@@ -81,3 +81,4 @@ class Gobblet:
             return self.CurrentBoardPositionIndex
         else:
             return None
+    

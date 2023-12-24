@@ -2,7 +2,7 @@ import Gobblet
 import BoardItem
 
 class Game:
-    def __init__(self, player1_name, player2_name, NumberOfGobbletsInitValue=24, BoardSizeInitValue=16):
+    def __init__(self, player1_name, player2_name, NumberOfGobbletsperPlayerInitValue=12, BoardSizeInitValue=16):
         """
         Represents the Gobblet Gobblers game.
 
@@ -15,12 +15,87 @@ class Game:
         self.PlayerNames = [player1_name, player2_name]  # List containing names of both players
         self.GameState = "OnGoing"  # State of the game (OnGoing, Draw, Player1Won, Player2Won)
         self.Winner = None  # Winner of the game (initially None)
-        self.NumberOfGobblets = NumberOfGobbletsInitValue  # Total number of gobblets per player
+        self.NumberOfGobbletsperPlayer = NumberOfGobbletsperPlayerInitValue  # Number of gobblets per player
         self.BoardSize = BoardSizeInitValue  # Size of the game board (number of cells)
-        self.GobbletsArray = []  # List to store Gobblet objects
+        self.FirstPlayerGobbletsArray = []  # List to store Gobblet objects of the First Player
+        self.SecondPlayerGobbletsArray = [] # List to store Gobblet objects of the Second Player
         self.BoardItemsArray = []  # List to store BoardItem objects
         self.CurrentPlayerIndex = 0  # Index of the current player (0 or 1)
         self.SelectedGobbletID = None  # ID of the selected Gobblet for the current move
         self.SelectedBoardItemIndex = None  # Index of the selected BoardItem for the current move
+    
+    def Initialize(self):
+        """
+        Initialize the game.
+        """
+        # Initialize the Gobblets for both players
+        self.InitializeGobblets()
+        # Initialize the Board Items
+        self.InitializeBoardItems()
+        # Set the current player index to 0
+        self.CurrentPlayerIndex = 0
+        # Set the selected Gobblet ID to None
+        self.SelectedGobbletID = None
+        # Set the selected Board Item index to None
+        self.SelectedBoardItemIndex = None
+        # Set the game state to OnGoing
+        self.GameState = "OnGoing"
+        # Set the winner to None
+        self.Winner = None
+    
+    def InitializeGobblets(self):
+        """
+        Initialize the Gobblets for both players.
+        """
+        # Initialize the Gobblets for the First Player
+        self.InitializeGobbletsForPlayer(0)
+        # Initialize the Gobblets for the Second Player
+        self.InitializeGobbletsForPlayer(1)
+    
+    def InitializeGobbletsForPlayer(self, player_index):
+        """
+        Initialize the Gobblets for the specified player.
+
+        Parameters:
+        - player_index (int): Index representing the player (0 or 1)
+        """
+        # Initialize the CreatedGobbletSize to 1
+        CreatedGobbletSize = 1
+        # Loop through the number of Gobblets per player
+        for i in range(self.NumberOfGobbletsperPlayer):
+            # Create a new Gobblet object
+            gobblet = Gobblet.Gobblet(i, player_index, CreatedGobbletSize)
+
+            # Increment the CreatedGobbletSize by 1
+            CreatedGobbletSize+=1
+
+            # Reset the CreatedGobbletSize to 1 if it is greater than 4
+            if CreatedGobbletSize > 4:
+                CreatedGobbletSize = 1
+
+            # Add the new Gobblet object to the appropriate list
+            if player_index == 0:
+                self.FirstPlayerGobbletsArray.append(gobblet)
+            else:
+                self.SecondPlayerGobbletsArray.append(gobblet)
+    
+    def InitializeBoardItems(self):
+        """
+        Initialize the Board Items.
+        """
+        # Loop through the BoardSize
+        for i in range(self.BoardSize):
+            # Create a new BoardItem object
+            board_item = BoardItem.BoardItem(i)
+
+            # Add the new BoardItem object to the list
+            self.BoardItemsArray.append(board_item)
+
+    
+
+
+
+
+    
 
 

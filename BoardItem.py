@@ -143,3 +143,4 @@ class BoardItem:
         - The size of the Gobblet on top of the stack.
         """
         return self.OnTopGobbletSize
+    
