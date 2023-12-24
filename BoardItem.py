@@ -27,6 +27,16 @@ class BoardItem:
         # If zero, the stack is considered empty; otherwise, it is not empty.
         return self.NumberOfGobbletsInStack == 0
 
+    def IsFull(self):
+        """
+        Check if the stack of the current board item position is full.
+
+        Returns:
+        - True if the stack is full, False otherwise.
+        """
+        # Check if the count of Gobblets in the stack is equal to 4.
+        # If equal to 4, the stack is considered full; otherwise, it is not full.
+        return self.NumberOfGobbletsInStack == 4
     
     def AddGobblet(self, gobblet):
         """
@@ -35,9 +45,9 @@ class BoardItem:
         Parameters:
         - gobblet (Gobblet): The Gobblet to be added.
         """
-        # Check if the stack is empty or if the size of the new Gobblet is greater than
+        # Check if the stack is not full and if the size of the new Gobblet is greater than
         # the size of the Gobblet on top of the stack.
-        if self.IsEmpty() or gobblet.Size > self.OnTopGobbletSize:
+        if not self.IsFull() and gobblet.Size > self.OnTopGobbletSize:
             # Append the new Gobblet to the stack.
             self.GobbletsStack.append(gobblet)
 
