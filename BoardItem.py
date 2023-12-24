@@ -32,37 +32,46 @@ class BoardItem:
         Parameters:
         - gobblet (Gobblet): The Gobblet to be added.
         """
+        # Check if the stack is empty or if the size of the new Gobblet is greater than
+        # the size of the Gobblet on top of the stack.
         if self.IsEmpty() or gobblet.Size > self.OnTopGobbletSize:
+            # Append the new Gobblet to the stack.
             self.GobbletsStack.append(gobblet)
+
+            # Update the current owner index based on the new Gobblet.
             self.CurrentOwnerIndex = gobblet.OwnerIndex
+
+            # Update the size of the Gobblet on top of the stack to the size of the new Gobblet.
             self.OnTopGobbletSize = gobblet.Size
+
+            # Increment the count of Gobblets in the stack.
             self.NumberOfGobbletsInStack += 1
 
-def RemoveGobblet(self):
-    """
-    Remove the top Gobblet from the stack.
+    def RemoveGobblet(self):
+        """
+        Remove the top Gobblet from the stack.
 
-    Returns:
-    - The removed Gobblet. If the stack is empty, returns None.
-    """
-    # Check if the stack is not empty before attempting to remove a Gobblet.
-    if not self.IsEmpty():
-        # Remove the top Gobblet from the stack using pop().
-        RemovedGobblet = self.GobbletsStack.pop()
+        Returns:
+        - The removed Gobblet. If the stack is empty, returns None.
+        """
+        # Check if the stack is not empty before attempting to remove a Gobblet.
+        if not self.IsEmpty():
+            # Remove the top Gobblet from the stack using pop().
+            RemovedGobblet = self.GobbletsStack.pop()
 
-        # Update the current owner index based on the Gobblet on top of the stack.
-        # If the stack is empty, set the current owner index to None.
-        self.CurrentOwnerIndex = self.GobbletsStack[-1].gobblet.OwnerIndex if self.GobbletsStack else None
+            # Update the current owner index based on the Gobblet on top of the stack.
+            # If the stack is empty, set the current owner index to None.
+            self.CurrentOwnerIndex = self.GobbletsStack[-1].gobblet.OwnerIndex if self.GobbletsStack else None
 
-        # Update the size of the Gobblet on top of the stack.
-        # If the stack is empty, set the OnTopGobbletSize to None.
-        self.OnTopGobbletSize = self.GobbletsStack[-1].gobblet.Size if self.GobbletsStack else None
+            # Update the size of the Gobblet on top of the stack.
+            # If the stack is empty, set the OnTopGobbletSize to None.
+            self.OnTopGobbletSize = self.GobbletsStack[-1].gobblet.Size if self.GobbletsStack else None
 
-        # Decrement the count of Gobblets in the stack.
-        self.NumberOfGobbletsInStack -= 1
+            # Decrement the count of Gobblets in the stack.
+            self.NumberOfGobbletsInStack -= 1
 
-        # Return the removed Gobblet.
-        return RemovedGobblet
-    else:
-        # If the stack is empty, return None.
-        return None
+            # Return the removed Gobblet.
+            return RemovedGobblet
+        else:
+            # If the stack is empty, return None.
+            return None
