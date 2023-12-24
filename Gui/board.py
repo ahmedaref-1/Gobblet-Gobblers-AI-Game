@@ -12,10 +12,7 @@ class boardCurvedButton(QtWidgets.QPushButton):
             "   border: none;"  # No border
             "   border-radius: 0px;"  # No border-radius for the button
             "   padding: 0px;"  # No padding
-            "   background-image: url(Images/board_button.png);"  # Use a background image with curved lines
-            "}"
-            "QPushButton:hover {"
-            "   background-image: url(Images/board_button_hover.png);"  # Use a different image on hover
+            "   background-image: url(:/Images/board_button.png);"  # Use a background image with curved lines
             "}"
         )
 
@@ -30,6 +27,7 @@ class boardCurvedButton(QtWidgets.QPushButton):
 
 class BoardWindow(object):
     def setupUi(self, Gobblet,player1 , player2):
+        self.Gobblet = Gobblet  # Store a reference to the main window
         Gobblet.setObjectName("Gobblet")
         Gobblet.resize(1200, 900)
         Gobblet.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
@@ -41,15 +39,32 @@ class BoardWindow(object):
         self.background = QtWidgets.QLabel(self.centralwidget)
         self.background.setGeometry(QtCore.QRect(250, 100, 700, 700))
         self.background.setText("")
-        self.background.setPixmap(QtGui.QPixmap("Images/board_background.png"))
+        self.background.setPixmap(QtGui.QPixmap(":/Images/board_background.png"))
         self.background.setScaledContents(True)
         self.background.setObjectName("background")
+
+        # Adding a re-start button
+        self.RestartButton = QtWidgets.QPushButton(self.centralwidget)
+        self.RestartButton.setGeometry(QtCore.QRect(500, 810, 200, 50))
+        font = QtGui.QFont()
+        font.setFamily("Supply Center")
+        font.setPointSize(13)
+        font.setBold(True)
+        self.RestartButton.setFont(font)
+        self.RestartButton.setStyleSheet("background-color: rgb(0, 180, 0);"
+                                "border: 2px solid white;"  # Add a white border
+                                "border-radius: 10px;")  # Adjust the radius for rounding
+        self.RestartButton.setObjectName("RestartButton")
+        self.RestartButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        #self.RestartButton.mousePressEvent = self.restart_game
+        self.RestartButton.clicked.connect(lambda: self.restart_game(Gobblet))
+
 
         # adding label for player turn
         self.playerTurn = QtWidgets.QLabel(self.centralwidget)
         self.playerTurn.setGeometry(QtCore.QRect(440, 10, 330, 90))
         self.playerTurn.setAlignment(QtCore.Qt.AlignCenter)
-        self.playerTurn.setStyleSheet("font: 20pt \"Supply Center\";\n"
+        self.playerTurn.setStyleSheet("font: 13pt \"Supply Center\";\n"
                                         "color: #ffffff;\n"
                                         "border: 3px solid black;\n"
                                         "border-radius: 10px;\n")
@@ -86,13 +101,13 @@ class BoardWindow(object):
         self.up_finger = QtWidgets.QLabel(self.centralwidget)
         self.up_finger.setGeometry(QtCore.QRect(1040, 710, 100, 100))
         self.up_finger.setText("")
-        self.up_finger.setPixmap(QtGui.QPixmap("Images/up_finger.png"))
+        self.up_finger.setPixmap(QtGui.QPixmap(":/Images/up_finger.png"))
         self.up_finger.setScaledContents(True)
         self.up_finger.setObjectName("label_3")
         self.down_finger = QtWidgets.QLabel(self.centralwidget)
         self.down_finger.setGeometry(QtCore.QRect(60, 90, 100, 100))
         self.down_finger.setText("")
-        self.down_finger.setPixmap(QtGui.QPixmap("Images/down_finger.png"))
+        self.down_finger.setPixmap(QtGui.QPixmap(":/Images/down_finger.png"))
         self.down_finger.setScaledContents(True)
         self.down_finger.setObjectName("label_4")
 
@@ -605,6 +620,20 @@ class BoardWindow(object):
         self.down_finger.show()
         self.up_finger.hide()
     
+
+    def restart_game(self,main_window):
+        # Create a new instance of the BoardWindow
+        new_window = BoardWindow()
+        new_window.setupUi(QtWidgets.QMainWindow(), self.Player1Name.text(), self.Player2Name.text())
+        new_window.Gobblet.show()
+        # Close the current window
+        main_window.close()
+        # # Create and show the BoardWindow
+        #self.board_window = QtWidgets.QMainWindow()
+        #ui = Ui_MainWindow()
+        #ui.setupUi(self.board_window)
+        #self.board_window.show() 
+        #main_entry_point() 
         
     def startGame(self, event, Player1_WhiteButtons, Player2_BlackButtons, boardButtons,playerRound,player1,player2):
         for btn in boardButtons:
@@ -644,10 +673,10 @@ class BoardWindow(object):
             "   border: none;"  # No border
             "   border-radius: 0px;"  # No border-radius for the button
             "   padding: 0px;"  # No padding
-            "   background-image: url(Images/board_button_transparent.png);"  # Use a background image with curved lines
+            "   background-image: url(:/Images/board_button_transparent.png);"  # Use a background image with curved lines
             "}"
             "QPushButton:hover {"
-            "   background-image: url(Images/board_button_hover_transparent.png);"  # Use a different image on hover
+            "   background-image: url(:/Images/board_button_hover_transparent.png);"  # Use a different image on hover
             "}"
             )
             
@@ -665,22 +694,22 @@ class BoardWindow(object):
             btn.mousePressEvent = lambda event, board_button=btn: self.placeButton(event, board_button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, button, playerRound,player1,player2)
 
 
-    # def is_collision(self,board_button, btn, pressedbutton):
-    #     rect1 = board_button.geometry()
-    #     rect2 = btn.geometry()
-    #     # return rect1.intersects(rect2)
-    #     if(rect1.intersects(rect2)):
-    #             if(btn.width() < pressedbutton.width()):
-    #                     return False
-    #             else:
-    #                     return True
+    def is_collision(self,board_button, btn, pressedbutton):
+        rect1 = board_button.geometry()
+        rect2 = btn.geometry()
+        # return rect1.intersects(rect2)
+        if(rect1.intersects(rect2)):
+                if(btn.width() < pressedbutton.width()):
+                        return False
+                else:
+                       return True
 
     def placeButton(self, event, board_button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, button, playerRound,player1,player2):
 
-        # Check for collisions with other buttons on the board
-        # for btn in Player1_WhiteButtons + Player2_BlackButtons:
-        #     if self.is_collision(board_button, btn, button):
-        #         return  # Do not place the button if there is a collision
+         #Check for collisions with other buttons on the board
+        for btn in Player1_WhiteButtons + Player2_BlackButtons:
+            if self.is_collision(board_button, btn, button):
+                return  # Do not place the button if there is a collision
 
         # Place the button on the board
         # for btn in boardButtons:
@@ -734,7 +763,7 @@ class BoardWindow(object):
             "   border: none;"  # No border
             "   border-radius: 0px;"  # No border-radius for the button
             "   padding: 0px;"  # No padding
-            "   background-image: url(Images/board_button.png);"  # Use a background image with curved lines
+            "   background-image: url(:/Images/board_button.png);"  # Use a background image with curved lines
             "}"
                )
         
@@ -755,7 +784,7 @@ class BoardWindow(object):
                 self.up_finger.show()
                 playerRound = "player2"
                 self.playerTurn.setText(f"{player2} Turn")
-                self.playerTurn.setStyleSheet("font: 20pt \"Supply Center\";\n"
+                self.playerTurn.setStyleSheet("font: 13pt \"Supply Center\";\n"
                                         "color: #000000;\n"
                                         "border: 3px solid black;\n"
                                         "border-radius: 10px;\n")
@@ -771,7 +800,7 @@ class BoardWindow(object):
                 self.down_finger.show()
                 playerRound = "player1"
                 self.playerTurn.setText(f"{player1} Turn")
-                self.playerTurn.setStyleSheet("font: 20pt \"Supply Center\";\n"
+                self.playerTurn.setStyleSheet("font: 13pt \"Supply Center\";\n"
                                         "color: #ffffff;\n"
                                         "border: 3px solid black;\n"
                                         "border-radius: 10px;\n")
@@ -809,6 +838,7 @@ class BoardWindow(object):
         self.Player2_Size4_Stack1.setText(_translate("Gobblet", "4"))
         self.Player2_Size4_Stack2.setText(_translate("Gobblet", "4"))
         self.Player2_Size4_Stack3.setText(_translate("Gobblet", "4"))
+        self.RestartButton.setText(_translate("Gobblet", "Restart"))
 
 if __name__ == "__main__":
     import sys

@@ -1,5 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtWidgets import QApplication, QMainWindow,QListView
+from PyQt5.QtCore import QStringListModel
 # Importing image resources
 import Images
 from board import BoardWindow
@@ -7,9 +8,10 @@ from board import BoardWindow
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         # Setting up the main window properties
+        self.MainWindow = MainWindow  # Store MainWindow as an instance variable
         MainWindow.setObjectName("Gobblet")
         MainWindow.resize(1083, 838)
-        MainWindow.setStyleSheet("background-color:rgb(255, 255, 255)")
+        MainWindow.setStyleSheet("background-color: #D2B48C;")
         MainWindow.setUnifiedTitleAndToolBarOnMac(False)
 
 
@@ -25,10 +27,12 @@ class Ui_MainWindow(object):
         self.gameLogo.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.gameLogo.setObjectName("gameLogo")
 
+        
+
         # Adding labels for different game modes with images
         # Player versus Player Mode
         self.PVPImage = QtWidgets.QLabel(self.centralwidget)
-        self.PVPImage.setGeometry(QtCore.QRect(60, 170, 221, 151))
+        self.PVPImage.setGeometry(QtCore.QRect(80, 170, 221, 151))
         self.PVPImage.setStyleSheet("image: url(:/Images/PVP.png);")
         self.PVPImage.setText("")
         self.PVPImage.setObjectName("PVPImage")
@@ -52,17 +56,27 @@ class Ui_MainWindow(object):
 
         # Adding text edits for player names
         self.Player1Name = QtWidgets.QTextEdit(self.centralwidget)
-        self.Player1Name.setGeometry(QtCore.QRect(490, 310, 231, 41))
+        self.Player1Name.setGeometry(QtCore.QRect(490, 310, 231, 30))
         self.Player1Name.setStyleSheet("font: 10pt \"Supply Center\";\n"
-                                       "color: rgb(0, 0, 255);")
+                                       "color: #ffffff;"
+                                       "border: none;"
+                                       "background-color: #DEC29D;"
+                                       "border-radius: 10px;")
         self.Player1Name.setObjectName("Player1Name")
+        self.Player1Name.setPlaceholderText("Player 1 Name")  # Set the placeholder text
         self.Player1Name.hide()
 
+
         self.Player2Name = QtWidgets.QTextEdit(self.centralwidget)
-        self.Player2Name.setGeometry(QtCore.QRect(730, 310, 231, 41))
+        self.Player2Name.setGeometry(QtCore.QRect(730, 310, 231, 30))
         self.Player2Name.setStyleSheet("font: 10pt \"Supply Center\";\n"
-                                       "color: rgb(255, 0, 0);")
+                                       "color: #000000;"
+                                       "border: none;"
+                                       "background-color: #DEC29D;"
+                                       "border-radius: 10px;"
+                                       "alignment: center;")
         self.Player2Name.setObjectName("Player2Name")
+        self.Player2Name.setPlaceholderText("Player 1 Name")  # Set the placeholder text
         self.Player2Name.hide()
 
 
@@ -74,10 +88,13 @@ class Ui_MainWindow(object):
         font.setPointSize(16)
         font.setBold(True)
         self.StartButton.setFont(font)
-        self.StartButton.setStyleSheet("background-color: rgb(0, 220, 0);")
+        self.StartButton.setStyleSheet("background-color: rgb(0, 180, 0);"
+                                "border: 2px solid white;"  # Add a white border
+                                "border-radius: 40px;")  # Adjust the radius for rounding
         self.StartButton.setObjectName("StartButton")
         self.StartButton.hide()
         self.StartButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+
 
 
         # Connecting mouse press events to show player names and start button
@@ -105,6 +122,37 @@ class Ui_MainWindow(object):
     def showPlayerName(self, event):
         # Show player names and start button when PVC label is clicked
         self.Player1Name.show()
+        # Adding a label for the list view
+        self.difficultyLabel1 = QtWidgets.QLabel(self.centralwidget)
+        self.difficultyLabel1.setGeometry(QtCore.QRect(730, 310, 231, 30))
+        self.difficultyLabel1.setStyleSheet("font: 10pt \"Supply Center\";\n"
+                                           "color: #000000;"
+                                           "border: none;"
+                                           "background-color: #DEC29D;"
+                                           "border-radius: 10px;")
+        self.difficultyLabel1.setAlignment(QtCore.Qt.AlignCenter)
+        self.difficultyLabel1.setText("Computer Level")
+        self.difficultyLabel1.show()
+        
+        # Adding a list view
+        self.difficultyListView1 = QtWidgets.QListView(self.centralwidget)
+        self.difficultyListView1.setGeometry(QtCore.QRect(730, 350, 231, 90))
+        
+        # Adding model for list view
+        self.difficultyListModel1 = QtCore.QStringListModel()
+        self.difficultyListModel1.setStringList(['EASY','MEDIUM','HARD'])
+        self.difficultyListView1.setModel(self.difficultyListModel1)
+        
+        # Set text style to be the same as the label
+        self.difficultyListView1.setStyleSheet("font: 10pt \"Supply Center\";\n"
+                                      "color: #00FF36  ;"
+                                      "border: none;")
+
+        # Prevent text from being changed in the list view
+        self.difficultyListView1.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+
+        self.difficultyListView1.show()
+
         self.Player2Name.setText("Computer")
         self.StartButton.show()
 
@@ -112,6 +160,70 @@ class Ui_MainWindow(object):
         # Show start button when CVC label is clicked
         self.Player1Name.setText("Computer-1")
         self.Player2Name.setText("Computer-2")
+
+        # Adding a label for the list view
+        self.difficultyLabel1 = QtWidgets.QLabel(self.centralwidget)
+        self.difficultyLabel1.setGeometry(QtCore.QRect(730, 310, 231, 30))
+        self.difficultyLabel1.setStyleSheet("font: 10pt \"Supply Center\";\n"
+                                           "color: #000000;"
+                                           "border: none;"
+                                           "background-color: #DEC29D;"
+                                           "border-radius: 10px;")
+        self.difficultyLabel1.setAlignment(QtCore.Qt.AlignCenter)
+        self.difficultyLabel1.setText("Computer Level")
+        self.difficultyLabel1.show()
+        
+        # Adding a list view
+        self.difficultyListView1 = QtWidgets.QListView(self.centralwidget)
+        self.difficultyListView1.setGeometry(QtCore.QRect(730, 350, 231, 90))
+        
+        # Adding model for list view
+        self.difficultyListModel1 = QtCore.QStringListModel()
+        self.difficultyListModel1.setStringList(['EASY','MEDIUM','HARD'])
+        self.difficultyListView1.setModel(self.difficultyListModel1)
+        
+        # Set text style to be the same as the label
+        self.difficultyListView1.setStyleSheet("font: 10pt \"Supply Center\";\n"
+                                      "color: #00FF36  ;"
+                                      "border: none;")
+
+        # Prevent text from being changed in the list view
+        self.difficultyListView1.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+
+        self.difficultyListView1.show()
+
+
+        # Adding a label for the list view
+        self.difficultyLabel2 = QtWidgets.QLabel(self.centralwidget)
+        self.difficultyLabel2.setGeometry(QtCore.QRect(490, 310, 231, 30))
+        self.difficultyLabel2.setStyleSheet("font: 10pt \"Supply Center\";\n"
+                                           "color: #ffffff;"
+                                           "border: none;"
+                                           "background-color: #DEC29D;"
+                                           "border-radius: 10px;")
+        self.difficultyLabel2.setAlignment(QtCore.Qt.AlignCenter)
+        self.difficultyLabel2.setText("Computer Level")
+        self.difficultyLabel2.show()
+        
+        # Adding a list view
+        self.difficultyListView2 = QtWidgets.QListView(self.centralwidget)
+        self.difficultyListView2.setGeometry(QtCore.QRect(490, 350, 231, 90))
+        
+        # Adding model for list view
+        self.difficultyListModel2 = QtCore.QStringListModel()
+        self.difficultyListModel2.setStringList(['EASY','MEDIUM','HARD'])
+        self.difficultyListView2.setModel(self.difficultyListModel2)
+        
+        # Set text style to be the same as the label
+        self.difficultyListView2.setStyleSheet("font: 10pt \"Supply Center\";\n"
+                                      "color: #00FF36  ;"
+                                      "border: none;")
+
+        # Prevent text from being changed in the list view
+        self.difficultyListView2.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+
+        self.difficultyListView2.show()
+
         self.StartButton.show()
 
     def showBoardWindow(self, event):
@@ -121,7 +233,7 @@ class Ui_MainWindow(object):
             ui = BoardWindow()
             ui.setupUi(self.board_window, self.Player1Name.toPlainText(), self.Player2Name.toPlainText())
             self.board_window.show()
-            MainWindow.close()    
+            self.MainWindow.close()    
 
     def retranslateUi(self, MainWindow):
         # Translating window title and setting initial text for player names
@@ -134,7 +246,7 @@ class Ui_MainWindow(object):
                                 "li.unchecked::marker { content: \"\\2610\"; }\n"
                                 "li.checked::marker { content: \"\\2612\"; }\n"
                                 "</style></head><body style=\" font-family:\'Supply Center\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-                                "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Player 1 NAME</p></body></html>"))
+                                "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"></p></body></html>"))
         self.Player2Name.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
                                 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
                                 "p, li { white-space: pre-wrap; }\n"
@@ -142,16 +254,19 @@ class Ui_MainWindow(object):
                                 "li.unchecked::marker { content: \"\\2610\"; }\n"
                                 "li.checked::marker { content: \"\\2612\"; }\n"
                                 "</style></head><body style=\" font-family:\'Supply Center\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
-                                "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Player 1 NAME</p></body></html>"))
+                                "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"></p></body></html>"))
         self.StartButton.setText(_translate("MainWindow", "Start"))
 
 
-# Application entry point
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
+def main_entry_point():
+    app = QtWidgets.QApplication([])
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
+
+# Application entry point
+if __name__ == "__main__":
+    import sys
+    main_entry_point()
