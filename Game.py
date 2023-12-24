@@ -1,5 +1,6 @@
 import Gobblet
 import BoardItem
+from Gobblet import CurrentGobblet
 
 class Game:
     def __init__(self, player1_name, player2_name, NumberOfGobbletsperPlayerInitValue=12, BoardSizeInitValue=16):
@@ -96,7 +97,7 @@ class Game:
             self.BoardItemsArray.append(board_item)
 
 
-    def ListPossibleMoves(self, CurrentGobblet:Gobblet) -> list:
+    def ListPossibleMoves(self, Gobblet: CurrentGobblet) -> list:
         """
         Checks the positions on board that the gobblet can move to.
 
@@ -109,7 +110,7 @@ class Game:
         # Iterate around all squares on board
         for SquareID in range(self.BoardSizeInitValue):
             # Check if the gobblet can move to the position on board
-            if CurrentGobblet.IsPossibleMove(self, SquareID):
+            if CurrentGobblet.IsPossibleGobbletMovement(self, SquareID):
                 # Add SquareID to the array if move is possible
                 possible_moves.append(SquareID)
         # Return the array of possible moves
@@ -132,7 +133,7 @@ class Game:
         # Iterate through all available Goblet IDs, considering both internal and external ones.
         for goblet_id in range(self.self.NumberOfGobbletsperPlayer):
             # Check if placing the current Goblet at the given position is a valid move.
-            if BoardItem.IsPossibleMove(self, goblet_id):
+            if BoardItem.IsPossibleBoardMovement(self, goblet_id):
                 possible_goblets.append(goblet_id)
 
         return possible_goblets

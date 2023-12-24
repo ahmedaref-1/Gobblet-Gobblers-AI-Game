@@ -54,7 +54,7 @@ class Gobblet:
         # If not None, the current Gobblet is on the board; otherwise, it is not.
         return self.CurrentBoardPositionIndex is not None
     
-    def IsPossibleMove(self, board_item):
+    def IsPossibleGobbletMovement(self, board_item):
         """
         Check if the current Gobblet can be moved to the specified board item position.
 
