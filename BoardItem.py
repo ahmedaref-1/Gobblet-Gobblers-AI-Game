@@ -38,7 +38,36 @@ class BoardItem:
         # If equal to 4, the stack is considered full; otherwise, it is not full.
         return self.NumberOfGobbletsInStack == 4
     
-    def AddGobblet(self, gobblet):
+    def IsOwnedByPlayer(self, player_index):
+        """
+        Check if the current board item position is owned by the specified player.
+
+        Parameters:
+        - player_index (int): Index representing the player (0 or 1)
+
+        Returns:
+        - True if the current board item position is owned by the specified player, False otherwise.
+        """
+        # Check if the current owner index is equal to the specified player index.
+        # If equal, the current board item position is owned by the specified player; otherwise, it is not.
+        return self.CurrentOwnerIndex == player_index 
+
+    def IsPossibleMove(self, gobblet):
+        """
+        Check if the specified Gobblet can be moved to the current board item position.
+
+        Parameters:
+        - gobblet (Gobblet): The Gobblet to be moved.
+
+        Returns:
+        - True if the specified Gobblet can be moved to the current board item position, False otherwise.
+        """
+        # Check if the stack is empty or if the size of the specified Gobblet is greater than
+        # the size of the Gobblet on top of the stack.
+        # If so, the specified Gobblet can be moved to the current board item position; otherwise, it cannot.
+        return self.IsEmpty() or gobblet.Size > self.OnTopGobbletSize  
+
+    def AddGobbletOnTop(self, gobblet):
         """
         Add a Gobblet to the stack.
 
@@ -60,7 +89,7 @@ class BoardItem:
             # Increment the count of Gobblets in the stack.
             self.NumberOfGobbletsInStack += 1
 
-    def RemoveGobblet(self):
+    def RemoveGobbletOnTop(self):
         """
         Remove the top Gobblet from the stack.
 
@@ -85,6 +114,21 @@ class BoardItem:
 
             # Return the removed Gobblet.
             return RemovedGobblet
+        else:
+            # If the stack is empty, return None.
+            return None
+
+    def GetTopGobblet(self):
+        """
+        Get the Gobblet on top of the stack.
+
+        Returns:
+        - The Gobblet on top of the stack. If the stack is empty, returns None.
+        """
+        # Check if the stack is not empty before attempting to get the Gobblet on top of the stack.
+        if not self.IsEmpty():
+            # Return the Gobblet on top of the stack.
+            return self.GobbletsStack[-1]
         else:
             # If the stack is empty, return None.
             return None
