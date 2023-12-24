@@ -13,7 +13,7 @@ class Gobblet:
         """
         self.ID = ID  # Unique ID for the Gobblet
         self.OwnerIndex = OwnerIndex  # Index representing the player (0 or 1)
-        self.Size = Size  # Size of the Gobblet piece (1, 2, or 3)
+        self.Size = Size  # Size of the Gobblet piece (1, 2, 3 or 4)
         self.CurrentBoardPositionIndex = CurrentBoardPositionIndexInitValue  # Current position on the game board 
         self.PreviousBoardPositionIndex = PreviousBoardPositionIndexInitValue  # Previous position on the game board 
         self.IsOnTop = IsOnTop  # Flag indicating if the Gobblet is on top of a stack (default is False)
