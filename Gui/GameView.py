@@ -1,9 +1,11 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QApplication, QMainWindow,QListView
+from PyQt5.QtWidgets import QApplication, QMainWindow,QListView,QWidget
 from PyQt5.QtCore import QStringListModel
 # Importing image resources
 import Images
 from board import BoardWindow
+
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -13,6 +15,8 @@ class Ui_MainWindow(object):
         MainWindow.resize(1083, 838)
         MainWindow.setStyleSheet("background-color: #D2B48C;")
         MainWindow.setUnifiedTitleAndToolBarOnMac(False)
+
+        mode = ""
 
 
         # Creating the central widget
@@ -97,6 +101,81 @@ class Ui_MainWindow(object):
 
 
 
+        #Adding Diffculty lables and List
+        # Adding a label for the list view
+        self.difficultyLabel1 = QtWidgets.QLabel(self.centralwidget)
+        self.difficultyLabel1.setGeometry(QtCore.QRect(730, 310, 231, 30))
+        self.difficultyLabel1.setStyleSheet("font: 10pt \"Supply Center\";\n"
+                                           "color: #000000;"
+                                           "border: none;"
+                                           "background-color: #DEC29D;"
+                                           "border-radius: 10px;")
+        self.difficultyLabel1.setAlignment(QtCore.Qt.AlignCenter)
+        self.difficultyLabel1.setText("Computer Level")
+        # Hide lable 1
+        self.difficultyLabel1.hide()
+        
+        # ListWidget 1
+        self.difficultyListWidget1 = QtWidgets.QListWidget(self.centralwidget)
+        self.difficultyListWidget1.setGeometry(QtCore.QRect(730, 350, 231, 90))
+        
+        # Adding items to the QListWidget
+        self.difficultyListWidget1.addItems(['EASY', 'MEDIUM', 'HARD'])
+        
+        # Set text style to be the same as the label
+        self.difficultyListWidget1.setStyleSheet("font: 10pt \"Supply Center\";\n"
+                                          "color: #FFFF36  ;"
+                                          "border: none;")
+        
+        self.difficultyListWidget1.item(0).setForeground(QtGui.QColor("#4CAF50"))
+        self.difficultyListWidget1.item(1).setForeground(QtGui.QColor("#FF9800"))
+        self.difficultyListWidget1.item(2).setForeground(QtGui.QColor("#D32F2F"))
+        # Prevent text from being changed in the list widget
+        self.difficultyListWidget1.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+        # Hide it
+        self.difficultyListWidget1.hide()
+
+
+        #List 2
+        # Adding a label for the list view
+        self.difficultyLabel2 = QtWidgets.QLabel(self.centralwidget)
+        self.difficultyLabel2.setGeometry(QtCore.QRect(490, 310, 231, 30))
+        self.difficultyLabel2.setStyleSheet("font: 10pt \"Supply Center\";\n"
+                                           "color: #ffffff;"
+                                           "border: none;"
+                                           "background-color: #DEC29D;"
+                                           "border-radius: 10px;")
+        self.difficultyLabel2.setAlignment(QtCore.Qt.AlignCenter)
+        self.difficultyLabel2.setText("Computer Level")
+        self.difficultyLabel2.hide()
+        
+        # Adding a list view
+        self.difficultyListWidget2 = QtWidgets.QListWidget(self.centralwidget)
+        self.difficultyListWidget2.setGeometry(QtCore.QRect(490, 350, 231, 90))
+        
+        # Adding items to the QListWidget
+        self.difficultyListWidget2.addItems(['EASY', 'MEDIUM', 'HARD'])
+
+        
+        # Set text style to be the same as the label
+        self.difficultyListWidget2.setStyleSheet("font: 10pt \"Supply Center\";\n"
+                                      "color: #00FF36  ;"
+                                      "border: none;")
+
+        self.difficultyListWidget2.item(0).setForeground(QtGui.QColor("#4CAF50"))
+        self.difficultyListWidget2.item(1).setForeground(QtGui.QColor("#FF9800"))
+        self.difficultyListWidget2.item(2).setForeground(QtGui.QColor("#D32F2F"))
+        # Prevent text from being changed in the list view
+        self.difficultyListWidget2.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+
+        self.difficultyListWidget2.hide()
+
+        # Connect itemClicked signals to a method that checks for selections
+        self.difficultyListWidget1.itemClicked.connect(self.checkSelectionPVC)
+        self.difficultyListWidget2.itemClicked.connect(self.checkSelectionCVC)
+
+
+
         # Connecting mouse press events to show player names and start button
         self.PVPImage.mousePressEvent = self.showPlayersNames
         self.PVCImage.mousePressEvent = self.showPlayerName
@@ -115,116 +194,74 @@ class Ui_MainWindow(object):
      
     def showPlayersNames(self, event):
         # Show player names and start button when PVP label is clicked
+        # Hide everything first
+        self.Player1Name.hide()
+        self.Player2Name.hide()
+        self.StartButton.hide()
+        self.difficultyListWidget1.hide()
+        self.difficultyLabel1.hide()
+        self.difficultyListWidget2.hide()
+        self.difficultyLabel2.hide()
+        self.Player1Name.setText("")
+        self.Player2Name.setText("")
+         
+        mode = "PVP" 
         self.Player1Name.show()
-        self.Player2Name.show()   
+        self.Player2Name.show() 
         self.StartButton.show()
 
     def showPlayerName(self, event):
         # Show player names and start button when PVC label is clicked
+        # Hide everything first
+        self.Player1Name.hide()
+        self.Player2Name.hide()
+        self.StartButton.hide()
+        self.difficultyListWidget1.hide()
+        self.difficultyLabel1.hide()
+        self.difficultyListWidget2.hide()
+        self.difficultyLabel2.hide()
+        self.Player1Name.setText("")
+        self.Player2Name.setText("")
+
+
+        mode = "PVC" 
         self.Player1Name.show()
-        # Adding a label for the list view
-        self.difficultyLabel1 = QtWidgets.QLabel(self.centralwidget)
-        self.difficultyLabel1.setGeometry(QtCore.QRect(730, 310, 231, 30))
-        self.difficultyLabel1.setStyleSheet("font: 10pt \"Supply Center\";\n"
-                                           "color: #000000;"
-                                           "border: none;"
-                                           "background-color: #DEC29D;"
-                                           "border-radius: 10px;")
-        self.difficultyLabel1.setAlignment(QtCore.Qt.AlignCenter)
-        self.difficultyLabel1.setText("Computer Level")
+        self.difficultyListWidget1.show()
         self.difficultyLabel1.show()
-        
-        # Adding a list view
-        self.difficultyListView1 = QtWidgets.QListView(self.centralwidget)
-        self.difficultyListView1.setGeometry(QtCore.QRect(730, 350, 231, 90))
-        
-        # Adding model for list view
-        self.difficultyListModel1 = QtCore.QStringListModel()
-        self.difficultyListModel1.setStringList(['EASY','MEDIUM','HARD'])
-        self.difficultyListView1.setModel(self.difficultyListModel1)
-        
-        # Set text style to be the same as the label
-        self.difficultyListView1.setStyleSheet("font: 10pt \"Supply Center\";\n"
-                                      "color: #00FF36  ;"
-                                      "border: none;")
-
-        # Prevent text from being changed in the list view
-        self.difficultyListView1.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
-
-        self.difficultyListView1.show()
-
-        self.Player2Name.setText("Computer")
-        self.StartButton.show()
 
     def showComputerName(self, event):
         # Show start button when CVC label is clicked
-        self.Player1Name.setText("Computer-1")
-        self.Player2Name.setText("Computer-2")
-
         # Adding a label for the list view
-        self.difficultyLabel1 = QtWidgets.QLabel(self.centralwidget)
-        self.difficultyLabel1.setGeometry(QtCore.QRect(730, 310, 231, 30))
-        self.difficultyLabel1.setStyleSheet("font: 10pt \"Supply Center\";\n"
-                                           "color: #000000;"
-                                           "border: none;"
-                                           "background-color: #DEC29D;"
-                                           "border-radius: 10px;")
-        self.difficultyLabel1.setAlignment(QtCore.Qt.AlignCenter)
-        self.difficultyLabel1.setText("Computer Level")
+        self.Player1Name.hide()
+        self.Player2Name.hide()
+        self.StartButton.hide()
+        self.difficultyListWidget1.hide()
+        self.difficultyLabel1.hide()
+        self.difficultyListWidget2.hide()
+        self.difficultyLabel2.hide()
+   
+       
+        mode = "CVC" 
+        self.difficultyListWidget1.show()
         self.difficultyLabel1.show()
-        
-        # Adding a list view
-        self.difficultyListView1 = QtWidgets.QListView(self.centralwidget)
-        self.difficultyListView1.setGeometry(QtCore.QRect(730, 350, 231, 90))
-        
-        # Adding model for list view
-        self.difficultyListModel1 = QtCore.QStringListModel()
-        self.difficultyListModel1.setStringList(['EASY','MEDIUM','HARD'])
-        self.difficultyListView1.setModel(self.difficultyListModel1)
-        
-        # Set text style to be the same as the label
-        self.difficultyListView1.setStyleSheet("font: 10pt \"Supply Center\";\n"
-                                      "color: #00FF36  ;"
-                                      "border: none;")
-
-        # Prevent text from being changed in the list view
-        self.difficultyListView1.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
-
-        self.difficultyListView1.show()
-
-
-        # Adding a label for the list view
-        self.difficultyLabel2 = QtWidgets.QLabel(self.centralwidget)
-        self.difficultyLabel2.setGeometry(QtCore.QRect(490, 310, 231, 30))
-        self.difficultyLabel2.setStyleSheet("font: 10pt \"Supply Center\";\n"
-                                           "color: #ffffff;"
-                                           "border: none;"
-                                           "background-color: #DEC29D;"
-                                           "border-radius: 10px;")
-        self.difficultyLabel2.setAlignment(QtCore.Qt.AlignCenter)
-        self.difficultyLabel2.setText("Computer Level")
+        self.difficultyListWidget2.show()
         self.difficultyLabel2.show()
-        
-        # Adding a list view
-        self.difficultyListView2 = QtWidgets.QListView(self.centralwidget)
-        self.difficultyListView2.setGeometry(QtCore.QRect(490, 350, 231, 90))
-        
-        # Adding model for list view
-        self.difficultyListModel2 = QtCore.QStringListModel()
-        self.difficultyListModel2.setStringList(['EASY','MEDIUM','HARD'])
-        self.difficultyListView2.setModel(self.difficultyListModel2)
-        
-        # Set text style to be the same as the label
-        self.difficultyListView2.setStyleSheet("font: 10pt \"Supply Center\";\n"
-                                      "color: #00FF36  ;"
-                                      "border: none;")
 
-        # Prevent text from being changed in the list view
-        self.difficultyListView2.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
 
-        self.difficultyListView2.show()
+    def checkSelectionCVC(self):
+        # Check if an item is selected in both list widgets
+        if self.difficultyListWidget1.currentItem() is not None and self.difficultyListWidget2.currentItem() is not None:
+            self.StartButton.show()
+        else:
+            self.StartButton.hide()
 
-        self.StartButton.show()
+    def checkSelectionPVC(self):
+        # Check if an item is selected in both list widgets
+        if self.difficultyListWidget1.currentItem() is not None:
+            self.StartButton.show()
+        else:
+            self.StartButton.hide()        
+
 
     def showBoardWindow(self, event):
          if self.board_window is None or not self.board_window.isVisible():
