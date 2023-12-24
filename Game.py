@@ -101,6 +101,9 @@ class Game:
         """
         Checks the positions on board that the gobblet can move to.
 
+        Args:
+        CurrentGobblet: The gobblet which I want what are the possible positions on board to place it on
+
         Returns:
         - List of possible positions on board that the goblet can move to.
         """
@@ -116,27 +119,92 @@ class Game:
         # Return the array of possible moves
         return possible_moves
 
-    def ListPossibleGoblets(self, current_position: BoardItem) -> list:
-        """
-        Determines and returns a list of all Goblet IDs that can be placed on the specified position.
+        def ListPossibleGoblets(self, player_index) -> list:
+            """
+            Determines and returns a list of all Goblets that can be placed of a specific player.
 
-        Args:
-            current_position: The target position on the board where to check for legal Goblet placements.
+            Args:
+            CurrentPlayerIndex: To indicate the player.
 
-        Returns:
-            A list containing the IDs of all Goblets that can be placed at the given position.
-            The list will be empty if no Goblet placement is possible.
+            Returns:
+            A list containing the IDs of all Goblets that can be moved.
+            """
+            possible_goblets = []
 
-        """
-        possible_goblets = []
+        # Check for Player 1
+        if self.player_index is 0 :
+            # Iterate through all available Goblet IDs of player 1, considering both internal and external ones.
+            for goblet_id in range(self.FirstPlayerGobbletsArray):
+                # Check if the gobblet is on top.
+                if self.FirstPlayerGobbletsArray[goblet_id].IsOnTopOfStack:
+                    possible_goblets.append(goblet_id)
 
-        # Iterate through all available Goblet IDs, considering both internal and external ones.
-        for goblet_id in range(self.self.NumberOfGobbletsperPlayer):
-            # Check if placing the current Goblet at the given position is a valid move.
-            if BoardItem.IsPossibleBoardMovement(self, goblet_id):
-                possible_goblets.append(goblet_id)
+        # Check for Player 2
+        if self.player_index is 1 :
+            # Iterate through all available Goblet IDs of player 2, considering both internal and external ones.
+            for goblet_id in range(self.SecondPlayerGobbletsArray):
+                # Check if the gobblet is on top.
+                if self.SecondPlayerGobbletsArray[goblet_id].IsOnTopOfStack:
+                    possible_goblets.append(goblet_id)            
 
         return possible_goblets
+    
+    def MoveExternalGobblet (self,CuurentGobbler:Gobblet, RequiredPosition:BoardItem):
+        """
+        Moves an external Gobblet from its current position to the specified target position on the board,
+        ensuring preconditions are met before execution.
+
+        Args:
+        current_gobblet: The Gobblet to be moved.
+        required_position: The target position on the board where the Gobblet should be moved.
+        """
+        # Check that the gobblet on top and that it is already placed on board
+        if CuurentGobbler.IsOnTopOfStack is True and CuurentGobbler.IsOnBoard is False:
+            # Check that it is possible to move the gobbled to the specified position
+            if CuurentGobbler.IsPossibleGobbletMovement(self, RequiredPosition.index) is True:
+                # Call Function PlaceExternalGobblet to place the gobblet on board
+                self.PlaceExternalGobblet
+
+    def PlaceExternalGobblet (self,CuurentGobbler:Gobblet, RequiredPosition:BoardItem): 
+        """
+        Places an external Gobblet onto the specified position on the game board, ensuring valid placement.
+
+        Args:
+        current_gobblet: The Gobblet to be placed on the board.
+        required_position: The target position where the Gobblet should be placed.
+        """
+        if RequiredPosition.IsPossibleBoardMovement(self, CuurentGobbler) is True:
+            RequiredPosition.AddGobbletOnTop(self, CuurentGobbler)   
+
+    def MoveInternalGobblet (self,CuurentGobbler:Gobblet, RequiredPosition:BoardItem):
+        """
+        Moves an internal Gobblet from its current position to the specified target position on the board.
+
+        Args:
+        current_gobblet: The Gobblet to be moved, which must already be on the board.
+        required_position: The target position where the Gobblet should be moved.
+        """
+        if CuurentGobbler.IsOnTopOfStack is True and CuurentGobbler.IsOnBoard is True:
+            if CuurentGobbler.IsPossibleGobbletMovement(self, RequiredPosition.index) is True:
+                self.PlaceInternalGobblet
+
+
+    def PlaceInternalGobblet (self,CuurentGobbler:Gobblet, RequiredPosition:BoardItem): 
+        """
+        Places a Gobblet onto a specified BoardItem position, following game rules.
+
+        Args:
+       - CuurentGobbler (Gobblet): The Gobblet to be placed.
+       - RequiredPosition (BoardItem): The BoardItem position where the Gobblet should be placed.
+   """
+        if RequiredPosition.IsPossibleBoardMovement(self, CuurentGobbler) is True:
+            RequiredPosition.RemoveGobbletOnTop(self)
+            RequiredPosition.AddGobbletOnTop(self, CuurentGobbler)          
+
+    
+
+
+
 
     
 
