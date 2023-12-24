@@ -32,21 +32,37 @@ class BoardItem:
         Parameters:
         - gobblet (Gobblet): The Gobblet to be added.
         """
-        self.GobbletsStack.append(gobblet)
-        self.OnTopGobbletSize = gobblet.Size
-        self.NumberOfGobbletsInStack += 1
+        if self.IsEmpty() or gobblet.Size > self.OnTopGobbletSize:
+            self.GobbletsStack.append(gobblet)
+            self.CurrentOwnerIndex = gobblet.OwnerIndex
+            self.OnTopGobbletSize = gobblet.Size
+            self.NumberOfGobbletsInStack += 1
 
-    def RemoveGobblet(self):
-        """
-        Remove the top Gobblet from the stack.
+def RemoveGobblet(self):
+    """
+    Remove the top Gobblet from the stack.
 
-        Returns:
-        - The removed Gobblet.
-        """
-        if not self.IsEmpty():
-            RemovedGobblet = self.GobbletsStack.pop()
-            self.NumberOfGobbletsInStack -= 1
-            self.OnTopGobblet = self.GobbletsStack[-1] if self.GobbletsStack else None
-            return RemovedGobblet
-        else:
-            return None
+    Returns:
+    - The removed Gobblet. If the stack is empty, returns None.
+    """
+    # Check if the stack is not empty before attempting to remove a Gobblet.
+    if not self.IsEmpty():
+        # Remove the top Gobblet from the stack using pop().
+        RemovedGobblet = self.GobbletsStack.pop()
+
+        # Update the current owner index based on the Gobblet on top of the stack.
+        # If the stack is empty, set the current owner index to None.
+        self.CurrentOwnerIndex = self.GobbletsStack[-1].gobblet.OwnerIndex if self.GobbletsStack else None
+
+        # Update the size of the Gobblet on top of the stack.
+        # If the stack is empty, set the OnTopGobbletSize to None.
+        self.OnTopGobbletSize = self.GobbletsStack[-1].gobblet.Size if self.GobbletsStack else None
+
+        # Decrement the count of Gobblets in the stack.
+        self.NumberOfGobbletsInStack -= 1
+
+        # Return the removed Gobblet.
+        return RemovedGobblet
+    else:
+        # If the stack is empty, return None.
+        return None
