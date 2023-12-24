@@ -18,4 +18,52 @@ class Gobblet:
         self.PreviousBoardPositionIndex = PreviousBoardPositionIndexInitValue  # Previous position on the game board 
         self.IsOnTop = IsOnTop  # Flag indicating if the Gobblet is on top of a stack (default is False)
 
+    def IsOwnedByPlayer(self, player_index):
+        """
+        Check if the current Gobblet is owned by the specified player.
 
+        Parameters:
+        - player_index (int): Index representing the player (0 or 1)
+
+        Returns:
+        - True if the current Gobblet is owned by the specified player, False otherwise.
+        """
+        # Check if the current owner index is equal to the specified player index.
+        # If equal, the current Gobblet is owned by the specified player; otherwise, it is not.
+        return self.OwnerIndex == player_index
+    
+    def IsOnTopOfStack(self):
+        """
+        Check if the current Gobblet is on top of a stack.
+
+        Returns:
+        - True if the current Gobblet is on top of a stack, False otherwise.
+        """
+        # Check if the IsOnTop flag is True.
+        # If True, the current Gobblet is on top of a stack; otherwise, it is not.
+        return self.IsOnTop
+    
+    def IsOnBoard(self):
+        """
+        Check if the current Gobblet is on the board.
+
+        Returns:
+        - True if the current Gobblet is on the board, False otherwise.
+        """
+        # Check if the CurrentBoardPositionIndex is not None.
+        # If not None, the current Gobblet is on the board; otherwise, it is not.
+        return self.CurrentBoardPositionIndex is not None
+    
+    def IsPossibleMove(self, board_item):
+        """
+        Check if the current Gobblet can be moved to the specified board item position.
+
+        Parameters:
+        - board_item (BoardItem): The board item position to be moved to.
+
+        Returns:
+        - True if the current Gobblet can be moved to the specified board item position, False otherwise.
+        """
+        # Check if the specified board item position is empty.
+        # If empty, the current Gobblet can be moved to the specified board item position; otherwise, it cannot.
+        return board_item.IsEmpty() or self.Size > board_item.OnTopGobbletSize

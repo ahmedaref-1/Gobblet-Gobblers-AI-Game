@@ -5,12 +5,13 @@ class BoardItem:
         Represents a piece on the Gobblet Gobblers board.
 
         Parameters:
+        - Index (int): Index of the board item position
         - CurrentOwnerIndexInitValue (int): Index representing the player (0 or 1)
         - OnTopGobbletSizeInitValue (int): Size of the piece on top of this piece in the stack
         - GobbletsStack (list): List representing the stack of pieces at this position
         - NumberOfGobbletsInStack (int): Number of pieces in the stack
         """
-
+        self.Index = None  # Index of the board item position
         self.CurrentOwnerIndex = CurrentOwnerIndexInitValue  # Index representing the player (0 or 1)
         self.OnTopGobbletSize = OnTopGobbletSizeInitValue  # Size of the piece on top of this piece in the stack
         self.GobbletsStack = GobbletsStack if GobbletsStack is not None else []  # List representing the stack of pieces at this position
@@ -77,6 +78,10 @@ class BoardItem:
         # Check if the stack is not full and if the size of the new Gobblet is greater than
         # the size of the Gobblet on top of the stack.
         if not self.IsFull() and gobblet.Size > self.OnTopGobbletSize:
+            if not self.IsEmpty():
+                # Set the IsOnTop flag of the Gobblet on top of the stack to False. 
+                self.GobbletsStack[-1].gobblet.IsOnTop = False
+                
             # Append the new Gobblet to the stack.
             self.GobbletsStack.append(gobblet)
 
