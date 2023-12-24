@@ -16,17 +16,11 @@ class boardCurvedButton(QtWidgets.QPushButton):
             "}"
         )
 
-    # def paintEvent(self, event):
-    #     painter = QtGui.QPainter(self)
-    #     painter.setRenderHint(QtGui.QPainter.Antialiasing, True)
-    #     option = QtWidgets.QStyleOptionButton()
-    #     self.initStyleOption(option)
-    #     painter.drawRoundedRect(option.rect, 10, 10)
-
-
 
 class BoardWindow(object):
-    def setupUi(self, Gobblet,player1 , player2):
+    def setupUi(self, Gobblet,player1,player2):
+        # player1 = "bahaa"
+        # player2 = "mohamed"
         self.Gobblet = Gobblet  # Store a reference to the main window
         Gobblet.setObjectName("Gobblet")
         Gobblet.resize(1200, 900)
@@ -52,7 +46,7 @@ class BoardWindow(object):
         font.setBold(True)
         self.RestartButton.setFont(font)
         self.RestartButton.setStyleSheet("background-color: rgb(0, 180, 0);"
-                                "border: 2px solid white;"  # Add a white border
+                                "border: 2px solid Black;"  # Add a white border
                                 "border-radius: 10px;")  # Adjust the radius for rounding
         self.RestartButton.setObjectName("RestartButton")
         self.RestartButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
@@ -62,7 +56,7 @@ class BoardWindow(object):
 
         # adding label for player turn
         self.playerTurn = QtWidgets.QLabel(self.centralwidget)
-        self.playerTurn.setGeometry(QtCore.QRect(440, 10, 330, 90))
+        self.playerTurn.setGeometry(QtCore.QRect(440, 25, 330, 60))
         self.playerTurn.setAlignment(QtCore.Qt.AlignCenter)
         self.playerTurn.setStyleSheet("font: 13pt \"Supply Center\";\n"
                                         "color: #ffffff;\n"
