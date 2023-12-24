@@ -114,6 +114,9 @@ class BoardItem:
             # If the stack is empty, set the OnTopGobbletSize to None.
             self.OnTopGobbletSize = self.GobbletsStack[-1].gobblet.Size if self.GobbletsStack else None
 
+            # Set the IsOnTop flag of the Gobblet on top of the stack to True.
+            self.GobbletsStack[-1].gobblet.IsOnTop = True
+
             # Decrement the count of Gobblets in the stack.
             self.NumberOfGobbletsInStack -= 1
 
@@ -123,17 +126,20 @@ class BoardItem:
             # If the stack is empty, return None.
             return None
 
-    def GetTopGobblet(self):
+    def GetOwnerIndex(self):
         """
-        Get the Gobblet on top of the stack.
+        Get the current owner index of the board item position.
 
         Returns:
-        - The Gobblet on top of the stack. If the stack is empty, returns None.
+        - The current owner index of the board item position.
         """
-        # Check if the stack is not empty before attempting to get the Gobblet on top of the stack.
-        if not self.IsEmpty():
-            # Return the Gobblet on top of the stack.
-            return self.GobbletsStack[-1]
-        else:
-            # If the stack is empty, return None.
-            return None
+        return self.CurrentOwnerIndex
+    
+    def GetOnTopGobbletSize(self):
+        """
+        Get the size of the Gobblet on top of the stack.
+
+        Returns:
+        - The size of the Gobblet on top of the stack.
+        """
+        return self.OnTopGobbletSize
