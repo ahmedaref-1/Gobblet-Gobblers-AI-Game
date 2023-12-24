@@ -1,5 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import Images
+from PyQt5.QtGui import QIcon
+
 
 
 class boardCurvedButton(QtWidgets.QPushButton):
@@ -28,6 +30,7 @@ class BoardWindow(object):
         self.centralwidget = QtWidgets.QWidget(Gobblet)
         self.centralwidget.setObjectName("centralwidget")
         self.centralwidget.setStyleSheet("background-color: #D2B48C;")  # Slightly darker beige background
+        self.Gobblet.setWindowIcon(QIcon(':/Images/MainLogo.png'))  # Set the window icon
 
         # adding board background
         self.background = QtWidgets.QLabel(self.centralwidget)

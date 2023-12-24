@@ -1,6 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QApplication, QMainWindow,QListView,QWidget
-from PyQt5.QtCore import QStringListModel
+from PyQt5.QtGui import QIcon
 # Importing image resources
 import Images
 from board import BoardWindow
@@ -15,6 +14,8 @@ class Ui_MainWindow(object):
         MainWindow.resize(1083, 838)
         MainWindow.setStyleSheet("background-color: #D2B48C;")
         MainWindow.setUnifiedTitleAndToolBarOnMac(False)
+        self.MainWindow.setWindowIcon(QIcon(':/Images/MainLogo.png'))  # Set the window icon
+
 
         mode = ""
 
