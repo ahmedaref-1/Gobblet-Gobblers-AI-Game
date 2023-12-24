@@ -115,6 +115,28 @@ class Game:
 
         return possible_moves
 
+    def ListPossibleGoblets(self, current_position: BoardItem) -> list:
+    """
+    Determines and returns a list of all Goblet IDs that can be placed on the specified position.
+
+    Args:
+        current_position: The target position on the board where to check for legal Goblet placements.
+
+    Returns:
+        A list containing the IDs of all Goblets that can be placed at the given position.
+        The list will be empty if no Goblet placement is possible.
+
+    """
+    possible_goblets = []
+
+    # Iterate through all available Goblet IDs, considering both internal and external ones.
+    for goblet_id in range(self.self.NumberOfGobbletsperPlayer):
+        # Check if placing the current Goblet at the given position is a valid move.
+        if BoardItem.IsPossibleMove(self, goblet_id):
+            possible_goblets.append(goblet_id)
+
+    return possible_goblets
+
     
 
 
