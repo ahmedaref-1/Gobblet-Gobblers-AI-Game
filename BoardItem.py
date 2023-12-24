@@ -16,16 +16,16 @@ class BoardItem:
         self.GobbletsStack = GobbletsStack if GobbletsStack is not None else []  # List representing the stack of pieces at this position
         self.NumberOfGobbletsInStack = NumberOfGobbletsInStack if NumberOfGobbletsInStack is not None else 0  # Number of pieces in the stack
 
-def IsEmpty(self):
-    """
-    Check if the stack of the current board item position is empty.
+    def IsEmpty(self):
+        """
+        Check if the stack of the current board item position is empty.
 
-    Returns:
-    - True if the stack is empty, False otherwise.
-    """
-    # Check if the count of Gobblets in the stack is zero.
-    # If zero, the stack is considered empty; otherwise, it is not empty.
-    return self.NumberOfGobbletsInStack == 0
+        Returns:
+        - True if the stack is empty, False otherwise.
+        """
+        # Check if the count of Gobblets in the stack is zero.
+        # If zero, the stack is considered empty; otherwise, it is not empty.
+        return self.NumberOfGobbletsInStack == 0
 
     
     def AddGobblet(self, gobblet):
