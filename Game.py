@@ -96,7 +96,7 @@ class Game:
             self.BoardItemsArray.append(board_item)
 
 
-        def ListPossibleMoves(self):
+     def ListPossibleMoves(self, CurrentGobblet:Gobblet) -> list:
         """
         Checks the positions on board that the gobblet can move to.
 
