@@ -270,7 +270,6 @@ class Game:
                     if RequiredPosition.GetOwnerIndex is False and self.BoardItemsArray[9] is not None: 
                         if RequiredPosition.GetOwnerIndex is False and self.BoardItemsArray[12] is not None:
                             self.GameState = "Player1Won"   
-                            break    
 
 
     def checkWinner2 (self, RequiredPosition:BoardItem):
@@ -334,7 +333,7 @@ class Game:
                     if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[9] is not None: 
                         if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[12] is not None:
                             self.GameState = "Player2Won" 
-                            break                                                                                                                                             
+                                                                                                                                                         
 
 
 
