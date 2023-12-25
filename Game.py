@@ -109,24 +109,24 @@ class Game:
         Returns:
         A list containing the IDs of all Goblets that can be moved.
         """
-        possible_goblets = []
+        possible_gobblets = []
         # Check for Player 1
         if self.CurrentPlayerIndex is 0 :
             # Iterate through all available Goblet IDs of player 1, considering both internal and external ones.
             for goblet_id in range(self.FirstPlayerGobbletsArray):
                 # Check if the gobblet is on top.
-                if self.FirstPlayerGobbletsArray[goblet_id].IsOnTopOfStack:
-                    possible_goblets.append(goblet_id)
+                if self.FirstPlayerGobbletsArray[goblet_id].IsOnTopOfStack():
+                    possible_gobblets.append(goblet_id)
 
         # Check for Player 2
         if self.CurrentPlayerIndex is 1 :
             # Iterate through all available Goblet IDs of player 2, considering both internal and external ones.
             for goblet_id in range(self.SecondPlayerGobbletsArray):
                 # Check if the gobblet is on top.
-                if self.SecondPlayerGobbletsArray[goblet_id].IsOnTopOfStack:
-                    possible_goblets.append(goblet_id)            
+                if self.SecondPlayerGobbletsArray[goblet_id].IsOnTopOfStack():
+                    possible_gobblets.append(goblet_id)            
 
-        return possible_goblets
+        return possible_gobblets
     
 
     def ListPossibleMoves(self, Gobblet: CurrentGobblet) -> list[MoveID]:
