@@ -261,10 +261,10 @@ class Game:
 
     
     # Function that makes SkipRoundFlag is True if all positions on board are filled and so we cannot gobbel up with a small piece                        
-    def CornerCase (self, CurrentGobblet:Gobblet, CurrentBoardItem:BoardItem):
+    def CornerCase (self):
         self.SkipRoundFlag = True
-        for positions in range (self.BoardItemsArray):  
-            if not CurrentBoardItem.IsEmpty is False:
+        for positions in range (self.BoardItemsArray): 
+            if self.BoardItemsArray[positions].CurrentOwnerIndex is None:     
                 self.SkipRoundFlag = False
                 return self.SkipRoundFlag
 
