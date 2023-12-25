@@ -178,7 +178,7 @@ class Game:
         required_position: The target position on the board where the Gobblet should be moved.
         """
         # Check that the gobblet on top and that it is NOT placed on board
-        if CuurentGobbler.IsOnTopOfStack is True and CuurentGobbler.IsOnBoard is False:
+        if CuurentGobbler.IsOnTopOfStack is True and CuurentGobbler.IsOnBoard is False and RequiredPosition.IsEmpty is True:
             # Check that it is possible to move the gobbled to the specified position
             if CuurentGobbler.IsPossibleGobbletMovement(self, RequiredPosition.index) is True:
                 # Call Function PlaceExternalGobblet to place the gobblet on board
