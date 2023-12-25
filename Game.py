@@ -359,18 +359,3 @@ class Game:
             if CurrentBoardItem.IsFull is True:
                 self.SkipRoundFlag = True
                 return self.SkipRoundFlag
-
-                                                                                                                                                         
-
-
-
-
-
-    
-
-
-
-
-    
-
-
