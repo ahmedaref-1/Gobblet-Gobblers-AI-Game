@@ -158,90 +158,90 @@ class Game:
                     # Call Function PlaceExternalGobblet to place the gobblet on board
                     self.PlaceExternalGobblet(CurrentGobblet, RequiredPosition)
         
-        if (CurrentGobblet.IsOnTopOfStack() is True) and (CurrentGobblet.IsOnBoard() is False ) and (self.BoardItemsArray[1].CurrentOwnerIndex is not None) and \
-            (self.BoardItemsArray[0].CurrentOwnerIndex == self.BoardItemsArray[1].CurrentOwnerIndex == self.BoardItemsArray[2].CurrentOwnerIndex)or \
-            (self.BoardItemsArray[1].CurrentOwnerIndex == self.BoardItemsArray[2].CurrentOwnerIndex == self.BoardItemsArray[3].CurrentOwnerIndex) :
+        if (CurrentGobblet.IsOnTopOfStack() is True) and (CurrentGobblet.IsOnBoard() is False ) and (self.BoardItemsArray[1].OpponentIndex  is not None) and \
+            (self.BoardItemsArray[0].OpponentIndex  == self.BoardItemsArray[1].OpponentIndex  == self.BoardItemsArray[2].OpponentIndex )or \
+            (self.BoardItemsArray[1].OpponentIndex  == self.BoardItemsArray[2].OpponentIndex  == self.BoardItemsArray[3].OpponentIndex ) :
                 # Check if it is possible to move the gobblet to the specified position
                 if CurrentGobblet.IsPossibleGobbletMovement(self, RequiredPosition) is True:
                     # Call Function PlaceExternalGobblet to place the gobblet on board
                     self.PlaceExternalGobblet(CurrentGobblet, RequiredPosition)
         
 
-        if (CurrentGobblet.IsOnTopOfStack() is True) and (CurrentGobblet.IsOnBoard() is False ) and(self.BoardItemsArray[5].CurrentOwnerIndex is not None) and \
-            (self.BoardItemsArray[4].CurrentOwnerIndex == self.BoardItemsArray[5].CurrentOwnerIndex == self.BoardItemsArray[6].CurrentOwnerIndex)or \
-            (self.BoardItemsArray[5].CurrentOwnerIndex == self.BoardItemsArray[6].CurrentOwnerIndex == self.BoardItemsArray[7].CurrentOwnerIndex) :
+        if (CurrentGobblet.IsOnTopOfStack() is True) and (CurrentGobblet.IsOnBoard() is False ) and(self.BoardItemsArray[5].OpponentIndex  is not None) and \
+            (self.BoardItemsArray[4].OpponentIndex  == self.BoardItemsArray[5].OpponentIndex  == self.BoardItemsArray[6].OpponentIndex )or \
+            (self.BoardItemsArray[5].OpponentIndex  == self.BoardItemsArray[6].OpponentIndex  == self.BoardItemsArray[7].OpponentIndex ) :
                 # Check if it is possible to move the gobblet to the specified position
                 if CurrentGobblet.IsPossibleGobbletMovement(self, RequiredPosition) is True:
                     # Call Function PlaceExternalGobblet to place the gobblet on board
                     self.PlaceExternalGobblet(CurrentGobblet, RequiredPosition)
 
 
-        if (CurrentGobblet.IsOnTopOfStack() is True) and (CurrentGobblet.IsOnBoard() is False ) and (self.BoardItemsArray[9].CurrentOwnerIndex is not None) and \
-            (self.BoardItemsArray[8].CurrentOwnerIndex == self.BoardItemsArray[9].CurrentOwnerIndex == self.BoardItemsArray[10].CurrentOwnerIndex)or \
-            (self.BoardItemsArray[9].CurrentOwnerIndex == self.BoardItemsArray[10].CurrentOwnerIndex == self.BoardItemsArray[11].CurrentOwnerIndex) :
+        if (CurrentGobblet.IsOnTopOfStack() is True) and (CurrentGobblet.IsOnBoard() is False ) and (self.BoardItemsArray[9].OpponentIndex  is not None) and \
+            (self.BoardItemsArray[8].OpponentIndex  == self.BoardItemsArray[9].OpponentIndex  == self.BoardItemsArray[10].OpponentIndex )or \
+            (self.BoardItemsArray[9].OpponentIndex  == self.BoardItemsArray[10].OpponentIndex  == self.BoardItemsArray[11].OpponentIndex ) :
                 # Check if it is possible to move the gobblet to the specified position
                 if CurrentGobblet.IsPossibleGobbletMovement(self, RequiredPosition) is True:
                     # Call Function PlaceExternalGobblet to place the gobblet on board
                     self.PlaceExternalGobblet(CurrentGobblet, RequiredPosition)
 
 
-        if (CurrentGobblet.IsOnTopOfStack() is True) and (CurrentGobblet.IsOnBoard() is False ) and(self.BoardItemsArray[13].CurrentOwnerIndex is not None) and \
-            (self.BoardItemsArray[12].CurrentOwnerIndex == self.BoardItemsArray[13].CurrentOwnerIndex == self.BoardItemsArray[14].CurrentOwnerIndex)or \
-            (self.BoardItemsArray[13].CurrentOwnerIndex == self.BoardItemsArray[14].CurrentOwnerIndex == self.BoardItemsArray[15].CurrentOwnerIndex) :
+        if (CurrentGobblet.IsOnTopOfStack() is True) and (CurrentGobblet.IsOnBoard() is False ) and(self.BoardItemsArray[13].OpponentIndex  is not None) and \
+            (self.BoardItemsArray[12].OpponentIndex  == self.BoardItemsArray[13].OpponentIndex  == self.BoardItemsArray[14].OpponentIndex )or \
+            (self.BoardItemsArray[13].OpponentIndex  == self.BoardItemsArray[14].OpponentIndex  == self.BoardItemsArray[15].OpponentIndex ) :
                 # Check if it is possible to move the gobblet to the specified position
                 if CurrentGobblet.IsPossibleGobbletMovement(self, RequiredPosition) is True:
                     # Call Function PlaceExternalGobblet to place the gobblet on board
                     self.PlaceExternalGobblet(CurrentGobblet, RequiredPosition)
 
 
-        if (CurrentGobblet.IsOnTopOfStack() is True) and (CurrentGobblet.IsOnBoard() is False ) and(self.BoardItemsArray[5].CurrentOwnerIndex is not None) and \
-            (self.BoardItemsArray[1].CurrentOwnerIndex == self.BoardItemsArray[5].CurrentOwnerIndex == self.BoardItemsArray[9].CurrentOwnerIndex)or \
-            (self.BoardItemsArray[5].CurrentOwnerIndex == self.BoardItemsArray[9].CurrentOwnerIndex == self.BoardItemsArray[13].CurrentOwnerIndex) :
+        if (CurrentGobblet.IsOnTopOfStack() is True) and (CurrentGobblet.IsOnBoard() is False ) and(self.BoardItemsArray[5].OpponentIndex  is not None) and \
+            (self.BoardItemsArray[1].OpponentIndex  == self.BoardItemsArray[5].OpponentIndex  == self.BoardItemsArray[9].OpponentIndex )or \
+            (self.BoardItemsArray[5].OpponentIndex  == self.BoardItemsArray[9].OpponentIndex  == self.BoardItemsArray[13].OpponentIndex ) :
                  # Check if it is possible to move the gobblet to the specified position
                 if CurrentGobblet.IsPossibleGobbletMovement(self, RequiredPosition) is True:
                     # Call Function PlaceExternalGobblet to place the gobblet on board
                     self.PlaceExternalGobblet(CurrentGobblet, RequiredPosition)
 
 
-        if (CurrentGobblet.IsOnTopOfStack() is True) and (CurrentGobblet.IsOnBoard() is False ) and (self.BoardItemsArray[1].CurrentOwnerIndex is not None) and \
-            (self.BoardItemsArray[0].CurrentOwnerIndex == self.BoardItemsArray[1].CurrentOwnerIndex == self.BoardItemsArray[2].CurrentOwnerIndex)or \
-            (self.BoardItemsArray[1].CurrentOwnerIndex == self.BoardItemsArray[2].CurrentOwnerIndex == self.BoardItemsArray[3].CurrentOwnerIndex) :
+        if (CurrentGobblet.IsOnTopOfStack() is True) and (CurrentGobblet.IsOnBoard() is False ) and (self.BoardItemsArray[1].OpponentIndex  is not None) and \
+            (self.BoardItemsArray[0].OpponentIndex  == self.BoardItemsArray[1].OpponentIndex  == self.BoardItemsArray[2].OpponentIndex )or \
+            (self.BoardItemsArray[1].OpponentIndex  == self.BoardItemsArray[2].OpponentIndex  == self.BoardItemsArray[3].OpponentIndex ) :
                 # Check if it is possible to move the gobblet to the specified position
                 if CurrentGobblet.IsPossibleGobbletMovement(self, RequiredPosition) is True:
                     # Call Function PlaceExternalGobblet to place the gobblet on board
                     self.PlaceExternalGobblet(CurrentGobblet, RequiredPosition)
 
 
-        if (CurrentGobblet.IsOnTopOfStack() is True) and (CurrentGobblet.IsOnBoard() is False ) and(self.BoardItemsArray[6].CurrentOwnerIndex is not None) and \
-            (self.BoardItemsArray[2].CurrentOwnerIndex == self.BoardItemsArray[6].CurrentOwnerIndex == self.BoardItemsArray[10].CurrentOwnerIndex)or \
-            (self.BoardItemsArray[6].CurrentOwnerIndex == self.BoardItemsArray[10].CurrentOwnerIndex == self.BoardItemsArray[14].CurrentOwnerIndex) :
+        if (CurrentGobblet.IsOnTopOfStack() is True) and (CurrentGobblet.IsOnBoard() is False ) and(self.BoardItemsArray[6].OpponentIndex  is not None) and \
+            (self.BoardItemsArray[2].OpponentIndex  == self.BoardItemsArray[6].OpponentIndex  == self.BoardItemsArray[10].OpponentIndex )or \
+            (self.BoardItemsArray[6].OpponentIndex  == self.BoardItemsArray[10].OpponentIndex  == self.BoardItemsArray[14].OpponentIndex ) :
                 # Check if it is possible to move the gobblet to the specified position
                 if CurrentGobblet.IsPossibleGobbletMovement(self, RequiredPosition) is True:
                     # Call Function PlaceExternalGobblet to place the gobblet on board
                     self.PlaceExternalGobblet(CurrentGobblet, RequiredPosition)
 
 
-        if (CurrentGobblet.IsOnTopOfStack() is True) and (CurrentGobblet.IsOnBoard() is False ) and (self.BoardItemsArray[7].CurrentOwnerIndex is not None) and \
-            (self.BoardItemsArray[3].CurrentOwnerIndex == self.BoardItemsArray[7].CurrentOwnerIndex == self.BoardItemsArray[11].CurrentOwnerIndex)or \
-            (self.BoardItemsArray[7].CurrentOwnerIndex == self.BoardItemsArray[11].CurrentOwnerIndex == self.BoardItemsArray[15].CurrentOwnerIndex) :
+        if (CurrentGobblet.IsOnTopOfStack() is True) and (CurrentGobblet.IsOnBoard() is False ) and (self.BoardItemsArray[7].OpponentIndex  is not None) and \
+            (self.BoardItemsArray[3].OpponentIndex  == self.BoardItemsArray[7].OpponentIndex  == self.BoardItemsArray[11].OpponentIndex )or \
+            (self.BoardItemsArray[7].OpponentIndex  == self.BoardItemsArray[11].OpponentIndex  == self.BoardItemsArray[15].OpponentIndex ) :
                 # Check if it is possible to move the gobblet to the specified position
                 if CurrentGobblet.IsPossibleGobbletMovement(self, RequiredPosition) is True:
                     # Call Function PlaceExternalGobblet to place the gobblet on board
                     self.PlaceExternalGobblet(CurrentGobblet, RequiredPosition)
 
 
-        if (CurrentGobblet.IsOnTopOfStack() is True) and (CurrentGobblet.IsOnBoard() is False ) and (self.BoardItemsArray[5].CurrentOwnerIndex is not None) and \
-            (self.BoardItemsArray[0].CurrentOwnerIndex == self.BoardItemsArray[5].CurrentOwnerIndex == self.BoardItemsArray[10].CurrentOwnerIndex)or \
-            (self.BoardItemsArray[5].CurrentOwnerIndex == self.BoardItemsArray[10].CurrentOwnerIndex == self.BoardItemsArray[15].CurrentOwnerIndex) :
+        if (CurrentGobblet.IsOnTopOfStack() is True) and (CurrentGobblet.IsOnBoard() is False ) and (self.BoardItemsArray[5].OpponentIndex  is not None) and \
+            (self.BoardItemsArray[0].OpponentIndex  == self.BoardItemsArray[5].OpponentIndex  == self.BoardItemsArray[10].OpponentIndex )or \
+            (self.BoardItemsArray[5].OpponentIndex  == self.BoardItemsArray[10].OpponentIndex  == self.BoardItemsArray[15].OpponentIndex ) :
                  # Check if it is possible to move the gobblet to the specified position
                 if CurrentGobblet.IsPossibleGobbletMovement(self, RequiredPosition) is True:
                     # Call Function PlaceExternalGobblet to place the gobblet on board
                     self.PlaceExternalGobblet(CurrentGobblet, RequiredPosition)
 
 
-        if (CurrentGobblet.IsOnTopOfStack() is True) and (CurrentGobblet.IsOnBoard() is False ) and (self.BoardItemsArray[6].CurrentOwnerIndex is not None) and \
-            (self.BoardItemsArray[3].CurrentOwnerIndex == self.BoardItemsArray[6].CurrentOwnerIndex == self.BoardItemsArray[9].CurrentOwnerIndex)or \
-            (self.BoardItemsArray[6].CurrentOwnerIndex == self.BoardItemsArray[9].CurrentOwnerIndex == self.BoardItemsArray[12].CurrentOwnerIndex) :                                                 
+        if (CurrentGobblet.IsOnTopOfStack() is True) and (CurrentGobblet.IsOnBoard() is False ) and (self.BoardItemsArray[6].OpponentIndex  is not None) and \
+            (self.BoardItemsArray[3].OpponentIndex  == self.BoardItemsArray[6].OpponentIndex  == self.BoardItemsArray[9].OpponentIndex )or \
+            (self.BoardItemsArray[6].OpponentIndex  == self.BoardItemsArray[9].OpponentIndex  == self.BoardItemsArray[12].OpponentIndex ) :                                                 
                 # Check if it is possible to move the gobblet to the specified position
                 if CurrentGobblet.IsPossibleGobbletMovement(self, RequiredPosition) is True:
                     # Call Function PlaceExternalGobblet to place the gobblet on board
