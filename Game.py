@@ -106,7 +106,7 @@ class Game:
             # Check if the gobblet can move to the position on board
             if CurrentGobblet.IsPossibleGobbletMovement(self, self.BoardItemsArray[SquareID]):
                 # Create an object with the current gobblet and the possible squareID it can move to
-                NewValidMove = MoveID(Gobblet, SquareID)
+                NewValidMove = MoveID(CurrentGobblet, SquareID)
                 # Add MoveID to the array
                 possible_moves.append(NewValidMove)
         # Return the array of possible moves
