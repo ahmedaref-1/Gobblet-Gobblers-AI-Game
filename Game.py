@@ -201,7 +201,7 @@ class Game:
         Args:
        - CuurentGobbler (Gobblet): The Gobblet to be placed.
        - RequiredPosition (BoardItem): The BoardItem position where the Gobblet should be placed.
-   """
+        """
         # If the position on board can the gobblet be placed on
         if RequiredPosition.IsPossibleBoardMovement(self, CuurentGobbler) is True:
             # Remove the goblet from the top of its current position
@@ -209,7 +209,137 @@ class Game:
             # Add the gobblet to the top of the new postion
             RequiredPosition.AddGobbletOnTop(self, CuurentGobbler)          
 
-    
+def checkWinner1 (self, RequiredPosition:BoardItem):
+    for positions in range (self.BoardItemsArray):
+        if RequiredPosition.GetOwnerIndex is False and self.BoardItemsArray[0] is not None:
+            if RequiredPosition.GetOwnerIndex is False and self.BoardItemsArray[1] is not None: 
+                if RequiredPosition.GetOwnerIndex is False and self.BoardItemsArray[2] is not None: 
+                    if RequiredPosition.GetOwnerIndex is False and self.BoardItemsArray[3] is not None:
+                        self.GameState = "Player1Won"
+                        break
+        if RequiredPosition.GetOwnerIndex is False and self.BoardItemsArray[4] is not None:
+            if RequiredPosition.GetOwnerIndex is False and self.BoardItemsArray[5] is not None: 
+                if RequiredPosition.GetOwnerIndex is False and self.BoardItemsArray[6] is not None: 
+                    if RequiredPosition.GetOwnerIndex is False and self.BoardItemsArray[7] is not None:
+                        self.GameState = "Player1Won"        
+                        break  
+        if RequiredPosition.GetOwnerIndex is False and self.BoardItemsArray[8] is not None:
+            if RequiredPosition.GetOwnerIndex is False and self.BoardItemsArray[9] is not None: 
+                if RequiredPosition.GetOwnerIndex is False and self.BoardItemsArray[10] is not None: 
+                    if RequiredPosition.GetOwnerIndex is False and self.BoardItemsArray[11] is not None:
+                        self.GameState = "Player1Won"
+                        break
+        if RequiredPosition.GetOwnerIndex is False and self.BoardItemsArray[12] is not None:
+            if RequiredPosition.GetOwnerIndex is False and self.BoardItemsArray[13] is not None: 
+                if RequiredPosition.GetOwnerIndex is False and self.BoardItemsArray[14] is not None: 
+                    if RequiredPosition.GetOwnerIndex is False and self.BoardItemsArray[15] is not None:
+                        self.GameState = "Player1Won"
+                        break
+        if RequiredPosition.GetOwnerIndex is False and self.BoardItemsArray[0] is not None:
+            if RequiredPosition.GetOwnerIndex is False and self.BoardItemsArray[4] is not None: 
+                if RequiredPosition.GetOwnerIndex is False and self.BoardItemsArray[8] is not None: 
+                    if RequiredPosition.GetOwnerIndex is False and self.BoardItemsArray[12] is not None:
+                        self.GameState = "Player1Won"
+                        break
+        if RequiredPosition.GetOwnerIndex is False and self.BoardItemsArray[1] is not None:
+            if RequiredPosition.GetOwnerIndex is False and self.BoardItemsArray[5] is not None: 
+                if RequiredPosition.GetOwnerIndex is False and self.BoardItemsArray[9] is not None: 
+                    if RequiredPosition.GetOwnerIndex is False and self.BoardItemsArray[13] is not None:
+                        self.GameState = "Player1Won"
+                        break
+        if RequiredPosition.GetOwnerIndex is False and self.BoardItemsArray[2] is not None:
+            if RequiredPosition.GetOwnerIndex is False and self.BoardItemsArray[6] is not None: 
+                if RequiredPosition.GetOwnerIndex is False and self.BoardItemsArray[10] is not None: 
+                    if RequiredPosition.GetOwnerIndex is False and self.BoardItemsArray[14] is not None:
+                        self.GameState = "Player1Won"
+                        break
+        if RequiredPosition.GetOwnerIndex is False and self.BoardItemsArray[3] is not None:
+            if RequiredPosition.GetOwnerIndex is False and self.BoardItemsArray[7] is not None: 
+                if RequiredPosition.GetOwnerIndex is False and self.BoardItemsArray[11] is not None: 
+                    if RequiredPosition.GetOwnerIndex is False and self.BoardItemsArray[15] is not None:
+                        self.GameState = "Player1Won"
+                        break
+        if RequiredPosition.GetOwnerIndex is False and self.BoardItemsArray[0] is not None:
+            if RequiredPosition.GetOwnerIndex is False and self.BoardItemsArray[5] is not None: 
+                if RequiredPosition.GetOwnerIndex is False and self.BoardItemsArray[10] is not None: 
+                    if RequiredPosition.GetOwnerIndex is False and self.BoardItemsArray[15] is not None:
+                        self.GameState = "Player1Won"
+                        break
+        if RequiredPosition.GetOwnerIndex is False and self.BoardItemsArray[3] is not None:
+            if RequiredPosition.GetOwnerIndex is False and self.BoardItemsArray[6] is not None: 
+                if RequiredPosition.GetOwnerIndex is False and self.BoardItemsArray[9] is not None: 
+                    if RequiredPosition.GetOwnerIndex is False and self.BoardItemsArray[12] is not None:
+                        self.GameState = "Player1Won"   
+                        break    
+
+
+def checkWinner2 (self, RequiredPosition:BoardItem):
+    for positions in range (self.BoardItemsArray):
+        if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[0] is not None:
+            if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[1] is not None: 
+                if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[2] is not None: 
+                    if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[3] is not None:
+                        self.GameState = "Player2Won"
+                        break
+        if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[4] is not None:
+            if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[5] is not None: 
+                if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[6] is not None: 
+                    if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[7] is not None:
+                        self.GameState = "Player2Won"
+                        break          
+        if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[8] is not None:
+            if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[9] is not None: 
+                if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[10] is not None: 
+                    if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[11] is not None:
+                        self.GameState = "Player2Won"
+                        break
+        if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[12] is not None:
+            if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[13] is not None: 
+                if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[14] is not None: 
+                    if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[15] is not None:
+                        self.GameState = "Player2Won"
+                        break
+        if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[0] is not None:
+            if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[4] is not None: 
+                if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[8] is not None: 
+                    if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[12] is not None:
+                        self.GameState = "Player2Won"
+                        break
+        if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[1] is not None:
+            if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[5] is not None: 
+                if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[9] is not None: 
+                    if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[13] is not None:
+                        self.GameState = "Player2Won"
+                        break
+        if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[2] is not None:
+            if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[6] is not None: 
+                if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[10] is not None: 
+                    if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[14] is not None:
+                        self.GameState = "Player2Won"
+                        break
+        if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[3] is not None:
+            if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[7] is not None: 
+                if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[11] is not None: 
+                    if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[15] is not None:
+                        self.GameState = "Player2Won"
+                        break
+        if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[0] is not None:
+            if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[5] is not None: 
+                if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[10] is not None: 
+                    if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[15] is not None:
+                        self.GameState = "Player2Won"
+                        break
+        if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[3] is not None:
+            if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[6] is not None: 
+                if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[9] is not None: 
+                    if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[12] is not None:
+                        self.GameState = "Player2Won" 
+                        break                                                                                                                                             
+
+
+
+
+
 
 
 
