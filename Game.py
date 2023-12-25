@@ -276,77 +276,88 @@ class Game:
             RequiredPosition.AddGobbletOnTop(self, CurrentGobblet)          
 
     # Function that checks whether the game is over or not
-    def CheckWinner(self):
+    def CheckState(self):
+        self.Player1Count = 0
+        self.Player2Count = 0
         if (self.BoardItemsArray[0].CurrentOwnerIndex is not None) and \
         (self.BoardItemsArray[0].CurrentOwnerIndex == self.BoardItemsArray[1].CurrentOwnerIndex ==
         self.BoardItemsArray[2].CurrentOwnerIndex == self.BoardItemsArray[3].CurrentOwnerIndex):
             if self.BoardItemsArray[0].CurrentOwnerIndex == 0:
-                self.GameState = "Player1Won"
+                self.Player1Count += 1
             else :
-                self.GameState = "Player2Won"
+                self.Player2Count += 1
         if (self.BoardItemsArray[4].CurrentOwnerIndex is not None) and \
         (self.BoardItemsArray[4].CurrentOwnerIndex == self.BoardItemsArray[5].CurrentOwnerIndex ==
         self.BoardItemsArray[6].CurrentOwnerIndex == self.BoardItemsArray[7].CurrentOwnerIndex):
             if self.BoardItemsArray[4].CurrentOwnerIndex == 0:
-                self.GameState = "Player1Won"
+                self.Player1Count += 1
             else :
-                self.GameState = "Player2Won"
+                self.Player2Count += 1
 
         if (self.BoardItemsArray[8].CurrentOwnerIndex is not None) and \
         (self.BoardItemsArray[8].CurrentOwnerIndex == self.BoardItemsArray[9].CurrentOwnerIndex ==
         self.BoardItemsArray[10].CurrentOwnerIndex == self.BoardItemsArray[11].CurrentOwnerIndex):
             if self.BoardItemsArray[8].CurrentOwnerIndex == 0:
-                self.GameState = "Player1Won"
+                self.Player1Count += 1
             else :
-                self.GameState = "Player2Won"
+                self.Player2Count += 1
 
         if (self.BoardItemsArray[12].CurrentOwnerIndex is not None) and \
         (self.BoardItemsArray[12].CurrentOwnerIndex == self.BoardItemsArray[13].CurrentOwnerIndex ==
         self.BoardItemsArray[14].CurrentOwnerIndex == self.BoardItemsArray[15].CurrentOwnerIndex):
             if self.BoardItemsArray[12].CurrentOwnerIndex == 0:
-                self.GameState = "Player1Won"
+                self.Player1Count += 1
             else :
-                self.GameState = "Player2Won"
+                self.Player2Count += 1
              
         if (self.BoardItemsArray[1].CurrentOwnerIndex is not None) and \
         (self.BoardItemsArray[1].CurrentOwnerIndex == self.BoardItemsArray[5].CurrentOwnerIndex ==
         self.BoardItemsArray[9].CurrentOwnerIndex == self.BoardItemsArray[13].CurrentOwnerIndex):
             if self.BoardItemsArray[1].CurrentOwnerIndex == 0:
-                self.GameState = "Player1Won"
+                self.Player1Count += 1
             else :
-                self.GameState = "Player2Won"
+                self.Player2Count += 1
   
         if (self.BoardItemsArray[2].CurrentOwnerIndex is not None) and \
         (self.BoardItemsArray[2].CurrentOwnerIndex == self.BoardItemsArray[6].CurrentOwnerIndex ==
         self.BoardItemsArray[10].CurrentOwnerIndex == self.BoardItemsArray[14].CurrentOwnerIndex):
             if self.BoardItemsArray[2].CurrentOwnerIndex == 0:
-                self.GameState = "Player1Won"
+                self.Player1Count += 1
             else :
-                self.GameState = "Player2Won"
+                self.Player2Count += 1
        
         if (self.BoardItemsArray[3].CurrentOwnerIndex is not None) and \
         (self.BoardItemsArray[3].CurrentOwnerIndex == self.BoardItemsArray[7].CurrentOwnerIndex ==
         self.BoardItemsArray[11].CurrentOwnerIndex == self.BoardItemsArray[15].CurrentOwnerIndex):
             if self.BoardItemsArray[3].CurrentOwnerIndex == 0:
-                self.GameState = "Player1Won"
+                self.Player1Count += 1
             else :
-                self.GameState = "Player2Won"
+                self.Player2Count += 1
 
         if (self.BoardItemsArray[0].CurrentOwnerIndex is not None) and \
         (self.BoardItemsArray[0].CurrentOwnerIndex == self.BoardItemsArray[5].CurrentOwnerIndex ==
         self.BoardItemsArray[10].CurrentOwnerIndex == self.BoardItemsArray[15].CurrentOwnerIndex):
             if self.BoardItemsArray[0].CurrentOwnerIndex == 0:
-                self.GameState = "Player1Won"
+                self.Player1Count += 1
             else :
-                self.GameState = "Player2Won"
+                self.Player2Count += 1
 
         if (self.BoardItemsArray[3].CurrentOwnerIndex is not None) and \
         (self.BoardItemsArray[3].CurrentOwnerIndex == self.BoardItemsArray[6].CurrentOwnerIndex ==
         self.BoardItemsArray[9].CurrentOwnerIndex == self.BoardItemsArray[12].CurrentOwnerIndex):
             if self.BoardItemsArray[3].CurrentOwnerIndex == 0:
-                self.GameState = "Player1Won"
+                self.Player1Count += 1
             else :
+                self.Player2Count += 1
+
+        if self.Player1Count == 1:
+                self.GameState = "Player1Won"
+        elif self.Player2count == 1 :
                 self.GameState = "Player2Won"
+        elif self.Player1Count == 1 and self.Player2count == 1 :
+                self.GameState = "Draw"   
+        else :
+                self.GameState = "OnGoing"                       
 
     
     # Function that makes SkipRoundFlag is True if all positions on board are filled and so we cannot gobbel up with a small piece                        
