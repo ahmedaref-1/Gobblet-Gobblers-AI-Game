@@ -1,6 +1,7 @@
 import Gobblet
 import BoardItem
 from Gobblet import CurrentGobblet
+from Action import MoveID
 
 class Game:
     def __init__(self, player1_name, player2_name, NumberOfGobbletsperPlayerInitValue=12, BoardSizeInitValue=16):
@@ -97,7 +98,37 @@ class Game:
             self.BoardItemsArray.append(board_item)
 
 
-    def ListPossibleMoves(self, Gobblet: CurrentGobblet) -> list:
+    def ListPossibleGoblets(self) -> list:
+        """
+        Determines and returns a list of all Goblets that can be placed of a specific player.
+
+        Args:
+        CurrentPlayerIndex: To indicate the player.
+
+        Returns:
+        A list containing the IDs of all Goblets that can be moved.
+        """
+        possible_goblets = []
+        # Check for Player 1
+        if self.CurrentPlayerIndex is 0 :
+            # Iterate through all available Goblet IDs of player 1, considering both internal and external ones.
+            for goblet_id in range(self.FirstPlayerGobbletsArray):
+                # Check if the gobblet is on top.
+                if self.FirstPlayerGobbletsArray[goblet_id].IsOnTopOfStack:
+                    possible_goblets.append(goblet_id)
+
+        # Check for Player 2
+        if self.CurrentPlayerIndex is 1 :
+            # Iterate through all available Goblet IDs of player 2, considering both internal and external ones.
+            for goblet_id in range(self.SecondPlayerGobbletsArray):
+                # Check if the gobblet is on top.
+                if self.SecondPlayerGobbletsArray[goblet_id].IsOnTopOfStack:
+                    possible_goblets.append(goblet_id)            
+
+        return possible_goblets
+    
+
+    def ListPossibleMoves(self, Gobblet: CurrentGobblet) -> list[MoveID]:
         """
         Checks the positions on board that the gobblet can move to.
 
@@ -114,41 +145,28 @@ class Game:
         for SquareID in range(self.BoardSizeInitValue):
             # Check if the gobblet can move to the position on board
             if CurrentGobblet.IsPossibleGobbletMovement(self, SquareID):
-                # Add SquareID to the array if move is possible
-                possible_moves.append(SquareID)
+                # Create an object with the current gobblet and the possible squareID it can move to
+                NewValidMove = MoveID(Gobblet, SquareID)
+                # Add MoveID to the array
+                possible_moves.append(NewValidMove)
         # Return the array of possible moves
-        return possible_moves
+        return possible_moves    
 
-        def ListPossibleGoblets(self, player_index) -> list:
-            """
-            Determines and returns a list of all Goblets that can be placed of a specific player.
+    def AllValidMoves(self) -> list[MoveID]:
+        """
+        Determines and returns a list of all Valid moves for all available gobblet IDs that can be placed on the specified position.
 
-            Args:
-            CurrentPlayerIndex: To indicate the player.
+        Returns:
+            A list containing the valid positions of all available gobblets
 
-            Returns:
-            A list containing the IDs of all Goblets that can be moved.
-            """
-            possible_goblets = []
+        """
+        AllAvailableGobblets = self.ListPossibleGoblets
+        ValidActions = []
+        for goblet in AllAvailableGobblets:
+            ValidActions.extend(self.ListPossibleMoves(goblet))
+        return ValidActions
 
-        # Check for Player 1
-        if self.player_index is 0 :
-            # Iterate through all available Goblet IDs of player 1, considering both internal and external ones.
-            for goblet_id in range(self.FirstPlayerGobbletsArray):
-                # Check if the gobblet is on top.
-                if self.FirstPlayerGobbletsArray[goblet_id].IsOnTopOfStack:
-                    possible_goblets.append(goblet_id)
 
-        # Check for Player 2
-        if self.player_index is 1 :
-            # Iterate through all available Goblet IDs of player 2, considering both internal and external ones.
-            for goblet_id in range(self.SecondPlayerGobbletsArray):
-                # Check if the gobblet is on top.
-                if self.SecondPlayerGobbletsArray[goblet_id].IsOnTopOfStack:
-                    possible_goblets.append(goblet_id)            
-
-        return possible_goblets
-    
     def MoveExternalGobblet (self,CuurentGobbler:Gobblet, RequiredPosition:BoardItem):
         """
         Moves an external Gobblet from its current position to the specified target position on the board,
@@ -334,10 +352,6 @@ class Game:
                         if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[12] is not None:
                             self.GameState = "Player2Won" 
                                                                                                                                                          
-
-
-
-
 
 
 
