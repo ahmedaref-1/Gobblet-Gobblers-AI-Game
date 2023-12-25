@@ -228,6 +228,7 @@ class Game:
             # Add the gobblet to the top of the new postion
             RequiredPosition.AddGobbletOnTop(self, CuurentGobbler)          
 
+    # Function that checks whether player1 won
     def checkWinner1 (self, RequiredPosition:BoardItem):
         for positions in range (self.BoardItemsArray):
             if RequiredPosition.GetOwnerIndex is False and self.BoardItemsArray[0] is not None:
@@ -291,6 +292,7 @@ class Game:
                             self.GameState = "Player1Won"   
 
 
+    # Function that checks whether Player2 won 
     def checkWinner2 (self, RequiredPosition:BoardItem):
         for positions in range (self.BoardItemsArray):
             if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[0] is not None:
@@ -353,9 +355,16 @@ class Game:
                         if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[12] is not None:
                             self.GameState = "Player2Won" 
 
+    
+    # Function that makes SkipRoundFlag is True if all positions on board are filled and so we cannot gobbel up with a small piece                        
     def CornerCase (self, CurrentGobblet:Gobblet, CurrentBoardItem:BoardItem):
-        self.SkipRoundFlag = False
+        self.SkipRoundFlag = True
         for positions in range (self.BoardItemsArray):  
-            if CurrentBoardItem.IsFull is True:
-                self.SkipRoundFlag = True
+            if not CurrentBoardItem.IsEmpty is False:
+                self.SkipRoundFlag = False
                 return self.SkipRoundFlag
+
+    # Function to return what is on top of stack regarding a specific position on board       
+    def GobbletOnTop(self , BoardPosition:BoardItem):
+            return BoardPosition.GobbletsStack[-1] 
+        
