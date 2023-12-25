@@ -2,6 +2,7 @@ import Gobblet
 import BoardItem
 from Gobblet import CurrentGobblet
 
+
 class Game:
     def __init__(self, player1_name, player2_name, NumberOfGobbletsperPlayerInitValue=12, BoardSizeInitValue=16):
         """
@@ -333,6 +334,14 @@ class Game:
                     if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[9] is not None: 
                         if RequiredPosition.GetOwnerIndex is True and self.BoardItemsArray[12] is not None:
                             self.GameState = "Player2Won" 
+
+    def CornerCase (self, CurrentGobblet:Gobblet, CurrentBoardItem:BoardItem):
+        self.SkipRoundFlag = False
+        for positions in range (self.BoardItemsArray):  
+            if CurrentBoardItem.IsFull is True:
+                self.SkipRoundFlag = True
+                return self.SkipRoundFlag
+
                                                                                                                                                          
 
 
