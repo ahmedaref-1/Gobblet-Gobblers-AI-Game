@@ -72,7 +72,7 @@ def main():
 
 #Scenario 2
 
-""""
+"""
 def main():
     game_instance = Game.Game()
 
@@ -114,7 +114,7 @@ def main():
 
 
 
-""""
+"""
 if __name__ == "__main__":
     main()
 """
