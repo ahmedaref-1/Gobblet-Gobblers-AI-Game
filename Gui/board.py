@@ -1,7 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import Images
 from PyQt5.QtGui import QIcon
-
+from PyQt5.QtMultimedia import QSound
 
 
 class boardCurvedButton(QtWidgets.QPushButton):
@@ -20,9 +20,10 @@ class boardCurvedButton(QtWidgets.QPushButton):
 
 
 class BoardWindow(object):
-    def setupUi(self, Gobblet,player1,player2):
-        # player1 = "bahaa"
-        # player2 = "mohamed"
+    def setupUi(self, Gobblet):
+        QSound.play("Images/start_button_sound.wav")
+        player1 = "bahaa"
+        player2 = "mohamed"
         self.Gobblet = Gobblet  # Store a reference to the main window
         Gobblet.setObjectName("Gobblet")
         Gobblet.resize(1200, 900)
@@ -592,16 +593,24 @@ class BoardWindow(object):
         QtCore.QMetaObject.connectSlotsByName(Gobblet)
 
         # Set Player 1 Buttons
-        Player1_WhiteButtons = [self.Player1_Size4_Stack1, self.Player1_Size4_Stack2, self.Player1_Size4_Stack3,
-                       self.Player1_Size3_Stack1, self.Player1_Size3_Stack2, self.Player1_Size3_Stack3,
-                       self.Player1_Size2_Stack1, self.Player1_Size2_Stack2, self.Player1_Size2_Stack3,
-                       self.Player1_Size1_Stack1, self.Player1_Size1_Stack2, self.Player1_Size1_Stack3]
-        
+        # Player1_WhiteButtons = [self.Player1_Size4_Stack1, self.Player1_Size4_Stack2, self.Player1_Size4_Stack3,
+        #                         self.Player1_Size3_Stack1, self.Player1_Size3_Stack2, self.Player1_Size3_Stack3,
+        #                         self.Player1_Size2_Stack1, self.Player1_Size2_Stack2, self.Player1_Size2_Stack3,
+        #                         self.Player1_Size1_Stack1, self.Player1_Size1_Stack2, self.Player1_Size1_Stack3]
+        Player1_WhiteButtons= [
+                self.Player1_Size4_Stack1, self.Player1_Size3_Stack1, self.Player1_Size2_Stack1, self.Player1_Size1_Stack1,
+                self.Player1_Size4_Stack2, self.Player1_Size3_Stack2, self.Player1_Size2_Stack2, self.Player1_Size1_Stack2,
+                self.Player1_Size4_Stack3, self.Player1_Size3_Stack3, self.Player1_Size2_Stack3, self.Player1_Size1_Stack3]
         # Set Player 2 Buttons
-        Player2_BlackButtons = [self.Player2_Size4_Stack1, self.Player2_Size4_Stack2, self.Player2_Size4_Stack3,
-                        self.Player2_Size3_Stack1, self.Player2_Size3_Stack2, self.Player2_Size3_Stack3,
-                        self.Player2_Size2_Stack1, self.Player2_Size2_Stack2, self.Player2_Size2_Stack3,
-                        self.Player2_Size1_Stack1, self.Player2_Size1_Stack2, self.Player2_Size1_Stack3]
+        # Player2_BlackButtons = [self.Player2_Size4_Stack1, self.Player2_Size4_Stack2, self.Player2_Size4_Stack3,
+        #                         self.Player2_Size3_Stack1, self.Player2_Size3_Stack2, self.Player2_Size3_Stack3,
+        #                         self.Player2_Size2_Stack1, self.Player2_Size2_Stack2, self.Player2_Size2_Stack3,
+        #                         self.Player2_Size1_Stack1, self.Player2_Size1_Stack2, self.Player2_Size1_Stack3]
+        
+        Player2_BlackButtons = [ 
+                self.Player2_Size4_Stack1 , self.Player2_Size3_Stack1 , self.Player2_Size2_Stack1 , self.Player2_Size1_Stack1 ,
+                self.Player2_Size4_Stack2 , self.Player2_Size3_Stack2 , self.Player2_Size2_Stack2 , self.Player2_Size1_Stack2 ,
+                self.Player2_Size4_Stack3 , self.Player2_Size3_Stack3 , self.Player2_Size2_Stack3 , self.Player2_Size1_Stack3]
         
         # Set Board Buttons
         boardButtons = [self.Button1, self.Button2, self.Button3, self.Button4,
@@ -691,22 +700,22 @@ class BoardWindow(object):
             btn.mousePressEvent = lambda event, board_button=btn: self.placeButton(event, board_button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, button, playerRound,player1,player2)
 
 
-    def is_collision(self,board_button, btn, pressedbutton):
-        rect1 = board_button.geometry()
-        rect2 = btn.geometry()
-        # return rect1.intersects(rect2)
-        if(rect1.intersects(rect2)):
-                if(btn.width() < pressedbutton.width()):
-                        return False
-                else:
-                       return True
+    # def is_collision(self,board_button, btn, pressedbutton):
+    #     rect1 = board_button.geometry()
+    #     rect2 = btn.geometry()
+    #     # return rect1.intersects(rect2)
+    #     if(rect1.intersects(rect2)):
+    #             if(btn.width() < pressedbutton.width()):
+    #                     return False
+    #             else:
+    #                    return True
 
     def placeButton(self, event, board_button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, button, playerRound,player1,player2):
 
-         #Check for collisions with other buttons on the board
-        for btn in Player1_WhiteButtons + Player2_BlackButtons:
-            if self.is_collision(board_button, btn, button):
-                return  # Do not place the button if there is a collision
+        #  #Check for collisions with other buttons on the board
+        # for btn in Player1_WhiteButtons + Player2_BlackButtons:
+        #     if self.is_collision(board_button, btn, button):
+        #         return  # Do not place the button if there is a collision
 
         # Place the button on the board
         # for btn in boardButtons:
@@ -777,6 +786,7 @@ class BoardWindow(object):
 
         # Switch player turns and update button visibility
         if(playerRound == "player1"):
+                QSound.play("Images/mario-jump-sound-effect.wav")
                 self.down_finger.hide()
                 self.up_finger.show()
                 playerRound = "player2"
@@ -793,6 +803,7 @@ class BoardWindow(object):
                         btn.mousePressEvent = lambda event, button=btn: self.handleButtonPress(event, button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound,player1,player2)
                 
         elif(playerRound == "player2"):
+                QSound.play("Images/mario-jump-sound-effect.wav")
                 self.up_finger.hide()
                 self.down_finger.show()
                 playerRound = "player1"
