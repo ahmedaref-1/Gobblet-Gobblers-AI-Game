@@ -1,4 +1,7 @@
+import Action
 import Game
+import State
+from Action import MoveID
 
 
     ##########################################################
@@ -89,34 +92,8 @@ def main():
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-"""
 if __name__ == "__main__":
     main()
-"""
+
 
 

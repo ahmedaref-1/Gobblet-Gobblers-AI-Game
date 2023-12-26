@@ -57,7 +57,7 @@ class Game:
         created_gobblet_size = 4
         for i in range(self.NumberOfGobbletsPerPlayer):
             # Create a new Gobblet object
-            temp_gobblet = Gobblet.Gobblet(i, 0, created_gobblet_size)
+            temp_gobblet = Gobblet.Gobblet(i, 1, created_gobblet_size)
             created_gobblet_size -= 1
             # Reset the CreatedGobbletSize to 4 if it is less than 1
             if created_gobblet_size < 1:
