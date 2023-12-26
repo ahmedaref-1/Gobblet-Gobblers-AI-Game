@@ -1,0 +1,90 @@
+class Gobblet:
+    def __init__(self, gobblet_id, gobblet_owner_index, gobblet_size):
+        """
+        Represents a Gobblet piece.
+
+        Parameters:
+        - ID (int): Unique ID for the Gobblet
+        - OwnerIndex (int): Index representing the player (0 or 1)
+        - Size (int): Size of the Gobblet piece (1, 2, 3 or 4)
+        
+        """
+        self.ID = gobblet_id  # Unique ID for the Gobblet
+        self.OwnerIndex = gobblet_owner_index  # Index representing the player (0 or 1)
+        self.Size = gobblet_size  # Size of the Gobblet piece (1, 2, 3 or 4)
+        self.CurrentBoardPositionIndex = None  # Current position on the game board (initially none)
+        self.PreviousBoardPositionIndex = None  # Previous position on the game board (initially none)
+        self.IsOnTop = False  # Flag indicating if the Gobblet is on top of a stack (initially False)
+
+    def is_owned_by_player(self, player_index):
+        """
+        Check if the current Gobblet is owned by the specified player.
+
+        Parameters:
+        - player_index (int): Index representing the player (0 or 1)
+
+        Returns:
+        - True if the current Gobblet is owned by the specified player, False otherwise.
+        """
+        # Check if the current owner index is equal to the specified player index.
+        # If equal, the current Gobblet is owned by the specified player; otherwise, it is not.
+        return self.OwnerIndex == player_index
+    
+    def is_on_top_of_stack(self):
+        """
+        Check if the current Gobblet is on top of a stack.
+
+        Returns:
+        - True if the current Gobblet is on top of a stack, False otherwise.
+        """
+        # Check if the IsOnTop flag is True.
+        # If True, the current Gobblet is on top of a stack; otherwise, it is not.
+        return self.IsOnTop
+    
+    def is_on_board(self):
+        """
+        Check if the current Gobblet is on the board.
+
+        Returns:
+        - True if the current Gobblet is on the board, False otherwise.
+        """
+        # Check if the CurrentBoardPositionIndex is not None.
+        # If not None, the current Gobblet is on the board; otherwise, it is not.
+        return self.CurrentBoardPositionIndex is not None
+    
+    def is_possible_gobblet_movement(self, board_item):
+        """
+        Check if the current Gobblet can be moved to the specified board item position.
+
+        Parameters:
+        - board_item (BoardItem): The board item position to be moved to.
+
+        Returns:
+        - True if the current Gobblet can be moved to the specified board item position, False otherwise.
+        """
+        # Check if the specified board item position is empty.
+        # If empty, the current Gobblet can be moved to the specified board item position; otherwise, it cannot.
+        return board_item.is_empty() or ((not board_item.IsFull()) and (self.Size > board_item.OnTopGobbletSize))
+
+    def get_gobblet_owned_position_index(self):
+        """
+        Get the position of the current Gobblet.
+
+        Returns:
+        - The position of the current Gobblet.
+        """
+        # Check if the current Gobblet is on the board and on the top of the stack of this bord position.
+        # If so, return the current board position index; otherwise, return None.
+        if self.is_on_board() and self.is_on_top_of_stack():
+            return self.CurrentBoardPositionIndex
+        else:
+            return None
+
+    def set_gobblet_on_top_of_stack_flag(self, flag_value):
+        """
+        Set the IsOnTop flag of the current Gobblet to the specified value.
+
+        Parameters:
+        - flag_value (bool): The value to be set for the IsOnTop flag.
+        """
+        self.IsOnTop = flag_value
