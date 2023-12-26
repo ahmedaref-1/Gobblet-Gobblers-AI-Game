@@ -2,8 +2,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 import Images
 from PyQt5.QtGui import QIcon
 from PyQt5.QtMultimedia import QSound
-from Game import *
-
+from Game import Game
 
 class boardCurvedButton(QtWidgets.QPushButton):
     def __init__(self, parent=None):
@@ -725,6 +724,32 @@ class BoardWindow(object):
             games_instance.make_move(games_instance.FirstPlayerGobbletsArray[Player1_WhiteButtons.index(button)], games_instance.BoardItemsArray[boardButtons.index(board_button)])
         elif(playerRound == "player2"):
             games_instance.make_move(games_instance.SecondPlayerGobbletsArray[Player2_BlackButtons.index(button)], games_instance.BoardItemsArray[boardButtons.index(board_button)])
+        
+        games_instance.check_state()
+        print(games_instance.GameState)
+        # if(games_instance.GameState == "FirstPlayerWon"):
+        #         # print("First Player Won")
+        #         self.playerTurn.setText(f"{player1} Won")
+        #         self.playerTurn.setStyleSheet("font: 13pt \"Supply Center\";\n"
+        #                                 "color: #ffffff;\n"
+        #                                 "border: 3px solid black;\n"
+        #                                 "border-radius: 10px;\n")
+        #         self.down_finger.hide()
+        #         self.up_finger.hide()
+        #         # self.restart_game(self.Gobblet)
+        #         return
+        # elif(games_instance.GameState == "SecondPlayerWon"):
+        #         # print("Second Player Won")
+        #         self.playerTurn.setText(f"{player2} Won")
+        #         self.playerTurn.setStyleSheet("font: 13pt \"Supply Center\";\n"
+        #                                 "color: #000000;\n"
+        #                                 "border: 3px solid black;\n"
+        #                                 "border-radius: 10px;\n")
+        #         self.down_finger.hide()
+        #         self.up_finger.hide()
+        #         # self.restart_game(self.Gobblet)
+        #         return
+        
         # Place the button on the board
         # for btn in boardButtons:
         #        btn.lower()
@@ -746,6 +771,22 @@ class BoardWindow(object):
         button.setGeometry(QtCore.QRect(boardX + int(board_button.width()/2) - int(buttonWidth/2),
                                          boardY+int(board_button.width()/2) - int(buttonHeight/2),
                                            buttonWidth, buttonHeight))
+        
+        # print(games_instance.GameState)
+        # # print(games_instance.)
+        # print(Player1_WhiteButtons.index(button))
+        # print(boardButtons.index(board_button))
+        # if(games_instance.GameState == "FirstPlayerWon"):
+        #         print("First Player Won")
+        #         self.playerTurn.setText(f"{player1} Won")
+        #         self.playerTurn.setStyleSheet("font: 13pt \"Supply Center\";\n"
+        #                                 "color: #ffffff;\n"
+        #                                 "border: 3px solid black;\n"
+        #                                 "border-radius: 10px;\n")
+        #         self.down_finger.hide()
+        #         self.up_finger.hide()
+        #         # self.restart_game(self.Gobblet)
+        #         return
         ################################################################################################################################
         # board_button.setStyleSheet(
         # "QPushButton {\n"
