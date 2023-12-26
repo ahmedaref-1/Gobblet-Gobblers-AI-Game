@@ -385,4 +385,9 @@ class Game:
                 self.SkipRoundFlag = False
                 return self.SkipRoundFlag
 
+    # For testing purposes        
+    def check_gobblet_on_top(self , board_position:BoardItem):
+        return board_position.GobbletsStack[-1]
+
+
     
