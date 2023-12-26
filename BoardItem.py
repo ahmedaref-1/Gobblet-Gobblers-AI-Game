@@ -84,9 +84,7 @@ class BoardItem:
         if not self.is_full() and gobblet.Size > self.OnTopGobbletSize:
             if not self.is_empty():
                 # Set the IsOnTop flag of the Gobblet on top of the stack to False.
-                temp_gobblet = Gobblet.Gobblet(None, None, None)
-                temp_gobblet = self.GobbletsStack[-1]
-                temp_gobblet.IsOnTop = False
+                self.GobbletsStack[-1].set_on_top_of_stack_flag(False)
                 
             # Append the new Gobblet to the stack.
             self.GobbletsStack.append(gobblet)
@@ -114,11 +112,11 @@ class BoardItem:
 
             # Update the current owner index based on the Gobblet on top of the stack.
             # If the stack is empty, set the current owner index to None.
-            self.CurrentOwnerIndex = self.GobbletsStack[-1].gobblet.OwnerIndex if self.GobbletsStack else None
+            self.CurrentOwnerIndex = self.GobbletsStack[-1].OwnerIndex if self.GobbletsStack else None
 
             # Update the size of the Gobblet on top of the stack.
             # If the stack is empty, set the OnTopGobbletSize to None.
-            self.OnTopGobbletSize = self.GobbletsStack[-1].gobblet.Size if self.GobbletsStack else None
+            self.OnTopGobbletSize = self.GobbletsStack[-1].Size if self.GobbletsStack else None
 
             # Set the IsOnTop flag of the Gobblet on top of the stack to True.
             self.GobbletsStack[-1].set_on_top_of_stack_flag(True)

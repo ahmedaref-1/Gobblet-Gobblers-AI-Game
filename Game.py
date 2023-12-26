@@ -3,6 +3,9 @@ import BoardItem
 from Action import MoveID
 
 
+###############################################################
+# List type problem                                           #
+###############################################################
 class Game:
     def __init__(self):
         """
@@ -381,3 +384,5 @@ class Game:
             if self.BoardItemsArray[positions].CurrentOwnerIndex is None:
                 self.SkipRoundFlag = False
                 return self.SkipRoundFlag
+
+    
