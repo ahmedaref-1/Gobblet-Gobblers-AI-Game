@@ -1,24 +1,23 @@
 import Gobblet
+
+
 class BoardItem:
-    def __init__(self, Index, CurrentOwnerIndexInitValue=None, OnTopGobbletSizeInitValue=None, GobbletsStack=None, NumberOfGobbletsInStack=None):
+    def __init__(self, board_item_index):
         """
         Represents a piece on the Gobblet Gobblers board.
 
         Parameters:
         - Index (int): Index of the board item position
-        - CurrentOwnerIndexInitValue (int): Index representing the player (0 or 1)
-        - OnTopGobbletSizeInitValue (int): Size of the piece on top of this piece in the stack
-        - GobbletsStack (list): List representing the stack of pieces at this position
-        - NumberOfGobbletsInStack (int): Number of pieces in the stack
-        """
-        self.Index = Index  # Index of the board item position
-        self.CurrentOwnerIndex = CurrentOwnerIndexInitValue  # Index representing the player (0 or 1)
-        self.OpponentIndex = not self.CurrentOwnerIndex      # Index of the opponent of the current player
-        self.OnTopGobbletSize = OnTopGobbletSizeInitValue  # Size of the piece on top of this piece in the stack
-        self.GobbletsStack = GobbletsStack if GobbletsStack is not None else []  # List representing the stack of pieces at this position
-        self.NumberOfGobbletsInStack = NumberOfGobbletsInStack if NumberOfGobbletsInStack is not None else 0  # Number of pieces in the stack
 
-    def IsEmpty(self):
+        """
+        self.Index = board_item_index  # Index of the board item position
+        self.CurrentOwnerIndex = None  # Index representing the player owning this cell in the board (0 or 1)
+        self.OpponentIndex = None      # Index of the opponent of the current owner of this cell
+        self.OnTopGobbletSize = None   # Size of the piece on top of this piece in the stack
+        self.GobbletsStack = []  # List representing the stack of the gobblets on this board item
+        self.NumberOfGobbletsInStack = 0  # Number of pieces in the stack of this board item
+
+    def is_empty(self):
         """
         Check if the stack of the current board item position is empty.
 
@@ -29,7 +28,7 @@ class BoardItem:
         # If zero, the stack is considered empty; otherwise, it is not empty.
         return self.NumberOfGobbletsInStack == 0
 
-    def IsFull(self):
+    def is_full(self):
         """
         Check if the stack of the current board item position is full.
 
@@ -40,7 +39,7 @@ class BoardItem:
         # If equal to 4, the stack is considered full; otherwise, it is not full.
         return self.NumberOfGobbletsInStack == 4
     
-    def IsOwnedByPlayer(self, player_index):
+    def is_owned_by_player(self, player_index):
         """
         Check if the current board item position is owned by the specified player.
 
@@ -54,7 +53,7 @@ class BoardItem:
         # If equal, the current board item position is owned by the specified player; otherwise, it is not.
         return self.CurrentOwnerIndex == player_index 
 
-    def IsPossibleBoardMovement(self, gobblet):
+    def is_possible_board_movement(self, gobblet: Gobblet):
         """
         Check if the specified Gobblet can be moved to the current board item position.
 
@@ -67,9 +66,9 @@ class BoardItem:
         # Check if the stack is empty or if the size of the specified Gobblet is greater than
         # the size of the Gobblet on top of the stack.
         # If so, the specified Gobblet can be moved to the current board item position; otherwise, it cannot.
-        return self.IsEmpty() or ( not self.IsFull() and gobblet.Size > self.OnTopGobbletSize )  
+        return self.is_empty() or (not self.is_full() and gobblet.Size > self.OnTopGobbletSize)
 
-    def AddGobbletOnTop(self, gobblet):
+    def add_gobblet_on_top(self, gobblet: Gobblet):
         """
         Add a Gobblet to the stack.
 
@@ -78,10 +77,12 @@ class BoardItem:
         """
         # Check if the stack is not full and if the size of the new Gobblet is greater than
         # the size of the Gobblet on top of the stack.
-        if not self.IsFull() and gobblet.Size > self.OnTopGobbletSize:
-            if not self.IsEmpty():
-                # Set the IsOnTop flag of the Gobblet on top of the stack to False. 
-                self.GobbletsStack[-1].gobblet.IsOnTop = False
+        if not self.is_full() and gobblet.Size > self.OnTopGobbletSize:
+            if not self.is_empty():
+                # Set the IsOnTop flag of the Gobblet on top of the stack to False.
+                Gobblet.Gobblet(None, None, None)
+                temp_gobblet = self.GobbletsStack[-1]
+                temp_gobblet.IsOnTop = False
                 
             # Append the new Gobblet to the stack.
             self.GobbletsStack.append(gobblet)
@@ -95,7 +96,7 @@ class BoardItem:
             # Increment the count of Gobblets in the stack.
             self.NumberOfGobbletsInStack += 1
 
-    def RemoveGobbletOnTop(self):
+    def remove_gobblet_on_top(self):
         """
         Remove the top Gobblet from the stack.
 
@@ -103,9 +104,9 @@ class BoardItem:
         - The removed Gobblet. If the stack is empty, returns None.
         """
         # Check if the stack is not empty before attempting to remove a Gobblet.
-        if not self.IsEmpty():
+        if not self.is_empty():
             # Remove the top Gobblet from the stack using pop().
-            RemovedGobblet = self.GobbletsStack.pop()
+            removed_gobblet = self.GobbletsStack.pop()
 
             # Update the current owner index based on the Gobblet on top of the stack.
             # If the stack is empty, set the current owner index to None.
@@ -116,18 +117,18 @@ class BoardItem:
             self.OnTopGobbletSize = self.GobbletsStack[-1].gobblet.Size if self.GobbletsStack else None
 
             # Set the IsOnTop flag of the Gobblet on top of the stack to True.
-            self.GobbletsStack[-1].gobblet.IsOnTop = True
+            self.GobbletsStack[-1].set_on_top_of_stack_flag(True)
 
             # Decrement the count of Gobblets in the stack.
             self.NumberOfGobbletsInStack -= 1
 
             # Return the removed Gobblet.
-            return RemovedGobblet
+            return removed_gobblet
         else:
             # If the stack is empty, return None.
             return None
 
-    def GetOwnerIndex(self):
+    def get_owner_index(self):
         """
         Get the current owner index of the board item position.
 
@@ -136,7 +137,7 @@ class BoardItem:
         """
         return self.CurrentOwnerIndex
     
-    def GetOnTopGobbletSize(self):
+    def get_on_top_gobblet_size(self):
         """
         Get the size of the Gobblet on top of the stack.
 
