@@ -291,7 +291,7 @@ class Game:
         player1_count = 0
         player2_count = 0
 
-        # Check for horizontal wins
+        # Check for vertical wins
         for i in range(4):
             if (self.BoardItemsArray[i].CurrentOwnerIndex is not None) and \
                     (self.BoardItemsArray[i].CurrentOwnerIndex == self.BoardItemsArray[i + 4].CurrentOwnerIndex ==
@@ -301,8 +301,8 @@ class Game:
                 else:
                     player2_count += 1
 
-        # Check for vertical wins
-        for i in range(0, 13, 4):
+        # Check for Horizontal wins
+        for i in range(0, 4, 8, 12) :
             if (self.BoardItemsArray[i].CurrentOwnerIndex is not None) and \
                     (self.BoardItemsArray[i].CurrentOwnerIndex == self.BoardItemsArray[i + 1].CurrentOwnerIndex ==
                      self.BoardItemsArray[i + 2].CurrentOwnerIndex == self.BoardItemsArray[i + 3].CurrentOwnerIndex):
@@ -360,3 +360,9 @@ class Game:
         Returns the gobblet on top of the specified board position for testing purposes.
         """
         return board_position.get_gobblet_on_top()
+
+    def alternate_player(self):
+        """
+        Alternates the current player index between 0 and 1 using bitwise XOR.
+        """
+        self.CurrentPlayerIndex = self.CurrentPlayerIndex ^ 1
