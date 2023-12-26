@@ -1,10 +1,6 @@
 import Gobblet
 
 
-#####################################################
-# 1. We need to solve the list object type problem  #
-#####################################################
-
 class BoardItem:
     def __init__(self, board_item_index):
         """

@@ -3,9 +3,6 @@ import BoardItem
 from Action import MoveID
 
 
-###############################################################
-# List type problem                                           #
-###############################################################
 class Game:
     def __init__(self):
         """

@@ -72,6 +72,7 @@ def main():
 
 #Scenario 2
 
+""""
 def main():
     game_instance = Game.Game()
 
@@ -84,6 +85,7 @@ def main():
     game_state = game_instance.check_state()
 
     print(game_instance.GameState)
+"""
 
 
 
@@ -112,9 +114,9 @@ def main():
 
 
 
-
-
+""""
 if __name__ == "__main__":
     main()
+"""
 
 
