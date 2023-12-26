@@ -4,6 +4,7 @@ import sys
 
 def heuristic(state: State) -> int:
     # Check if the game is finished
+    state.game.check_state()
     if state.game.GameState != "OnGoing"
 
     if state.game.winner == state.player_turn:
