@@ -16,9 +16,11 @@ class Ui_MainWindow(object):
         MainWindow.setUnifiedTitleAndToolBarOnMac(False)
         self.MainWindow.setWindowIcon(QIcon(':/Images/MainLogo.png'))  # Set the window icon
 
-
+        # Setting up the game mode
         mode = ""
 
+        # Set board window to None
+        self.board_window = None
 
         # Creating the central widget
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -60,6 +62,7 @@ class Ui_MainWindow(object):
         self.CVCImage.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
         # Adding text edits for player names
+        # Player 1 Name
         self.Player1Name = QtWidgets.QTextEdit(self.centralwidget)
         self.Player1Name.setGeometry(QtCore.QRect(490, 310, 231, 30))
         self.Player1Name.setStyleSheet("font: 10pt \"Supply Center\";\n"
@@ -71,7 +74,7 @@ class Ui_MainWindow(object):
         self.Player1Name.setPlaceholderText("Player 1 Name")  # Set the placeholder text
         self.Player1Name.hide()
 
-
+        # Player 2 Name
         self.Player2Name = QtWidgets.QTextEdit(self.centralwidget)
         self.Player2Name.setGeometry(QtCore.QRect(730, 310, 231, 30))
         self.Player2Name.setStyleSheet("font: 10pt \"Supply Center\";\n"
@@ -86,6 +89,7 @@ class Ui_MainWindow(object):
 
 
         # Adding a start button
+        # Start Button
         self.StartButton = QtWidgets.QPushButton(self.centralwidget)
         self.StartButton.setGeometry(QtCore.QRect(590, 510, 291, 81))
         font = QtGui.QFont()
@@ -94,16 +98,15 @@ class Ui_MainWindow(object):
         font.setBold(True)
         self.StartButton.setFont(font)
         self.StartButton.setStyleSheet("background-color: rgb(0, 180, 0);"
-                                "border: 2px solid white;"  # Add a white border
+                                "border: 5px solid black;"  # Add a white border
                                 "border-radius: 40px;")  # Adjust the radius for rounding
         self.StartButton.setObjectName("StartButton")
         self.StartButton.hide()
         self.StartButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
 
 
-
         #Adding Diffculty lables and List
-        # Adding a label for the list view
+        # Adding a label for the list view 
         self.difficultyLabel1 = QtWidgets.QLabel(self.centralwidget)
         self.difficultyLabel1.setGeometry(QtCore.QRect(730, 310, 231, 30))
         self.difficultyLabel1.setStyleSheet("font: 10pt \"Supply Center\";\n"
@@ -115,8 +118,8 @@ class Ui_MainWindow(object):
         self.difficultyLabel1.setText("Computer Level")
         # Hide lable 1
         self.difficultyLabel1.hide()
-        
-        # ListWidget 1
+
+        # Difficulty List 1
         self.difficultyListWidget1 = QtWidgets.QListWidget(self.centralwidget)
         self.difficultyListWidget1.setGeometry(QtCore.QRect(730, 350, 231, 90))
         
@@ -127,17 +130,16 @@ class Ui_MainWindow(object):
         self.difficultyListWidget1.setStyleSheet("font: 10pt \"Supply Center\";\n"
                                           "color: #FFFF36  ;"
                                           "border: none;")
-        
+        # Set Item color
         self.difficultyListWidget1.item(0).setForeground(QtGui.QColor("#4CAF50"))
         self.difficultyListWidget1.item(1).setForeground(QtGui.QColor("#FF9800"))
         self.difficultyListWidget1.item(2).setForeground(QtGui.QColor("#D32F2F"))
+
         # Prevent text from being changed in the list widget
         self.difficultyListWidget1.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
         # Hide it
         self.difficultyListWidget1.hide()
 
-
-        #List 2
         # Adding a label for the list view
         self.difficultyLabel2 = QtWidgets.QLabel(self.centralwidget)
         self.difficultyLabel2.setGeometry(QtCore.QRect(490, 310, 231, 30))
@@ -150,7 +152,7 @@ class Ui_MainWindow(object):
         self.difficultyLabel2.setText("Computer Level")
         self.difficultyLabel2.hide()
         
-        # Adding a list view
+        # Difficulty List 2
         self.difficultyListWidget2 = QtWidgets.QListWidget(self.centralwidget)
         self.difficultyListWidget2.setGeometry(QtCore.QRect(490, 350, 231, 90))
         
@@ -163,28 +165,25 @@ class Ui_MainWindow(object):
                                       "color: #00FF36  ;"
                                       "border: none;")
 
+        # Set Item color
         self.difficultyListWidget2.item(0).setForeground(QtGui.QColor("#4CAF50"))
         self.difficultyListWidget2.item(1).setForeground(QtGui.QColor("#FF9800"))
         self.difficultyListWidget2.item(2).setForeground(QtGui.QColor("#D32F2F"))
         # Prevent text from being changed in the list view
         self.difficultyListWidget2.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
 
+        # Hide it
         self.difficultyListWidget2.hide()
 
         # Connect itemClicked signals to a method that checks for selections
         self.difficultyListWidget1.itemClicked.connect(self.checkSelectionPVC)
         self.difficultyListWidget2.itemClicked.connect(self.checkSelectionCVC)
 
-
-
         # Connecting mouse press events to show player names and start button
         self.PVPImage.mousePressEvent = self.showPlayersNames
         self.PVCImage.mousePressEvent = self.showPlayerName
         self.CVCImage.mousePressEvent = self.showComputerName
         self.StartButton.mousePressEvent = self.showBoardWindow
-
-        # Set board window to None
-        self.board_window = None
 
         # Setting the central widget for the main window
         MainWindow.setCentralWidget(self.centralwidget)
@@ -193,6 +192,7 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
      
+    # Methods for showing and hiding player names and start button 
     def showPlayersNames(self, event):
         # Show player names and start button when PVP label is clicked
         # Hide everything first
@@ -206,6 +206,7 @@ class Ui_MainWindow(object):
         self.Player1Name.setText("")
         self.Player2Name.setText("")
          
+        # Show player names and start button 
         mode = "PVP" 
         self.Player1Name.show()
         self.Player2Name.show() 
@@ -225,6 +226,7 @@ class Ui_MainWindow(object):
         self.Player2Name.setText("")
 
 
+        # Show player names and start button
         mode = "PVC" 
         self.Player1Name.show()
         self.difficultyListWidget1.show()
@@ -241,7 +243,7 @@ class Ui_MainWindow(object):
         self.difficultyListWidget2.hide()
         self.difficultyLabel2.hide()
    
-       
+        # Show player names and start button
         mode = "CVC" 
         self.difficultyListWidget1.show()
         self.difficultyLabel1.show()
@@ -263,7 +265,7 @@ class Ui_MainWindow(object):
         else:
             self.StartButton.hide()        
 
-
+    # Show the board window
     def showBoardWindow(self, event):
          if self.board_window is None or not self.board_window.isVisible():
             # Create and show the BoardWindow
