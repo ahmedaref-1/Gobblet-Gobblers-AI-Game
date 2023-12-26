@@ -2,6 +2,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 import Images
 from PyQt5.QtGui import QIcon
 from PyQt5.QtMultimedia import QSound
+from Game import *
 
 
 class boardCurvedButton(QtWidgets.QPushButton):
@@ -21,6 +22,8 @@ class boardCurvedButton(QtWidgets.QPushButton):
 
 class BoardWindow(object):
     def setupUi(self, Gobblet):
+        game_instance = Game()
+
         QSound.play("Images/start_button_sound.wav")
         player1 = "bahaa"
         player2 = "mohamed"
@@ -612,6 +615,7 @@ class BoardWindow(object):
                 self.Player2_Size4_Stack2 , self.Player2_Size3_Stack2 , self.Player2_Size2_Stack2 , self.Player2_Size1_Stack2 ,
                 self.Player2_Size4_Stack3 , self.Player2_Size3_Stack3 , self.Player2_Size2_Stack3 , self.Player2_Size1_Stack3]
         
+        
         # Set Board Buttons
         boardButtons = [self.Button1, self.Button2, self.Button3, self.Button4,
                         self.Button5, self.Button6, self.Button7, self.Button8,
@@ -621,7 +625,7 @@ class BoardWindow(object):
         # Varaiable to indicate player round 
         playerRound = "player1"
 
-        self.startGame(self, Player1_WhiteButtons, Player2_BlackButtons, boardButtons,playerRound,player1,player2)
+        self.startGame(self, Player1_WhiteButtons, Player2_BlackButtons, boardButtons,playerRound,player1,player2,game_instance)
     
         self.down_finger.show()
         self.up_finger.hide()
@@ -641,7 +645,7 @@ class BoardWindow(object):
         #self.board_window.show() 
         #main_entry_point() 
         
-    def startGame(self, event, Player1_WhiteButtons, Player2_BlackButtons, boardButtons,playerRound,player1,player2):
+    def startGame(self, event, Player1_WhiteButtons, Player2_BlackButtons, boardButtons,playerRound,player1,player2,games_instance):
         for btn in boardButtons:
                 btn.setEnabled(False)
         #         btn.setStyleSheet(
@@ -657,7 +661,7 @@ class BoardWindow(object):
                 for btn in Player2_BlackButtons:
                         btn.setEnabled(False)
                 for btn in Player1_WhiteButtons:
-                        btn.mousePressEvent = lambda event, button=btn: self.handleButtonPress(event, button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound,player1,player2)
+                        btn.mousePressEvent = lambda event, button=btn: self.handleButtonPress(event, button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound,player1,player2,games_instance)
 
         elif(playerRound == "player2"):
                 for btn in Player2_BlackButtons:
@@ -665,10 +669,10 @@ class BoardWindow(object):
                 for btn in Player1_WhiteButtons:
                         btn.setEnabled(False)
                 for btn in Player2_BlackButtons:
-                        btn.mousePressEvent = lambda event, button=btn: self.handleButtonPress(event, button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound,player1,player2)
+                        btn.mousePressEvent = lambda event, button=btn: self.handleButtonPress(event, button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound,player1,player2, games_instance)
         
                 
-    def handleButtonPress(self, event, button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound,player1,player2):
+    def handleButtonPress(self, event, button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound,player1,player2,games_instance):
         # Enable the clicked button
         for btn in boardButtons:
             btn.setEnabled(True)
@@ -697,26 +701,30 @@ class BoardWindow(object):
             btn.setEnabled(False)
         
         for btn in boardButtons:
-            btn.mousePressEvent = lambda event, board_button=btn: self.placeButton(event, board_button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, button, playerRound,player1,player2)
+            btn.mousePressEvent = lambda event, board_button=btn: self.placeButton(event, board_button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, button, playerRound,player1,player2,games_instance)
 
 
-    # def is_collision(self,board_button, btn, pressedbutton):
-    #     rect1 = board_button.geometry()
-    #     rect2 = btn.geometry()
-    #     # return rect1.intersects(rect2)
-    #     if(rect1.intersects(rect2)):
-    #             if(btn.width() < pressedbutton.width()):
-    #                     return False
-    #             else:
-    #                    return True
+    def is_collision(self,board_button, btn, pressedbutton):
+        rect1 = board_button.geometry()
+        rect2 = btn.geometry()
+        # return rect1.intersects(rect2)
+        if(rect1.intersects(rect2)):
+                if(btn.width() < pressedbutton.width()):
+                        return False
+                else:
+                       return True
 
-    def placeButton(self, event, board_button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, button, playerRound,player1,player2):
+    def placeButton(self, event, board_button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, button, playerRound,player1,player2,games_instance):
 
-        #  #Check for collisions with other buttons on the board
-        # for btn in Player1_WhiteButtons + Player2_BlackButtons:
-        #     if self.is_collision(board_button, btn, button):
-        #         return  # Do not place the button if there is a collision
+         #Check for collisions with other buttons on the board
+        for btn in Player1_WhiteButtons + Player2_BlackButtons:
+            if self.is_collision(board_button, btn, button):
+                return  # Do not place the button if there is a collision
 
+        if(playerRound == "player1"):
+            games_instance.make_move(games_instance.FirstPlayerGobbletsArray[Player1_WhiteButtons.index(button)], games_instance.BoardItemsArray[boardButtons.index(board_button)])
+        elif(playerRound == "player2"):
+            games_instance.make_move(games_instance.SecondPlayerGobbletsArray[Player2_BlackButtons.index(button)], games_instance.BoardItemsArray[boardButtons.index(board_button)])
         # Place the button on the board
         # for btn in boardButtons:
         #        btn.lower()
@@ -726,6 +734,8 @@ class BoardWindow(object):
         # "background-color: rgba(0, 0, 0, 10%);\n"  # 50% transparency (adjust as needed)
         # "border: 1px solid black;\n"
         # "}")
+        # print(Player1_WhiteButtons.index(button))
+        # print(boardButtons.index(board_button))
         
         # Set the position of the button on the board
         buttonWidth = button.width()
@@ -736,6 +746,7 @@ class BoardWindow(object):
         button.setGeometry(QtCore.QRect(boardX + int(board_button.width()/2) - int(buttonWidth/2),
                                          boardY+int(board_button.width()/2) - int(buttonHeight/2),
                                            buttonWidth, buttonHeight))
+        ################################################################################################################################
         # board_button.setStyleSheet(
         # "QPushButton {\n"
         # "background-color: rgba(0, 0, 0, 10%);\n"  # 50% transparency (adjust as needed)
@@ -800,7 +811,7 @@ class BoardWindow(object):
                 for btn in Player2_BlackButtons:
                         btn.setEnabled(True)
                 for btn in Player2_BlackButtons:
-                        btn.mousePressEvent = lambda event, button=btn: self.handleButtonPress(event, button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound,player1,player2)
+                        btn.mousePressEvent = lambda event, button=btn: self.handleButtonPress(event, button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound,player1,player2, games_instance)
                 
         elif(playerRound == "player2"):
                 QSound.play("Images/mario-jump-sound-effect.wav")
@@ -817,7 +828,7 @@ class BoardWindow(object):
                 for btn in Player1_WhiteButtons:
                         btn.setEnabled(True)
                 for btn in Player1_WhiteButtons:
-                        btn.mousePressEvent = lambda event, button=btn: self.handleButtonPress(event, button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound,player1,player2)
+                        btn.mousePressEvent = lambda event, button=btn: self.handleButtonPress(event, button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound,player1,player2, games_instance)
 
     def retranslateUi(self, Gobblet):
         _translate = QtCore.QCoreApplication.translate
