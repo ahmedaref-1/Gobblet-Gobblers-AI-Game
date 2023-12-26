@@ -1,9 +1,9 @@
 import Gobblet
 
 
-##################################################
-# We need to solve the list object type problem  #
-##################################################
+#####################################################
+# 1. We need to solve the list object type problem  #
+#####################################################
 
 class BoardItem:
     def __init__(self, board_item_index):
@@ -84,7 +84,7 @@ class BoardItem:
         if not self.is_full() and gobblet.Size > self.OnTopGobbletSize:
             if not self.is_empty():
                 # Set the IsOnTop flag of the Gobblet on top of the stack to False.
-                Gobblet.Gobblet(None, None, None)
+                temp_gobblet = Gobblet.Gobblet(None, None, None)
                 temp_gobblet = self.GobbletsStack[-1]
                 temp_gobblet.IsOnTop = False
                 
@@ -149,4 +149,12 @@ class BoardItem:
         - The size of the Gobblet on top of the stack.
         """
         return self.OnTopGobbletSize
-    
+
+    def get_gobblet_on_top(self):
+        """
+        Function to return gobblet on the top of the stack
+
+        Returns:
+        Gobblet on the top of the stack
+        """
+        return self.GobbletsStack[-1]
