@@ -49,45 +49,42 @@ def main():
     ##########################################################
 
 #Scenario 1
-'''
+
+"""
 def main():
     game_instance = Game.Game()
 
-    game_instance.make_move(game_instance.FirstPlayerGobbletsArray[0],game_instance.self.BoardItemsArray[0])
-    game_instance.make_move(game_instance.FirstPlayerGobbletsArray[1],game_instance.self.BoardItemsArray[1])
-    game_instance.make_move(game_instance.FirstPlayerGobbletsArray[2],game_instance.self.BoardItemsArray[2])
-    game_instance.make_move(game_instance.FirstPlayerGobbletsArray[3],game_instance.self.BoardItemsArray[3])
+    game_instance.make_move(game_instance.FirstPlayerGobbletsArray[0],game_instance.BoardItemsArray[0])
+    game_instance.make_move(game_instance.FirstPlayerGobbletsArray[1],game_instance.BoardItemsArray[1])
+    game_instance.make_move(game_instance.FirstPlayerGobbletsArray[2],game_instance.BoardItemsArray[2])
+    game_instance.make_move(game_instance.FirstPlayerGobbletsArray[3],game_instance.BoardItemsArray[3])
 
-    game_instance.check_gobblet_on_top(game_instance.self.BoardItemsArray[0])
-    game_instance.check_gobblet_on_top(game_instance.self.BoardItemsArray[1])
-    game_instance.check_gobblet_on_top(game_instance.self.BoardItemsArray[2])
-    game_instance.check_gobblet_on_top(game_instance.self.BoardItemsArray[3])               
+    game_instance.check_gobblet_on_top(game_instance.BoardItemsArray[0])
+    game_instance.check_gobblet_on_top(game_instance.BoardItemsArray[1])
+    game_instance.check_gobblet_on_top(game_instance.BoardItemsArray[2])
+    game_instance.check_gobblet_on_top(game_instance.BoardItemsArray[3])
 
     game_state = game_instance.check_state()
 
-    print(game_state)
-'''
+    print(game_instance.GameState)
 
+"""
 
 #Scenario 2
-'''
+
 def main():
     game_instance = Game.Game()
 
-    game_instance.make_move(game_instance.FirstPlayerGobbletsArray[0],game_instance.self.BoardItemsArray[0])
-    game_instance.make_move(game_instance.FirstPlayerGobbletsArray[1],game_instance.self.BoardItemsArray[1])
-    game_instance.make_move(game_instance.FirstPlayerGobbletsArray[0],game_instance.self.BoardItemsArray[2])
-    game_instance.make_move(game_instance.FirstPlayerGobbletsArray[1],game_instance.self.BoardItemsArray[3])
+    game_instance.make_move(game_instance.FirstPlayerGobbletsArray[0],game_instance.BoardItemsArray[0])
+    game_instance.make_move(game_instance.FirstPlayerGobbletsArray[1],game_instance.BoardItemsArray[1])
+    game_instance.make_move(game_instance.FirstPlayerGobbletsArray[0],game_instance.BoardItemsArray[2])
+    game_instance.make_move(game_instance.FirstPlayerGobbletsArray[1],game_instance.BoardItemsArray[3])
 
-    game_instance.check_gobblet_on_top(game_instance.self.BoardItemsArray[0])
-    game_instance.check_gobblet_on_top(game_instance.self.BoardItemsArray[1])
-    game_instance.check_gobblet_on_top(game_instance.self.BoardItemsArray[2])
-    game_instance.check_gobblet_on_top(game_instance.self.BoardItemsArray[3])               
 
     game_state = game_instance.check_state()
 
-    print(game_state)
-'''
+    print(game_instance.GameState)
+
 
 
 

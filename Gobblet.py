@@ -1,3 +1,4 @@
+import BoardItem
 class Gobblet:
     def __init__(self, gobblet_id, gobblet_owner_index, gobblet_size):
         """
@@ -50,7 +51,10 @@ class Gobblet:
         """
         # Check if the CurrentBoardPositionIndex is not None.
         # If not None, the current Gobblet is on the board; otherwise, it is not.
-        return self.CurrentBoardPositionIndex is not None
+        if self.CurrentBoardPositionIndex is not None:
+            return True
+        else:
+            return False
     
     def is_possible_gobblet_movement(self, board_item):
         """
@@ -64,7 +68,7 @@ class Gobblet:
         """
         # Check if the specified board item position is empty.
         # If empty, the current Gobblet can be moved to the specified board item position; otherwise, it cannot.
-        return board_item.is_empty() or ((not board_item.IsFull()) and (self.Size > board_item.OnTopGobbletSize))
+        return board_item.is_empty() or ((not board_item.is_full()) and (self.Size > board_item.OnTopGobbletSize))
 
     def get_gobblet_owned_position_index(self):
         """
@@ -88,3 +92,17 @@ class Gobblet:
         - flag_value (bool): The value to be set for the IsOnTop flag.
         """
         self.IsOnTop = flag_value
+
+    def update_gobblet_position(self, board_position:BoardItem):
+        if self.CurrentBoardPositionIndex is None:
+            self.CurrentBoardPositionIndex = board_position.Index
+            self.PreviousBoardPositionIndex = None
+        else :
+            self.PreviousBoardPositionIndex = self.CurrentBoardPositionIndex
+            self.CurrentBoardPositionIndex = board_position.Index
+
+    def get_gobblet_position(self):
+        return self.CurrentBoardPositionIndex
+
+    def get_gobblet_index(self):
+        return self.ID
