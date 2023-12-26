@@ -14,8 +14,7 @@ PLAYER2 =2
 level = "easy_level"
 class ComputerPlayer():
 
-    def __init__(self, depth: int, level : str):
-            self.depth = depth
+    def __init__(self, level : str):
             self.level = level
 
 
