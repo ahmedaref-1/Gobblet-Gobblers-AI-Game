@@ -1,5 +1,5 @@
 class Gobblet:
-    def __init__(self, id, owner_index, size):
+    def __init__(self, gobblet_id, gobblet_owner_index, gobblet_size):
         """
         Represents a Gobblet piece.
 
@@ -9,9 +9,9 @@ class Gobblet:
         - Size (int): Size of the Gobblet piece (1, 2, 3 or 4)
         
         """
-        self.ID = id  # Unique ID for the Gobblet
-        self.OwnerIndex = owner_index  # Index representing the player (0 or 1)
-        self.Size = size  # Size of the Gobblet piece (1, 2, 3 or 4)
+        self.ID = gobblet_id  # Unique ID for the Gobblet
+        self.OwnerIndex = gobblet_owner_index  # Index representing the player (0 or 1)
+        self.Size = gobblet_size  # Size of the Gobblet piece (1, 2, 3 or 4)
         self.CurrentBoardPositionIndex = None  # Current position on the game board (initially none)
         self.PreviousBoardPositionIndex = None  # Previous position on the game board (initially none)
         self.IsOnTop = False  # Flag indicating if the Gobblet is on top of a stack (initially False)
