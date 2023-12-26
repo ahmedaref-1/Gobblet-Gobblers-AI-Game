@@ -1,5 +1,5 @@
 class Gobblet:
-    def __init__(self, ID, OwnerIndex, Size, CurrentBoardPositionIndexInitValue=None, PreviousBoardPositionIndexInitValue=None, IsOnTop=False):
+    def __init__(self, id, owner_index, size):
         """
         Represents a Gobblet piece.
 
@@ -7,18 +7,16 @@ class Gobblet:
         - ID (int): Unique ID for the Gobblet
         - OwnerIndex (int): Index representing the player (0 or 1)
         - Size (int): Size of the Gobblet piece (1, 2, 3 or 4)
-        - CurrentBoardPositionIndex (int): Current index of the position of the Gobblet on the game board 
-        - PreviousBoardPositionIndex (int): Previous index of the position of the Gobblet on the game board 
-        - IsOnTop (bool): Flag indicating if the Gobblet is on top of a stack (default is False)
+        
         """
-        self.ID = ID  # Unique ID for the Gobblet
-        self.OwnerIndex = OwnerIndex  # Index representing the player (0 or 1)
-        self.Size = Size  # Size of the Gobblet piece (1, 2, 3 or 4)
-        self.CurrentBoardPositionIndex = CurrentBoardPositionIndexInitValue  # Current position on the game board 
-        self.PreviousBoardPositionIndex = PreviousBoardPositionIndexInitValue  # Previous position on the game board 
-        self.IsOnTop = IsOnTop  # Flag indicating if the Gobblet is on top of a stack (default is False)
+        self.ID = id  # Unique ID for the Gobblet
+        self.OwnerIndex = owner_index  # Index representing the player (0 or 1)
+        self.Size = size  # Size of the Gobblet piece (1, 2, 3 or 4)
+        self.CurrentBoardPositionIndex = None  # Current position on the game board (initially none)
+        self.PreviousBoardPositionIndex = None  # Previous position on the game board (initially none)
+        self.IsOnTop = False  # Flag indicating if the Gobblet is on top of a stack (initially False)
 
-    def IsOwnedByPlayer(self, player_index):
+    def is_owned_by_player(self, player_index):
         """
         Check if the current Gobblet is owned by the specified player.
 
@@ -32,7 +30,7 @@ class Gobblet:
         # If equal, the current Gobblet is owned by the specified player; otherwise, it is not.
         return self.OwnerIndex == player_index
     
-    def IsOnTopOfStack(self):
+    def is_on_top_of_stack(self):
         """
         Check if the current Gobblet is on top of a stack.
 
@@ -43,7 +41,7 @@ class Gobblet:
         # If True, the current Gobblet is on top of a stack; otherwise, it is not.
         return self.IsOnTop
     
-    def IsOnBoard(self):
+    def is_on_board(self):
         """
         Check if the current Gobblet is on the board.
 
@@ -54,7 +52,7 @@ class Gobblet:
         # If not None, the current Gobblet is on the board; otherwise, it is not.
         return self.CurrentBoardPositionIndex is not None
     
-    def IsPossibleGobbletMovement(self, board_item):
+    def is_possible_gobblet_movement(self, board_item):
         """
         Check if the current Gobblet can be moved to the specified board item position.
 
@@ -66,9 +64,9 @@ class Gobblet:
         """
         # Check if the specified board item position is empty.
         # If empty, the current Gobblet can be moved to the specified board item position; otherwise, it cannot.
-        return board_item.IsEmpty() or((not board_item.IsFull()) and (self.Size > board_item.OnTopGobbletSize))
+        return board_item.IsEmpty() or ((not board_item.IsFull()) and (self.Size > board_item.OnTopGobbletSize))
 
-    def GetGobbletOwnedPositionIndex(self):
+    def get_gobblet_owned_position_index(self):
         """
         Get the position of the current Gobblet.
 
@@ -77,7 +75,7 @@ class Gobblet:
         """
         # Check if the current Gobblet is on the board and on the top of the stack of this bord position.
         # If so, return the current board position index; otherwise, return None.
-        if self.IsOnBoard() and self.IsOnTopOfStack():
+        if self.is_on_board() and self.is_on_top_of_stack():
             return self.CurrentBoardPositionIndex
         else:
             return None
