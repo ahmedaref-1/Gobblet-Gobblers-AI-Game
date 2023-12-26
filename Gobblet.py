@@ -88,4 +88,3 @@ class Gobblet:
         - flag_value (bool): The value to be set for the IsOnTop flag.
         """
         self.IsOnTop = flag_value
-        
