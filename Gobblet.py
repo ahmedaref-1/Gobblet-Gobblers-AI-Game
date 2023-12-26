@@ -79,4 +79,13 @@ class Gobblet:
             return self.CurrentBoardPositionIndex
         else:
             return None
-    
+
+    def set_gobblet_on_top_of_stack_flag(self, flag_value):
+        """
+        Set the IsOnTop flag of the current Gobblet to the specified value.
+
+        Parameters:
+        - flag_value (bool): The value to be set for the IsOnTop flag.
+        """
+        self.IsOnTop = flag_value
+        
