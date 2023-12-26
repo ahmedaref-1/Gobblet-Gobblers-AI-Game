@@ -24,7 +24,7 @@ class State:
         return self.game.AllValidMoves()
 
     def apply_move(self, action: MoveID):
-        self.game.apply_move(action)
+        self.game.make_move(action.CurrentGobblet , action.next )
 
 
     
