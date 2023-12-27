@@ -24,13 +24,18 @@ class boardCurvedButton(QtWidgets.QPushButton):
 
 
 class BoardWindow(object):
-    def setupUi(self, Gobblet):
+    def setupUi(self, Gobblet,player1,player2,mode,difficulty1,difficulty2):
         
-        player1 = "bahaa"
-        player2 = "radwa"
-        mode = "PVP"
-        difficulty1 = ""
-        difficulty2 = "EASY"
+        # player1 = "bahaa"
+        # player2 = "radwa"
+        # mode = "PVP"
+        # difficulty1 = ""
+        # difficulty2 = "EASY"
+        print(player1)
+        print(player2)
+        print(mode)
+        print(difficulty1)
+        print(difficulty2)
 
         # Varaiable to indicate player round 
         playerRound = "player1"

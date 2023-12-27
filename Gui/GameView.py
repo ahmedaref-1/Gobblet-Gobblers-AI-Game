@@ -180,10 +180,10 @@ class Ui_MainWindow(object):
         self.difficultyListWidget2.itemClicked.connect(self.checkSelectionCVC)
 
         # Connecting mouse press events to show player names and start button
-        self.PVPImage.mousePressEvent = self.showPlayersNames
-        self.PVCImage.mousePressEvent = self.showPlayerName
-        self.CVCImage.mousePressEvent = self.showComputerName
-        self.StartButton.mousePressEvent = self.showBoardWindow
+        self.PVPImage.mousePressEvent = lambda event : self.showPlayersNames(event)
+        self.PVCImage.mousePressEvent = lambda event : self.showPlayerName(event)
+        self.CVCImage.mousePressEvent = lambda event : self.showComputerName(event)
+        self.StartButton.mousePressEvent = lambda event : self.showBoardWindow(event)
 
         # Setting the central widget for the main window
         MainWindow.setCentralWidget(self.centralwidget)
@@ -207,10 +207,11 @@ class Ui_MainWindow(object):
         self.Player2Name.setText("")
          
         # Show player names and start button 
-        mode = "PVP" 
+        self.mode = "PVP" 
         self.Player1Name.show()
         self.Player2Name.show() 
         self.StartButton.show()
+        
 
     def showPlayerName(self, event):
         # Show player names and start button when PVC label is clicked
@@ -223,11 +224,11 @@ class Ui_MainWindow(object):
         self.difficultyListWidget2.hide()
         self.difficultyLabel2.hide()
         self.Player1Name.setText("")
-        self.Player2Name.setText("")
+        self.Player2Name.setText("Computer")
 
 
         # Show player names and start button
-        mode = "PVC" 
+        self.mode = "PVC"
         self.Player1Name.show()
         self.difficultyListWidget1.show()
         self.difficultyLabel1.show()
@@ -242,9 +243,11 @@ class Ui_MainWindow(object):
         self.difficultyLabel1.hide()
         self.difficultyListWidget2.hide()
         self.difficultyLabel2.hide()
+        self.Player1Name.setText("Computer1")
+        self.Player2Name.setText("Computer2")
    
         # Show player names and start button
-        mode = "CVC" 
+        self.mode = "CVC" 
         self.difficultyListWidget1.show()
         self.difficultyLabel1.show()
         self.difficultyListWidget2.show()
@@ -271,7 +274,19 @@ class Ui_MainWindow(object):
             # Create and show the BoardWindow
             self.board_window = QtWidgets.QMainWindow()
             ui = BoardWindow()
-            ui.setupUi(self.board_window, self.Player1Name.toPlainText(), self.Player2Name.toPlainText(),self.mode,self.difficultyListWidget1.currentItem().text(),self.difficultyListWidget2.currentItem().text())
+
+            if self.difficultyListWidget1.currentItem() is not None and self.difficultyListWidget2.currentItem() is None:
+                difficulty2 = self.difficultyListWidget1.currentItem().text()
+                ui.setupUi(self.board_window, self.Player1Name.toPlainText(), self.Player2Name.toPlainText(),self.mode,"",difficulty2)
+            
+            elif self.difficultyListWidget1.currentItem() is not None and self.difficultyListWidget2.currentItem() is not None:
+                difficulty2 = self.difficultyListWidget1.currentItem().text()
+                difficulty1 = self.difficultyListWidget2.currentItem().text()
+                ui.setupUi(self.board_window, self.Player1Name.toPlainText(), self.Player2Name.toPlainText(),self.mode,difficulty1,difficulty2)
+            
+            else : 
+                ui.setupUi(self.board_window, self.Player1Name.toPlainText(), self.Player2Name.toPlainText(),self.mode,"","")
+                
             self.board_window.show()
             self.MainWindow.close()    
 
