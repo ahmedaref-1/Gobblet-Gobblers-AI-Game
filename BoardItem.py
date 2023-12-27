@@ -155,3 +155,12 @@ class BoardItem:
         # Update the opponent index based on the current owner index
         if self.CurrentOwnerIndex is not None:
             self.CurrentOpponentIndex = not self.CurrentOwnerIndex
+
+    def get_number_of_gobblets(self):
+        """
+        Gets the number of gobblets in the stack.
+
+        Returns:
+        int: The number of gobblets in the stack.
+        """
+        return self.NumberOfGobbletsInStack
