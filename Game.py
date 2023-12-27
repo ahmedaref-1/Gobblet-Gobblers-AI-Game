@@ -157,6 +157,9 @@ class Game:
         current_gobblet: The Gobblet to be moved.
         required_position: The target position on the board where the Gobblet should be moved.
         """
+        # initially set the invalid move flag to false
+        self.InvalidMoveFlag = False
+
         # Check if the gobblet is on top of stack and that it is already on the board
         if current_gobblet.is_on_top_of_stack() and current_gobblet.is_on_board():
             # Check if the gobblet can be placed on the board
