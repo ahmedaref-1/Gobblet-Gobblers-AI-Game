@@ -1,8 +1,12 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QMessageBox
 import Images
 from PyQt5.QtGui import QIcon
 from PyQt5.QtMultimedia import QSound
 from Game import Game
+from ComputerPlayer import ComputerPlayer
+from State import State
+import time
 
 class boardCurvedButton(QtWidgets.QPushButton):
     def __init__(self, parent=None):
@@ -21,11 +25,52 @@ class boardCurvedButton(QtWidgets.QPushButton):
 
 class BoardWindow(object):
     def setupUi(self, Gobblet):
+        
+        player1 = "bahaa"
+        player2 = "Som3a"
+        mode = "PVP"
+        difficulty1 = ""
+        difficulty2 = "EASY"
+
+        # Varaiable to indicate player round 
+        playerRound = "player1"
+
+        #instance of game
         game_instance = Game()
+        
+        # if (mode == "PVC"):
+        #     Computer = ComputerPlayer(difficulty2)
+        # ############# PVC #############
+        # # while state === ongoing
+        # # make move player1
+        # # check state
+        # currState = State(game_instance.CurrentPlayerIndex , game_instance)
+        # move = Computer.get_action(currState)
+        # game_instance.make_move(move.CurrentGobblet, move.next)
+        # #check state 
+        # # move.CurrentGobblet.Gobblet.get_gobblet_index()     # => index of gobblet
+        # # move.next.BoardItem. # => index of board
+
+
+        # if (mode == "CVC"):
+        #     Computer1 = ComputerPlayer(difficulty1)
+        #     Computer2 = ComputerPlayer(difficulty2)
+        # ############## CVC #############
+        # # while state === ongoing
+        # currState = State(game_instance.CurrentPlayerIndex , game_instance)
+        # move = Computer1.get_action(currState)
+        # game_instance.make_move(move.CurrentGobblet, move.next)
+        # #check state
+        # currState = State(game_instance.CurrentPlayerIndex , game_instance)
+        # move = Computer2.get_action(currState)
+        # game_instance.make_move(move.CurrentGobblet, move.next)
+        # #check state
+
+        
+
+
 
         QSound.play("Images/start_button_sound.wav")
-        player1 = "bahaa"
-        player2 = "mohamed"
         self.Gobblet = Gobblet  # Store a reference to the main window
         Gobblet.setObjectName("Gobblet")
         Gobblet.resize(1200, 900)
@@ -122,6 +167,7 @@ class BoardWindow(object):
         self.Player1_Size1_Stack1.setStyleSheet(
             "QPushButton {\n"
             "border-radius: 15px;\n"
+            "border: 2px solid Black;\n"
             "    background-color: #ffffff;\n"
             "    color: #000000;\n"
             "}"
@@ -138,6 +184,7 @@ class BoardWindow(object):
         self.Player1_Size2_Stack1.setStyleSheet(
             "QPushButton {\n"
             "border-radius: 25px;\n"
+            "border: 2px solid Black;\n"
             "    background-color: #ffffff;\n"
             "    color: 000000;\n"
             "}"
@@ -154,6 +201,7 @@ class BoardWindow(object):
         self.Player1_Size3_Stack1.setStyleSheet(
             "QPushButton {\n"
             "border-radius: 35px;\n"
+            "border: 2px solid Black;\n"
             "    background-color: #ffffff;\n"
             "    color: 000000;\n"
             "}"
@@ -170,8 +218,9 @@ class BoardWindow(object):
         self.Player1_Size4_Stack1.setStyleSheet(
             "QPushButton {\n"
             "border-radius: 45px;\n"
-            "    background-color: #ffffff;\n"
-            "    color: 000000;\n"
+            "border: 2px solid Black;\n"
+            "background-color: #ffffff;\n"
+            "color: 000000;\n"
             "}"
         )
         self.Player1_Size4_Stack1.setCheckable(False)
@@ -187,6 +236,7 @@ class BoardWindow(object):
         self.Player1_Size1_Stack2.setStyleSheet(
             "QPushButton {\n"
             "border-radius: 15px;\n"
+            "border: 2px solid Black;\n"
             "    background-color: #ffffff;\n"
             "    color: 000000;\n"
             "}"
@@ -203,6 +253,7 @@ class BoardWindow(object):
         self.Player1_Size2_Stack2.setStyleSheet(
             "QPushButton {\n"
             "border-radius: 25px;\n"
+            "border: 2px solid Black;\n"
             "    background-color: #ffffff;\n"
             "    color: 000000;\n"
             "}"
@@ -219,6 +270,7 @@ class BoardWindow(object):
         self.Player1_Size3_Stack2.setStyleSheet(
             "QPushButton {\n"
             "border-radius: 35px;\n"
+            "border: 2px solid Black;\n"
             "    background-color: #ffffff;\n"
             "    color: 000000;\n"
             "}"
@@ -235,6 +287,7 @@ class BoardWindow(object):
         self.Player1_Size4_Stack2.setStyleSheet(
             "QPushButton {\n"
             "border-radius: 45px;\n"
+            "border: 2px solid Black;\n"
             "    background-color: #ffffff;\n"
             "    color: 000000;\n"
             "}"
@@ -251,6 +304,7 @@ class BoardWindow(object):
         self.Player1_Size1_Stack3.setStyleSheet(
             "QPushButton {\n"
             "border-radius: 15px;\n"
+            "border: 2px solid Black;\n"
             "    background-color: #ffffff;\n"
             "    color: 000000;\n"
             "}"
@@ -267,6 +321,7 @@ class BoardWindow(object):
         self.Player1_Size2_Stack3.setStyleSheet(
             "QPushButton {\n"
             "border-radius: 25px;\n"
+            "border: 2px solid Black;\n"
             "    background-color: #ffffff;\n"
             "    color: 000000;\n"
             "}"
@@ -283,6 +338,7 @@ class BoardWindow(object):
         self.Player1_Size3_Stack3.setStyleSheet(
             "QPushButton {\n"
             "border-radius: 35px;\n"
+            "border: 2px solid Black;\n"
             "    background-color: #ffffff;\n"
             "    color: 000000;\n"
             "}"
@@ -299,6 +355,7 @@ class BoardWindow(object):
         self.Player1_Size4_Stack3.setStyleSheet(
             "QPushButton {\n"
             "border-radius: 45px;\n"
+            "border: 2px solid Black;\n"
             "    background-color: #ffffff;\n"
             "    color: 000000;\n"
             "}"
@@ -307,7 +364,7 @@ class BoardWindow(object):
 
         #player 2 buttons
         self.Player2_Size1_Stack1 = QtWidgets.QPushButton(self.centralwidget)
-        self.Player2_Size1_Stack1.setGeometry(QtCore.QRect(1080, 540, 30, 30))
+        self.Player2_Size1_Stack1.setGeometry(QtCore.QRect(1080, 300, 30, 30))
         font = QtGui.QFont()
         font.setPointSize(11)
         self.Player2_Size1_Stack1.setFont(font)
@@ -315,12 +372,61 @@ class BoardWindow(object):
         self.Player2_Size1_Stack1.setStyleSheet(
             "QPushButton {\n"
             "border-radius: 15px;\n"
+            "border: 2px solid White;\n"
+            "border: 2px solid White;\n"
             "    background-color: #000000;\n"
             "    color: #ffffff;\n"
             "}"
         )
         self.Player2_Size1_Stack1.setObjectName("Player2_Size1_Stack1")
 
+        self.Player2_Size2_Stack1 = QtWidgets.QPushButton(self.centralwidget)
+        self.Player2_Size2_Stack1.setGeometry(QtCore.QRect(1070, 290 ,50, 50))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        self.Player2_Size2_Stack1.setFont(font)
+        self.Player2_Size2_Stack1.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.Player2_Size2_Stack1.setStyleSheet(
+            "QPushButton {\n"
+            "border-radius: 25px;\n"
+            "border: 2px solid White;\n"
+            "    background-color: #000000;\n"
+            "    color: #ffffff;\n"
+            "}"
+        )
+        self.Player2_Size2_Stack1.setObjectName("Player2_Size2_Stack1")
+
+        self.Player2_Size3_Stack1 = QtWidgets.QPushButton(self.centralwidget)
+        self.Player2_Size3_Stack1.setGeometry(QtCore.QRect(1060, 280, 70, 70))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        self.Player2_Size3_Stack1.setFont(font)
+        self.Player2_Size3_Stack1.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.Player2_Size3_Stack1.setStyleSheet(
+            "QPushButton {\n"
+            "border-radius: 35px;\n"
+            "border: 2px solid White;\n"
+            "    background-color: #000000;\n"
+            "    color: #ffffff;\n"
+            "}"
+        )
+        self.Player2_Size3_Stack1.setObjectName("Player2_Size3_Stack1")
+
+        self.Player2_Size4_Stack1 = QtWidgets.QPushButton(self.centralwidget)
+        self.Player2_Size4_Stack1.setGeometry(QtCore.QRect(1050, 270, 90, 90))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        self.Player2_Size4_Stack1.setFont(font)
+        self.Player2_Size4_Stack1.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.Player2_Size4_Stack1.setStyleSheet(
+            "QPushButton {\n"
+            "border-radius: 45px;\n"
+            "border: 2px solid White;\n"
+            "    background-color: #000000;\n"
+            "    color: #ffffff;\n"
+            "}"
+        )
+        self.Player2_Size4_Stack1.setObjectName("Player2_Size4_Stack1")
 
         self.Player2_Size1_Stack2 = QtWidgets.QPushButton(self.centralwidget)
         self.Player2_Size1_Stack2.setGeometry(QtCore.QRect(1080, 420, 30, 30))
@@ -331,44 +437,12 @@ class BoardWindow(object):
         self.Player2_Size1_Stack2.setStyleSheet(
             "QPushButton {\n"
             "border-radius: 15px;\n"
+            "border: 2px solid White;\n"
             "    background-color: #000000;\n"
             "    color: #ffffff;\n"
             "}"
         )
         self.Player2_Size1_Stack2.setObjectName("Player2_Size1_Stack2")
-
-
-        self.Player2_Size1_Stack3 = QtWidgets.QPushButton(self.centralwidget)
-        self.Player2_Size1_Stack3.setGeometry(QtCore.QRect(1080, 300, 30, 30))
-        font = QtGui.QFont()
-        font.setPointSize(11)
-        self.Player2_Size1_Stack3.setFont(font)
-        self.Player2_Size1_Stack3.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.Player2_Size1_Stack3.setStyleSheet(
-            "QPushButton {\n"
-            "border-radius: 15px;\n"
-            "    background-color: #000000;\n"
-            "    color: #ffffff;\n"
-            "}"
-        )
-        self.Player2_Size1_Stack3.setObjectName("Player2_Size1_Stack3")
-
-
-        self.Player2_Size2_Stack1 = QtWidgets.QPushButton(self.centralwidget)
-        self.Player2_Size2_Stack1.setGeometry(QtCore.QRect(1070, 530, 50, 50))
-        font = QtGui.QFont()
-        font.setPointSize(11)
-        self.Player2_Size2_Stack1.setFont(font)
-        self.Player2_Size2_Stack1.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.Player2_Size2_Stack1.setStyleSheet(
-            "QPushButton {\n"
-            "border-radius: 25px;\n"
-            "    background-color: #000000;\n"
-            "    color: #ffffff;\n"
-            "}"
-        )
-        self.Player2_Size2_Stack1.setObjectName("Player2_Size2_Stack1")
-
 
         self.Player2_Size2_Stack2 = QtWidgets.QPushButton(self.centralwidget)
         self.Player2_Size2_Stack2.setGeometry(QtCore.QRect(1070, 410, 50, 50))
@@ -379,44 +453,12 @@ class BoardWindow(object):
         self.Player2_Size2_Stack2.setStyleSheet(
             "QPushButton {\n"
             "border-radius: 25px;\n"
+            "border: 2px solid White;\n"
             "    background-color: #000000;\n"
             "    color: #ffffff;\n"
             "}"
         )
         self.Player2_Size2_Stack2.setObjectName("Player2_Size2_Stack2")
-
-
-        self.Player2_Size2_Stack3 = QtWidgets.QPushButton(self.centralwidget)
-        self.Player2_Size2_Stack3.setGeometry(QtCore.QRect(1070, 290, 50, 50))
-        font = QtGui.QFont()
-        font.setPointSize(11)
-        self.Player2_Size2_Stack3.setFont(font)
-        self.Player2_Size2_Stack3.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.Player2_Size2_Stack3.setStyleSheet(
-            "QPushButton {\n"
-            "border-radius: 25px;\n"
-            "    background-color: #000000;\n"
-            "    color: #ffffff;\n"
-            "}"
-        )
-        self.Player2_Size2_Stack3.setObjectName("Player2_Size2_Stack3")
-
-
-        self.Player2_Size3_Stack1 = QtWidgets.QPushButton(self.centralwidget)
-        self.Player2_Size3_Stack1.setGeometry(QtCore.QRect(1060, 520, 70, 70))
-        font = QtGui.QFont()
-        font.setPointSize(11)
-        self.Player2_Size3_Stack1.setFont(font)
-        self.Player2_Size3_Stack1.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.Player2_Size3_Stack1.setStyleSheet(
-            "QPushButton {\n"
-            "border-radius: 35px;\n"
-            "    background-color: #000000;\n"
-            "    color: #ffffff;\n"
-            "}"
-        )
-        self.Player2_Size3_Stack1.setObjectName("Player2_Size3_Stack1")
-
 
         self.Player2_Size3_Stack2 = QtWidgets.QPushButton(self.centralwidget)
         self.Player2_Size3_Stack2.setGeometry(QtCore.QRect(1060, 400, 70, 70))
@@ -427,47 +469,15 @@ class BoardWindow(object):
         self.Player2_Size3_Stack2.setStyleSheet(
             "QPushButton {\n"
             "border-radius: 35px;\n"
+            "border: 2px solid White;\n"
             "    background-color: #000000;\n"
             "    color: #ffffff;\n"
             "}"
         )
         self.Player2_Size3_Stack2.setObjectName("Player2_Size3_Stack2")
 
-
-        self.Player2_Size3_Stack3 = QtWidgets.QPushButton(self.centralwidget)
-        self.Player2_Size3_Stack3.setGeometry(QtCore.QRect(1060, 280, 70, 70))
-        font = QtGui.QFont()
-        font.setPointSize(11)
-        self.Player2_Size3_Stack3.setFont(font)
-        self.Player2_Size3_Stack3.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.Player2_Size3_Stack3.setStyleSheet(
-            "QPushButton {\n"
-            "border-radius: 35px;\n"
-            "    background-color: #000000;\n"
-            "    color: #ffffff;\n"
-            "}"
-        )
-        self.Player2_Size3_Stack3.setObjectName("Player2_Size3_Stack3")
-
-
-        self.Player2_Size4_Stack1 = QtWidgets.QPushButton(self.centralwidget)
-        self.Player2_Size4_Stack1.setGeometry(QtCore.QRect(1050, 510, 90, 90))
-        font = QtGui.QFont()
-        font.setPointSize(11)
-        self.Player2_Size4_Stack1.setFont(font)
-        self.Player2_Size4_Stack1.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.Player2_Size4_Stack1.setStyleSheet(
-            "QPushButton {\n"
-            "border-radius: 45px;\n"
-            "    background-color: #000000;\n"
-            "    color: #ffffff;\n"
-            "}"
-        )
-        self.Player2_Size4_Stack1.setObjectName("Player2_Size4_Stack1")
-
-
         self.Player2_Size4_Stack2 = QtWidgets.QPushButton(self.centralwidget)
-        self.Player2_Size4_Stack2.setGeometry(QtCore.QRect(1050, 270, 90, 90))
+        self.Player2_Size4_Stack2.setGeometry(QtCore.QRect(1050, 390, 90, 90))
         font = QtGui.QFont()
         font.setPointSize(11)
         self.Player2_Size4_Stack2.setFont(font)
@@ -475,15 +485,63 @@ class BoardWindow(object):
         self.Player2_Size4_Stack2.setStyleSheet(
             "QPushButton {\n"
             "border-radius: 45px;\n"
+            "border: 2px solid White;\n"
             "    background-color: #000000;\n"
             "    color: #ffffff;\n"
             "}"
         )
         self.Player2_Size4_Stack2.setObjectName("Player2_Size4_Stack2")
+        
+        self.Player2_Size1_Stack3 = QtWidgets.QPushButton(self.centralwidget)
+        self.Player2_Size1_Stack3.setGeometry(QtCore.QRect(1080, 540, 30, 30))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        self.Player2_Size1_Stack3.setFont(font)
+        self.Player2_Size1_Stack3.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.Player2_Size1_Stack3.setStyleSheet(
+            "QPushButton {\n"
+            "border-radius: 15px;\n"
+            "border: 2px solid White;\n"
+            "    background-color: #000000;\n"
+            "    color: #ffffff;\n"
+            "}"
+        )
+        self.Player2_Size1_Stack3.setObjectName("Player2_Size1_Stack3")
 
+        self.Player2_Size2_Stack3 = QtWidgets.QPushButton(self.centralwidget)
+        self.Player2_Size2_Stack3.setGeometry(QtCore.QRect(1070, 530, 50, 50))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        self.Player2_Size2_Stack3.setFont(font)
+        self.Player2_Size2_Stack3.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.Player2_Size2_Stack3.setStyleSheet(
+            "QPushButton {\n"
+            "border-radius: 25px;\n"
+            "border: 2px solid White;\n"
+            "    background-color: #000000;\n"
+            "    color: #ffffff;\n"
+            "}"
+        )
+        self.Player2_Size2_Stack3.setObjectName("Player2_Size2_Stack3")
+
+        self.Player2_Size3_Stack3 = QtWidgets.QPushButton(self.centralwidget)
+        self.Player2_Size3_Stack3.setGeometry(QtCore.QRect(1060, 520, 70, 70))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        self.Player2_Size3_Stack3.setFont(font)
+        self.Player2_Size3_Stack3.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.Player2_Size3_Stack3.setStyleSheet(
+            "QPushButton {\n"
+            "border-radius: 35px;\n"
+            "border: 2px solid White;\n"
+            "    background-color: #000000;\n"
+            "    color: #ffffff;\n"
+            "}"
+        )
+        self.Player2_Size3_Stack3.setObjectName("Player2_Size3_Stack3")
 
         self.Player2_Size4_Stack3 = QtWidgets.QPushButton(self.centralwidget)
-        self.Player2_Size4_Stack3.setGeometry(QtCore.QRect(1050, 390, 90, 90))
+        self.Player2_Size4_Stack3.setGeometry(QtCore.QRect(1050, 510, 90, 90))
         font = QtGui.QFont()
         font.setPointSize(11)
         self.Player2_Size4_Stack3.setFont(font)
@@ -491,6 +549,7 @@ class BoardWindow(object):
         self.Player2_Size4_Stack3.setStyleSheet(
             "QPushButton {\n"
             "border-radius: 45px;\n"
+            "border: 2px solid White;\n"
             "    background-color: #000000;\n"
             "    color: #ffffff;\n"
             "}"
@@ -499,11 +558,6 @@ class BoardWindow(object):
 
         
         # Board Buttons 
-        # self.Button1 = QtWidgets.QPushButton(self.centralwidget)
-        # self.Button1.setGeometry(QtCore.QRect(250, 90, 150, 150))
-        # self.Button1.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        # self.Button1.setText("")
-        # self.Button1.setObjectName("Button1")
         self.Button1 = boardCurvedButton(self.centralwidget)
         self.Button1.setGeometry(QtCore.QRect(300, 140, 150, 150))
         self.Button1.setText("")
@@ -595,25 +649,16 @@ class BoardWindow(object):
         QtCore.QMetaObject.connectSlotsByName(Gobblet)
 
         # Set Player 1 Buttons
-        # Player1_WhiteButtons = [self.Player1_Size4_Stack1, self.Player1_Size4_Stack2, self.Player1_Size4_Stack3,
-        #                         self.Player1_Size3_Stack1, self.Player1_Size3_Stack2, self.Player1_Size3_Stack3,
-        #                         self.Player1_Size2_Stack1, self.Player1_Size2_Stack2, self.Player1_Size2_Stack3,
-        #                         self.Player1_Size1_Stack1, self.Player1_Size1_Stack2, self.Player1_Size1_Stack3]
         Player1_WhiteButtons= [
                 self.Player1_Size4_Stack1, self.Player1_Size3_Stack1, self.Player1_Size2_Stack1, self.Player1_Size1_Stack1,
                 self.Player1_Size4_Stack2, self.Player1_Size3_Stack2, self.Player1_Size2_Stack2, self.Player1_Size1_Stack2,
                 self.Player1_Size4_Stack3, self.Player1_Size3_Stack3, self.Player1_Size2_Stack3, self.Player1_Size1_Stack3]
-        # Set Player 2 Buttons
-        # Player2_BlackButtons = [self.Player2_Size4_Stack1, self.Player2_Size4_Stack2, self.Player2_Size4_Stack3,
-        #                         self.Player2_Size3_Stack1, self.Player2_Size3_Stack2, self.Player2_Size3_Stack3,
-        #                         self.Player2_Size2_Stack1, self.Player2_Size2_Stack2, self.Player2_Size2_Stack3,
-        #                         self.Player2_Size1_Stack1, self.Player2_Size1_Stack2, self.Player2_Size1_Stack3]
         
+        # Set Player 2 Buttons
         Player2_BlackButtons = [ 
                 self.Player2_Size4_Stack1 , self.Player2_Size3_Stack1 , self.Player2_Size2_Stack1 , self.Player2_Size1_Stack1 ,
                 self.Player2_Size4_Stack2 , self.Player2_Size3_Stack2 , self.Player2_Size2_Stack2 , self.Player2_Size1_Stack2 ,
                 self.Player2_Size4_Stack3 , self.Player2_Size3_Stack3 , self.Player2_Size2_Stack3 , self.Player2_Size1_Stack3]
-        
         
         # Set Board Buttons
         boardButtons = [self.Button1, self.Button2, self.Button3, self.Button4,
@@ -621,57 +666,38 @@ class BoardWindow(object):
                         self.Button9, self.Button10, self.Button11, self.Button12,
                         self.Button13, self.Button14, self.Button15, self.Button16]
         
-        # Varaiable to indicate player round 
-        playerRound = "player1"
+        
+        # Starting the Game : Player 1 Turn
+        if (mode == "PVP" or mode == "PVC"):
+            for btn in boardButtons:
+                btn.setEnabled(False)
+            for btn in Player2_BlackButtons:
+                btn.setEnabled(False)
+            for btn in Player1_WhiteButtons:
+                btn.mousePressEvent = lambda event, button=btn: self.PersonChooseBoardButton(event, button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound,player1,player2,game_instance, mode)
+            self.down_finger.show()
+            self.up_finger.hide()
+        elif (mode == "CVC"):
+            for btn in boardButtons:
+                btn.setEnabled(False)
+            for btn in Player1_WhiteButtons:
+                btn.setEnabled(False)
+            self.down_finger.hide()
+            self.up_finger.show()
+            self.ComputerTurn(self.event, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound, player1, player2, game_instance, mode)        
 
-        self.startGame(self, Player1_WhiteButtons, Player2_BlackButtons, boardButtons,playerRound,player1,player2,game_instance)
-    
-        self.down_finger.show()
-        self.up_finger.hide()
-    
-
+         
     def restart_game(self,main_window):
         # Create a new instance of the BoardWindow
         new_window = BoardWindow()
-        new_window.setupUi(QtWidgets.QMainWindow(), self.Player1Name.text(), self.Player2Name.text())
+        new_window.setupUi(QtWidgets.QMainWindow())   #, self.Player1Name.text(), self.Player2Name.text()
         new_window.Gobblet.show()
         # Close the current window
-        main_window.close()
-        # # Create and show the BoardWindow
-        #self.board_window = QtWidgets.QMainWindow()
-        #ui = Ui_MainWindow()
-        #ui.setupUi(self.board_window)
-        #self.board_window.show() 
-        #main_entry_point() 
+        main_window.close() 
         
-    def startGame(self, event, Player1_WhiteButtons, Player2_BlackButtons, boardButtons,playerRound,player1,player2,games_instance):
-        for btn in boardButtons:
-                btn.setEnabled(False)
-        #         btn.setStyleSheet(
-        # "QPushButton {\n"
-        # "background-color: rgba(0, 0, 0, 10%);\n"  # 50% transparency (adjust as needed)
-        # "border: 1px solid black;\n"
-        # "}") 
+       
+    def PersonChooseBoardButton(self, event, button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound,player1,player2,game_instance,mode):
         
-        # Enable buttons based on the current player's round and set their event handler
-        if(playerRound == "player1"):
-                for btn in Player1_WhiteButtons:
-                        btn.setEnabled(True)
-                for btn in Player2_BlackButtons:
-                        btn.setEnabled(False)
-                for btn in Player1_WhiteButtons:
-                        btn.mousePressEvent = lambda event, button=btn: self.handleButtonPress(event, button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound,player1,player2,games_instance)
-
-        elif(playerRound == "player2"):
-                for btn in Player2_BlackButtons:
-                        btn.setEnabled(True)
-                for btn in Player1_WhiteButtons:
-                        btn.setEnabled(False)
-                for btn in Player2_BlackButtons:
-                        btn.mousePressEvent = lambda event, button=btn: self.handleButtonPress(event, button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound,player1,player2, games_instance)
-        
-                
-    def handleButtonPress(self, event, button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound,player1,player2,games_instance):
         # Enable the clicked button
         for btn in boardButtons:
             btn.setEnabled(True)
@@ -694,124 +720,79 @@ class BoardWindow(object):
         # Disable buttons for both players    
         for btn in Player1_WhiteButtons:
             btn.setEnabled(False)
-        
-
         for btn in Player2_BlackButtons:
             btn.setEnabled(False)
         
+        #wait for the player to choose a button from the board
         for btn in boardButtons:
-            btn.mousePressEvent = lambda event, board_button=btn: self.placeButton(event, board_button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, button, playerRound,player1,player2,games_instance)
+            btn.mousePressEvent = lambda event, board_button=btn: self.placeButton(event, board_button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, button, playerRound,player1,player2,game_instance, mode)
+               
+            
 
+    # def is_collision(self,board_button, btn, pressedbutton):
+    #     rect1 = board_button.geometry()
+    #     rect2 = btn.geometry()
+    #     # return rect1.intersects(rect2)
+    #     if(rect1.intersects(rect2)):
+    #             if(btn.width() < pressedbutton.width()):
+    #                     return False
+    #             else:
+    #                    return True
 
-    def is_collision(self,board_button, btn, pressedbutton):
-        rect1 = board_button.geometry()
-        rect2 = btn.geometry()
-        # return rect1.intersects(rect2)
-        if(rect1.intersects(rect2)):
-                if(btn.width() < pressedbutton.width()):
-                        return False
-                else:
-                       return True
+    def placeButton(self, event, board_button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, button, playerRound,player1,player2,game_instance, mode):
 
-    def placeButton(self, event, board_button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, button, playerRound,player1,player2,games_instance):
-
-         #Check for collisions with other buttons on the board
-        for btn in Player1_WhiteButtons + Player2_BlackButtons:
-            if self.is_collision(board_button, btn, button):
-                return  # Do not place the button if there is a collision
+        #Check for collisions with other buttons on the board
+        # for btn in Player1_WhiteButtons + Player2_BlackButtons:
+        #     if self.is_collision(board_button, btn, button):
+        #         return  # Do not place the button if there is a collision
 
         if(playerRound == "player1"):
-            games_instance.make_move(games_instance.FirstPlayerGobbletsArray[Player1_WhiteButtons.index(button)], games_instance.BoardItemsArray[boardButtons.index(board_button)])
+            game_instance.make_move(game_instance.FirstPlayerGobbletsArray[Player1_WhiteButtons.index(button)], game_instance.BoardItemsArray[boardButtons.index(board_button)])
         elif(playerRound == "player2"):
-            games_instance.make_move(games_instance.SecondPlayerGobbletsArray[Player2_BlackButtons.index(button)], games_instance.BoardItemsArray[boardButtons.index(board_button)])
-        
-        games_instance.check_state()
-        print(games_instance.GameState)
-        # if(games_instance.GameState == "FirstPlayerWon"):
-        #         # print("First Player Won")
-        #         self.playerTurn.setText(f"{player1} Won")
-        #         self.playerTurn.setStyleSheet("font: 13pt \"Supply Center\";\n"
-        #                                 "color: #ffffff;\n"
-        #                                 "border: 3px solid black;\n"
-        #                                 "border-radius: 10px;\n")
-        #         self.down_finger.hide()
-        #         self.up_finger.hide()
-        #         # self.restart_game(self.Gobblet)
-        #         return
-        # elif(games_instance.GameState == "SecondPlayerWon"):
-        #         # print("Second Player Won")
-        #         self.playerTurn.setText(f"{player2} Won")
-        #         self.playerTurn.setStyleSheet("font: 13pt \"Supply Center\";\n"
-        #                                 "color: #000000;\n"
-        #                                 "border: 3px solid black;\n"
-        #                                 "border-radius: 10px;\n")
-        #         self.down_finger.hide()
-        #         self.up_finger.hide()
-        #         # self.restart_game(self.Gobblet)
-        #         return
-        
-        # Place the button on the board
-        # for btn in boardButtons:
-        #        btn.lower()
-        # self.background.lower()
-        #        btn.setStyleSheet(
-        # "QPushButton {\n"
-        # "background-color: rgba(0, 0, 0, 10%);\n"  # 50% transparency (adjust as needed)
-        # "border: 1px solid black;\n"
-        # "}")
-        # print(Player1_WhiteButtons.index(button))
-        # print(boardButtons.index(board_button))
+            game_instance.make_move(game_instance.SecondPlayerGobbletsArray[Player2_BlackButtons.index(button)], game_instance.BoardItemsArray[boardButtons.index(board_button)])
+        game_instance.check_state()
         
         # Set the position of the button on the board
         buttonWidth = button.width()
         buttonHeight = button.height()
         boardX = board_button.x()
         boardY = board_button.y()
-        # board_button.setParent(button)
         button.setGeometry(QtCore.QRect(boardX + int(board_button.width()/2) - int(buttonWidth/2),
                                          boardY+int(board_button.width()/2) - int(buttonHeight/2),
                                            buttonWidth, buttonHeight))
-        
-        # print(games_instance.GameState)
-        # # print(games_instance.)
-        # print(Player1_WhiteButtons.index(button))
-        # print(boardButtons.index(board_button))
-        # if(games_instance.GameState == "FirstPlayerWon"):
-        #         print("First Player Won")
-        #         self.playerTurn.setText(f"{player1} Won")
-        #         self.playerTurn.setStyleSheet("font: 13pt \"Supply Center\";\n"
-        #                                 "color: #ffffff;\n"
-        #                                 "border: 3px solid black;\n"
-        #                                 "border-radius: 10px;\n")
-        #         self.down_finger.hide()
-        #         self.up_finger.hide()
-        #         # self.restart_game(self.Gobblet)
-        #         return
-        ################################################################################################################################
-        # board_button.setStyleSheet(
-        # "QPushButton {\n"
-        # "background-color: rgba(0, 0, 0, 10%);\n"  # 50% transparency (adjust as needed)
-        # "border: 1px solid black;\n"
-        # "}")
-        
         # Lower other buttons based on their sizes
         for btn in Player1_WhiteButtons + Player2_BlackButtons:
                 if(btn.width() == 90):
                         btn.lower()
-
         for btn in Player1_WhiteButtons + Player2_BlackButtons:
                 if(btn.width() == 70):
                         btn.lower()
-        
         for btn in Player1_WhiteButtons + Player2_BlackButtons:
                 if(btn.width() == 50):
                         btn.lower()
-        
         for btn in Player1_WhiteButtons + Player2_BlackButtons:
                 if(btn.width() == 30):
                         btn.lower()
         
+
+        # QMessageBox if there is a winner or Draw
+        if (game_instance.GameState != "OnGoing"):
+            infoBox = QMessageBox() 
+            infoBox.setStyleSheet("background-color: #D2B48C;\n"
+                                  "color: rgb(0, 180, 0);\n"
+                                  "font: 20pt \"Supply Center\";\n")
+            infoBox.setIcon(QMessageBox.Information)
+            # infoBox.setStandardIcon(QMessageBox.Icon(':/Images/MainLogo.png'))
+            if(game_instance.GameState == "Player1Won"):
+                infoBox.setText(f"{player1} Won !!")
+            elif(game_instance.GameState == "Player2Won"):
+                infoBox.setText(f"{player2} Won !!")
+            infoBox.setWindowTitle("Game State")
+            infoBox.setEscapeButton(QMessageBox.Close)
+            infoBox.exec_()
+            self.restart_game(self.Gobblet)
         
+        ################################### Player Turn Switch ###################################
         # Disable all buttons on the board
         for btn in boardButtons:
                btn.lower()
@@ -824,20 +805,13 @@ class BoardWindow(object):
             "   background-image: url(:/Images/board_button.png);"  # Use a background image with curved lines
             "}"
                )
-        
         self.background.lower()
-        #        btn.setStyleSheet(
-        # "QPushButton {\n"
-        # "background-color: rgba(0, 0, 0, 10%);\n"  # 50% transparency (adjust as needed)
-        # "border: 1px solid black;\n"
-        # "}")
-               
-
         for btn in boardButtons:
             btn.setEnabled(False)
-
+        
         # Switch player turns and update button visibility
-        if(playerRound == "player1"):
+        if( mode == "PVP"):
+            if(playerRound == "player1"):
                 QSound.play("Images/mario-jump-sound-effect.wav")
                 self.down_finger.hide()
                 self.up_finger.show()
@@ -852,9 +826,9 @@ class BoardWindow(object):
                 for btn in Player2_BlackButtons:
                         btn.setEnabled(True)
                 for btn in Player2_BlackButtons:
-                        btn.mousePressEvent = lambda event, button=btn: self.handleButtonPress(event, button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound,player1,player2, games_instance)
-                
-        elif(playerRound == "player2"):
+                        btn.mousePressEvent = lambda event, button=btn: self.PersonChooseBoardButton(event, button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound,player1,player2, game_instance,mode)
+                    
+            elif(playerRound == "player2"):
                 QSound.play("Images/mario-jump-sound-effect.wav")
                 self.up_finger.hide()
                 self.down_finger.show()
@@ -869,35 +843,122 @@ class BoardWindow(object):
                 for btn in Player1_WhiteButtons:
                         btn.setEnabled(True)
                 for btn in Player1_WhiteButtons:
-                        btn.mousePressEvent = lambda event, button=btn: self.handleButtonPress(event, button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound,player1,player2, games_instance)
+                        btn.mousePressEvent = lambda event, button=btn: self.PersonChooseBoardButton(event, button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound,player1,player2, game_instance, mode)
+        elif( mode == "PVC"):
+            if (playerRound == "player1"):
+                QSound.play("Images/mario-jump-sound-effect.wav")
+                self.down_finger.hide()
+                self.up_finger.show()
+                playerRound = "player2"
+                self.playerTurn.setText(f"{player2} Turn")
+                self.playerTurn.setStyleSheet("font: 13pt \"Supply Center\";\n"
+                                        "color: #000000;\n"
+                                        "border: 3px solid black;\n"
+                                        "border-radius: 10px;\n")
+                for btn in Player1_WhiteButtons:
+                        btn.setEnabled(False)
+                for btn in Player2_BlackButtons:
+                        btn.setEnabled(True)
+                self.ComputerTurn(event, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound, player1, player2, game_instance, mode)
+                
+            elif (playerRound == "player2"):
+                QSound.play("Images/mario-jump-sound-effect.wav")
+                self.up_finger.hide()
+                self.down_finger.show()
+                playerRound = "player1"
+                self.playerTurn.setText(f"{player1} Turn")
+                self.playerTurn.setStyleSheet("font: 13pt \"Supply Center\";\n"
+                                        "color: #ffffff;\n"
+                                        "border: 3px solid black;\n"
+                                        "border-radius: 10px;\n")
+                for btn in Player2_BlackButtons:
+                        btn.setEnabled(False)
+                for btn in Player1_WhiteButtons:
+                        btn.setEnabled(True)
+                for btn in Player1_WhiteButtons:
+                        btn.mousePressEvent = lambda event, button=btn: self.PersonChooseBoardButton(event, button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound,player1,player2, game_instance,mode)
+        elif(mode == "CVC"):
+            if (playerRound == "player1"):
+                QSound.play("Images/mario-jump-sound-effect.wav")
+                self.down_finger.hide()
+                self.up_finger.show()
+                playerRound = "player2"
+                self.playerTurn.setText(f"{player2} Turn")
+                self.playerTurn.setStyleSheet("font: 13pt \"Supply Center\";\n"
+                                        "color: #000000;\n"
+                                        "border: 3px solid black;\n"
+                                        "border-radius: 10px;\n")
+                for btn in Player1_WhiteButtons:
+                        btn.setEnabled(False)
+                for btn in Player2_BlackButtons:
+                        btn.setEnabled(True)
+                self.ComputerTurn(event, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound, player1, player2, game_instance, mode)
+                
+            elif (playerRound == "player2"):
+                QSound.play("Images/mario-jump-sound-effect.wav")
+                self.up_finger.hide()
+                self.down_finger.show()
+                playerRound = "player1"
+                self.playerTurn.setText(f"{player1} Turn")
+                self.playerTurn.setStyleSheet("font: 13pt \"Supply Center\";\n"
+                                        "color: #ffffff;\n"
+                                        "border: 3px solid black;\n"
+                                        "border-radius: 10px;\n")
+                for btn in Player2_BlackButtons:
+                        btn.setEnabled(False)
+                for btn in Player1_WhiteButtons:
+                        btn.setEnabled(True)
+                self.ComputerTurn(event, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound, player1, player2, game_instance, mode)        
+
+
+    def ComputerTurn(self, event, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound,player1,player2,game_instance, mode):
+        # if (mode == "PVC"):
+        #     Computer = ComputerPlayer(difficulty2)
+        # ############# PVC #############
+        # # while state === ongoing
+        # # make move player1
+        # # check state
+        # Computer = ComputerPlayer("EASY")
+        # currState = State(game_instance.CurrentPlayerIndex , game_instance)
+        # move = Computer.get_action(currState)
+        # game_instance.make_move(move.CurrentGobblet, move.next)
+        # #check state 
+        # # move.CurrentGobblet.Gobblet.get_gobblet_index()     # => index of gobblet
+        # # move.next.BoardItem. # => index of board
+        button = self.Player2_Size4_Stack3
+        board_button = self.Button3
+        self.placeButton(event, board_button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, button, playerRound,player1,player2,game_instance, mode)
+
 
     def retranslateUi(self, Gobblet):
         _translate = QtCore.QCoreApplication.translate
         Gobblet.setWindowTitle(_translate("Gobblet", "Gobblet"))
-        self.Player1_Size1_Stack1.setText(_translate("Gobblet", "1"))
+        self.Player1_Size1_Stack1.setText(_translate("Gobblet", "3"))
         self.Player1_Size2_Stack1.setText(_translate("Gobblet", "2"))
-        self.Player1_Size3_Stack1.setText(_translate("Gobblet", "3"))
-        self.Player1_Size4_Stack1.setText(_translate("Gobblet", "4"))
-        self.Player1_Size1_Stack2.setText(_translate("Gobblet", "1"))
-        self.Player1_Size2_Stack2.setText(_translate("Gobblet", "2"))
-        self.Player1_Size3_Stack2.setText(_translate("Gobblet", "3"))
+        self.Player1_Size3_Stack1.setText(_translate("Gobblet", "1"))
+        self.Player1_Size4_Stack1.setText(_translate("Gobblet", "0"))
+        self.Player1_Size1_Stack2.setText(_translate("Gobblet", "7"))
+        self.Player1_Size2_Stack2.setText(_translate("Gobblet", "6"))
+        self.Player1_Size3_Stack2.setText(_translate("Gobblet", "5"))
         self.Player1_Size4_Stack2.setText(_translate("Gobblet", "4"))
-        self.Player1_Size1_Stack3.setText(_translate("Gobblet", "1"))
-        self.Player1_Size2_Stack3.setText(_translate("Gobblet", "2"))
-        self.Player1_Size3_Stack3.setText(_translate("Gobblet", "3"))
-        self.Player1_Size4_Stack3.setText(_translate("Gobblet", "4"))
-        self.Player2_Size1_Stack1.setText(_translate("Gobblet", "1"))
-        self.Player2_Size1_Stack2.setText(_translate("Gobblet", "1"))
-        self.Player2_Size1_Stack3.setText(_translate("Gobblet", "1"))
+        self.Player1_Size1_Stack3.setText(_translate("Gobblet", "11"))
+        self.Player1_Size2_Stack3.setText(_translate("Gobblet", "10"))
+        self.Player1_Size3_Stack3.setText(_translate("Gobblet", "9"))
+        self.Player1_Size4_Stack3.setText(_translate("Gobblet", "8"))
+
+        self.Player2_Size1_Stack1.setText(_translate("Gobblet", "3"))
         self.Player2_Size2_Stack1.setText(_translate("Gobblet", "2"))
-        self.Player2_Size2_Stack2.setText(_translate("Gobblet", "2"))
-        self.Player2_Size2_Stack3.setText(_translate("Gobblet", "2"))
-        self.Player2_Size3_Stack1.setText(_translate("Gobblet", "3"))
-        self.Player2_Size3_Stack2.setText(_translate("Gobblet", "3"))
-        self.Player2_Size3_Stack3.setText(_translate("Gobblet", "3"))
-        self.Player2_Size4_Stack1.setText(_translate("Gobblet", "4"))
+        self.Player2_Size3_Stack1.setText(_translate("Gobblet", "1"))
+        self.Player2_Size4_Stack1.setText(_translate("Gobblet", "0"))
+        self.Player2_Size1_Stack2.setText(_translate("Gobblet", "7"))
+        self.Player2_Size2_Stack2.setText(_translate("Gobblet", "6"))
+        self.Player2_Size3_Stack2.setText(_translate("Gobblet", "5"))
         self.Player2_Size4_Stack2.setText(_translate("Gobblet", "4"))
-        self.Player2_Size4_Stack3.setText(_translate("Gobblet", "4"))
+        self.Player2_Size1_Stack3.setText(_translate("Gobblet", "11"))
+        self.Player2_Size2_Stack3.setText(_translate("Gobblet", "10"))
+        self.Player2_Size3_Stack3.setText(_translate("Gobblet", "9"))
+        self.Player2_Size4_Stack3.setText(_translate("Gobblet", "8"))
+        
         self.RestartButton.setText(_translate("Gobblet", "Restart"))
 
 if __name__ == "__main__":
