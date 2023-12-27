@@ -157,6 +157,8 @@ class Game:
         current_gobblet: The Gobblet to be moved.
         required_position: The target position on the board where the Gobblet should be moved.
         """
+        # Check for the corner case and return SkipRoundFlag
+        self.corner_case(self)
         # initially set the invalid move flag to false
         self.InvalidMoveFlag = False
 
@@ -165,6 +167,7 @@ class Game:
             # Check if the gobblet can be placed on the board
             if current_gobblet.is_possible_gobblet_movement(required_position):
                 # Call the function place_internal_gobblet to place the gobblet on board
+                self.SkipRoundFlag = False
                 self.place_internal_gobblet(current_gobblet, required_position,
                                             self.BoardItemsArray[current_gobblet.get_gobblet_position()])
             else:
@@ -306,10 +309,9 @@ class Game:
         self.update_board_array_opponent_index(self)
         # Check the game state
         self.check_state()
-        # Check for the corner case and return SkipRoundFlag
-        self.corner_case(self)
+        
         # If the move is valid alternate player
-        if self.InvalidMoveFlag is not True:
+        if self.InvalidMoveFlag is not True or self.SkipRoundFlag is True:
             self.alternate_current_player_index(self)
 
     @staticmethod

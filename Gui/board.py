@@ -24,18 +24,13 @@ class boardCurvedButton(QtWidgets.QPushButton):
 
 
 class BoardWindow(object):
-    def setupUi(self, Gobblet,player1,player2,mode,difficulty1,difficulty2):
+    def setupUi(self, Gobblet):
         
-        # player1 = "bahaa"
-        # player2 = "radwa"
-        # mode = "PVP"
-        # difficulty1 = ""
-        # difficulty2 = "EASY"
-        print(player1)
-        print(player2)
-        print(mode)
-        print(difficulty1)
-        print(difficulty2)
+        player1 = "bahaa"
+        player2 = "radwa"
+        mode = "PVP"
+        difficulty1 = ""
+        difficulty2 = ""
 
         # Varaiable to indicate player round 
         playerRound = "player1"
@@ -107,7 +102,7 @@ class BoardWindow(object):
         self.RestartButton.setObjectName("RestartButton")
         self.RestartButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         #self.RestartButton.mousePressEvent = self.restart_game
-        self.RestartButton.clicked.connect(lambda: self.restart_game(Gobblet))
+        self.RestartButton.clicked.connect(lambda event : self.restart_game(Gobblet, player1, player2, mode, difficulty1, difficulty2))
 
 
         # adding label for player turn
@@ -692,10 +687,10 @@ class BoardWindow(object):
             self.ComputerTurn(self.event, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound, player1, player2, game_instance, mode)        
 
          
-    def restart_game(self,main_window):
+    def restart_game(self,main_window, player1, player2, mode, difficulty1, difficulty2):
         # Create a new instance of the BoardWindow
         new_window = BoardWindow()
-        new_window.setupUi(QtWidgets.QMainWindow())   #, self.Player1Name.text(), self.Player2Name.text()
+        new_window.setupUi(QtWidgets.QMainWindow(), player1 , player2, mode , difficulty1 , difficulty2)   #, self.Player1Name.text(), self.Player2Name.text()
         new_window.Gobblet.show()
         # Close the current window
         main_window.close() 
@@ -738,6 +733,68 @@ class BoardWindow(object):
             game_instance.make_move(game_instance.FirstPlayerGobbletsArray[Player1_WhiteButtons.index(button)], game_instance.BoardItemsArray[boardButtons.index(board_button)])
         elif(playerRound == "player2"):
             game_instance.make_move(game_instance.SecondPlayerGobbletsArray[Player2_BlackButtons.index(button)], game_instance.BoardItemsArray[boardButtons.index(board_button)])
+        
+        if(game_instance.SkipRoundFlag == True):
+            for btn in Player1_WhiteButtons + Player2_BlackButtons:
+                if(btn.width() == 90):
+                        btn.lower()
+            for btn in Player1_WhiteButtons + Player2_BlackButtons:
+                    if(btn.width() == 70):
+                            btn.lower()
+            for btn in Player1_WhiteButtons + Player2_BlackButtons:
+                    if(btn.width() == 50):
+                            btn.lower()
+            for btn in Player1_WhiteButtons + Player2_BlackButtons:
+                    if(btn.width() == 30):
+                            btn.lower()
+            for btn in boardButtons:
+                btn.lower()
+                btn.setStyleSheet(
+                        "QPushButton {"
+                "   background-color: transparent;"  # Set a transparent background
+                "   border: none;"  # No border
+                "   border-radius: 0px;"  # No border-radius for the button
+                "   padding: 0px;"  # No padding
+                "   background-image: url(:/Images/board_button.png);"  # Use a background image with curved lines
+                "}"
+                )
+            self.background.lower()
+            for btn in boardButtons:
+                btn.setEnabled(False)
+            if(playerRound == "player1"):
+                QSound.play("Images/mario-jump-sound-effect.wav")
+                self.down_finger.hide()
+                self.up_finger.show()
+                playerRound = "player2"
+                self.playerTurn.setText(f"{player2} Turn")
+                self.playerTurn.setStyleSheet("font: 13pt \"Supply Center\";\n"
+                                        "color: #000000;\n"
+                                        "border: 3px solid black;\n"
+                                        "border-radius: 10px;\n")
+                for btn in Player1_WhiteButtons:
+                        btn.setEnabled(False)
+                for btn in Player2_BlackButtons:
+                        btn.setEnabled(True)
+                for btn in Player2_BlackButtons:
+                        btn.mousePressEvent = lambda event, button=btn: self.PersonChooseBoardButton(event, button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound,player1,player2, game_instance,mode)
+                    
+            elif(playerRound == "player2"):
+                QSound.play("Images/mario-jump-sound-effect.wav")
+                self.up_finger.hide()
+                self.down_finger.show()
+                playerRound = "player1"
+                self.playerTurn.setText(f"{player1} Turn")
+                self.playerTurn.setStyleSheet("font: 13pt \"Supply Center\";\n"
+                                        "color: #ffffff;\n"
+                                        "border: 3px solid black;\n"
+                                        "border-radius: 10px;\n")
+                for btn in Player2_BlackButtons:
+                        btn.setEnabled(False)
+                for btn in Player1_WhiteButtons:
+                        btn.setEnabled(True)
+                for btn in Player1_WhiteButtons:
+                        btn.mousePressEvent = lambda event, button=btn: self.PersonChooseBoardButton(event, button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound,player1,player2, game_instance, mode)       
+            return
         
         if(game_instance.InvalidMoveFlag == True):
             return
@@ -794,9 +851,9 @@ class BoardWindow(object):
             infoBox.setEscapeButton(QMessageBox.Close)
             infoBox.exec_()
             # time.sleep(2)
-            self.restart_game(self.Gobblet)
+            self.restart_game(self.Gobblet, player1, player2, mode, "", "")
         
-        ################################### Player Turn Switch ###################################
+        ################################### Switch Player Turn ###################################
         # Disable all buttons on the board
         
         for btn in boardButtons:
