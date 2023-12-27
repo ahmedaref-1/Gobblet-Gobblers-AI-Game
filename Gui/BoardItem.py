@@ -59,6 +59,15 @@ class BoardItem:
         # If equal, the current board item position is owned by the specified player; otherwise, it is not.
         return self.CurrentOwnerIndex == player_index
 
+    def get_Board_Index(self):
+        """
+        Get the index of the board item.
+
+        Returns:
+        - The index of the board item.
+        """
+        return self.Index
+    
     def is_possible_board_movement(self, gobblet: Gobblet):
         """
         Check if the specified Gobblet can be moved to the current board item position.

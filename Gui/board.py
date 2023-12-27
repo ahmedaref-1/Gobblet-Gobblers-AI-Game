@@ -7,6 +7,7 @@ from Game import Game
 # from ComputerPlayer import ComputerPlayer
 from State import State
 import time
+from ComputerPlayer import ComputerPlayer
 
 class boardCurvedButton(QtWidgets.QPushButton):
     def __init__(self, parent=None):
@@ -26,17 +27,22 @@ class boardCurvedButton(QtWidgets.QPushButton):
 class BoardWindow(object):
     def setupUi(self, Gobblet):
         
-        player1 = "bahaa"
-        player2 = "radwa"
-        mode = "PVP"
-        difficulty1 = ""
-        difficulty2 = ""
+        player1 = "Computer1"
+        player2 = "Computer2"
+        mode = "PVC"
+        difficulty1 = "HARD"
+        difficulty2 = "HARD"
 
         # Varaiable to indicate player round 
         playerRound = "player1"
 
         #instance of game
         game_instance = Game()
+
+        # if(mode == "PVC"):
+        Computer1 = ComputerPlayer(difficulty1)
+        Computer2 = ComputerPlayer(difficulty2)
+              
         
         # if (mode == "PVC"):
         #     Computer = ComputerPlayer(difficulty2)
@@ -674,17 +680,17 @@ class BoardWindow(object):
             for btn in Player2_BlackButtons:
                 btn.setEnabled(False)
             for btn in Player1_WhiteButtons:
-                btn.mousePressEvent = lambda event, button=btn: self.PersonChooseBoardButton(event, button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound,player1,player2,game_instance, mode)
+                btn.mousePressEvent = lambda event, button=btn: self.PersonChooseBoardButton(event, button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound,player1,player2,game_instance, mode, Computer1, Computer2)
             self.down_finger.show()
             self.up_finger.hide()
         elif (mode == "CVC"):
             for btn in boardButtons:
                 btn.setEnabled(False)
-            for btn in Player1_WhiteButtons:
+            for btn in Player2_BlackButtons:
                 btn.setEnabled(False)
-            self.down_finger.hide()
-            self.up_finger.show()
-            self.ComputerTurn(self.event, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound, player1, player2, game_instance, mode)        
+            self.down_finger.show()
+            self.up_finger.hide()
+            self.Player1_Size4_Stack1.mousePressEvent = lambda event : self.ComputerTurn(event, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound, player1, player2, game_instance, mode, Computer1, Computer2)        
 
          
     def restart_game(self,main_window, player1, player2, mode, difficulty1, difficulty2):
@@ -696,7 +702,7 @@ class BoardWindow(object):
         main_window.close() 
         
        
-    def PersonChooseBoardButton(self, event, button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound,player1,player2,game_instance,mode):
+    def PersonChooseBoardButton(self, event, button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound,player1,player2,game_instance,mode, Computer1, Computer2):
         
         # Enable the clicked button
         for btn in boardButtons:
@@ -725,9 +731,9 @@ class BoardWindow(object):
         
         #wait for the player to choose a button from the board
         for btn in boardButtons:
-            btn.mousePressEvent = lambda event, board_button=btn: self.placeButton(event, board_button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, button, playerRound,player1,player2,game_instance, mode)
+            btn.mousePressEvent = lambda event, board_button=btn: self.placeButton(event, board_button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, button, playerRound,player1,player2,game_instance, mode, Computer1 , Computer2)
 
-    def placeButton(self, event, board_button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, button, playerRound,player1,player2,game_instance, mode):
+    def placeButton(self, event, board_button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, button, playerRound,player1,player2,game_instance, mode, Computer1, Computer2):
 
         if(playerRound == "player1"):
             game_instance.make_move(game_instance.FirstPlayerGobbletsArray[Player1_WhiteButtons.index(button)], game_instance.BoardItemsArray[boardButtons.index(board_button)])
@@ -776,7 +782,7 @@ class BoardWindow(object):
                 for btn in Player2_BlackButtons:
                         btn.setEnabled(True)
                 for btn in Player2_BlackButtons:
-                        btn.mousePressEvent = lambda event, button=btn: self.PersonChooseBoardButton(event, button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound,player1,player2, game_instance,mode)
+                        btn.mousePressEvent = lambda event, button=btn: self.PersonChooseBoardButton(event, button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound,player1,player2, game_instance,mode, Computer1, Computer2)
                     
             elif(playerRound == "player2"):
                 QSound.play("Images/mario-jump-sound-effect.wav")
@@ -793,7 +799,7 @@ class BoardWindow(object):
                 for btn in Player1_WhiteButtons:
                         btn.setEnabled(True)
                 for btn in Player1_WhiteButtons:
-                        btn.mousePressEvent = lambda event, button=btn: self.PersonChooseBoardButton(event, button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound,player1,player2, game_instance, mode)       
+                        btn.mousePressEvent = lambda event, button=btn: self.PersonChooseBoardButton(event, button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound,player1,player2, game_instance, mode, Computer1, Computer2)      
             return
         
         if(game_instance.InvalidMoveFlag == True):
@@ -876,7 +882,7 @@ class BoardWindow(object):
                 for btn in Player2_BlackButtons:
                         btn.setEnabled(True)
                 for btn in Player2_BlackButtons:
-                        btn.mousePressEvent = lambda event, button=btn: self.PersonChooseBoardButton(event, button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound,player1,player2, game_instance,mode)
+                        btn.mousePressEvent = lambda event, button=btn: self.PersonChooseBoardButton(event, button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound,player1,player2, game_instance,mode, Computer1 , Computer2)
                     
             elif(playerRound == "player2"):
                 QSound.play("Images/mario-jump-sound-effect.wav")
@@ -893,7 +899,7 @@ class BoardWindow(object):
                 for btn in Player1_WhiteButtons:
                         btn.setEnabled(True)
                 for btn in Player1_WhiteButtons:
-                        btn.mousePressEvent = lambda event, button=btn: self.PersonChooseBoardButton(event, button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound,player1,player2, game_instance, mode)
+                        btn.mousePressEvent = lambda event, button=btn: self.PersonChooseBoardButton(event, button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound,player1,player2, game_instance, mode, Computer1 , Computer2)
         elif( mode == "PVC"):
             if (playerRound == "player1"):
                 QSound.play("Images/mario-jump-sound-effect.wav")
@@ -909,7 +915,7 @@ class BoardWindow(object):
                         btn.setEnabled(False)
                 for btn in Player2_BlackButtons:
                         btn.setEnabled(True)
-                self.ComputerTurn(event, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound, player1, player2, game_instance, mode)
+                self.ComputerTurn(event, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound, player1, player2, game_instance, mode, Computer1, Computer2)
                 
             elif (playerRound == "player2"):
                 QSound.play("Images/mario-jump-sound-effect.wav")
@@ -926,7 +932,7 @@ class BoardWindow(object):
                 for btn in Player1_WhiteButtons:
                         btn.setEnabled(True)
                 for btn in Player1_WhiteButtons:
-                        btn.mousePressEvent = lambda event, button=btn: self.PersonChooseBoardButton(event, button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound,player1,player2, game_instance,mode)
+                        btn.mousePressEvent = lambda event, button=btn: self.PersonChooseBoardButton(event, button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound,player1,player2, game_instance,mode, Computer1, Computer2)
         elif(mode == "CVC"):
             if (playerRound == "player1"):
                 QSound.play("Images/mario-jump-sound-effect.wav")
@@ -942,7 +948,7 @@ class BoardWindow(object):
                         btn.setEnabled(False)
                 for btn in Player2_BlackButtons:
                         btn.setEnabled(True)
-                self.ComputerTurn(event, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound, player1, player2, game_instance, mode)
+                self.ComputerTurn(event, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound, player1, player2, game_instance, mode, Computer1, Computer2)
                 
             elif (playerRound == "player2"):
                 QSound.play("Images/mario-jump-sound-effect.wav")
@@ -958,27 +964,32 @@ class BoardWindow(object):
                         btn.setEnabled(False)
                 for btn in Player1_WhiteButtons:
                         btn.setEnabled(True)
-                self.ComputerTurn(event, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound, player1, player2, game_instance, mode)        
+                self.ComputerTurn(event, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound, player1, player2, game_instance, mode, Computer1, Computer2)        
 
 
-    def ComputerTurn(self, event, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound,player1,player2,game_instance, mode):
+    def ComputerTurn(self, event, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, playerRound, player1, player2, game_instance, mode, Computer1, Computer2):
         # if (mode == "PVC"):
         #     Computer = ComputerPlayer(difficulty2)
         # ############# PVC #############
         # # while state === ongoing
         # # make move player1
         # # check state
-        # Computer = ComputerPlayer("EASY")
-        # currState = State(game_instance.CurrentPlayerIndex , game_instance)
+        currState = State(game_instance.CurrentPlayerIndex , game_instance)
+        if(playerRound == "player1"):
+            move = Computer1.get_action(currState)
+        elif(playerRound == "player2"):
+            move = Computer2.get_action(currState)    
         # move = Computer.get_action(currState)
         # game_instance.make_move(move.CurrentGobblet, move.next)
-        # #check state 
-        # # move.CurrentGobblet.Gobblet.get_gobblet_index()     # => index of gobblet
-        # # move.next.BoardItem. # => index of board
-        button = self.Player2_Size4_Stack3
-        board_button = self.Button3
-        self.placeButton(event, board_button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, button, playerRound,player1,player2,game_instance, mode)
+        # print(move.CurrentGobblet.get_gobblet_index())
+        # move.CurrentGobblet.Gobblet.get_gobblet_index()     # => index of gobblet
+        # move.next.BoardItem.get_Board_Index() # => index of board
         
+        g_Index = move.CurrentGobblet.get_gobblet_index()
+        b_Index = move.next.get_Board_Index()
+        print(g_Index)
+        print(b_Index)
+        self.placeButton(event, boardButtons[b_Index], Player1_WhiteButtons, Player2_BlackButtons, boardButtons, Player2_BlackButtons[g_Index], playerRound,player1,player2,game_instance, mode, Computer1, Computer2)
 
 
     def retranslateUi(self, Gobblet):
