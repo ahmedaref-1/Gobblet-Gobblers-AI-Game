@@ -399,15 +399,15 @@ class Game:
                 player2_count += 1
 
         # Update game state based on winning conditions
-        if player1_count == 1:
+        if player1_count == 1 and player2_count == 1:
+            self.GameState = "Draw"
+            self.Winner = None
+        elif player1_count == 1:
             self.GameState = "Player1Won"
             self.Winner = 0
         elif player2_count == 1:
             self.GameState = "Player2Won"
             self.Winner = 1
-        elif player1_count == 1 and player2_count == 1:
-            self.GameState = "Draw"
-            self.Winner = None
         else:
             self.GameState = "OnGoing"
             self.Winner = None
