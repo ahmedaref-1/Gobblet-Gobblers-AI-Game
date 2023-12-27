@@ -68,6 +68,21 @@ class Game:
         # Index of the selected BoardItem for the current move
         self.SelectedBoardItemIndex = None
 
+        self.ROW_COL_LENGTH = 4
+
+        # Diagonals
+        self.left_diagonal = [i for i in range(0, self.BoardSize, self.ROW_COL_LENGTH + 1)]
+        self.right_diagonal = [i for i in range(self.ROW_COL_LENGTH - 1, self.BoardSize - 1, self.ROW_COL_LENGTH - 1)]
+
+        # Rows
+        self.rows = [[j for j in range(i, i + self.ROW_COL_LENGTH)] for i in range(0, self.BoardSize, self.ROW_COL_LENGTH)]
+
+        # Columns
+        self.columns = [[j for j in range(i, self.BoardSize, self.ROW_COL_LENGTH)] for i in range(self.ROW_COL_LENGTH)]
+
+        # Concatenate everything
+        self.lines = [self.left_diagonal, self.right_diagonal] + self.rows +self.columns
+
     def list_possible_gobblets(self) -> list:
         """
         Determines and returns a list of all Goblet ID's that can be placed of a specific player.
