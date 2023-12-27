@@ -4,7 +4,7 @@ import Images
 from PyQt5.QtGui import QIcon
 from PyQt5.QtMultimedia import QSound
 from Game import Game
-from ComputerPlayer import ComputerPlayer
+# from ComputerPlayer import ComputerPlayer
 from State import State
 import time
 
@@ -27,7 +27,7 @@ class BoardWindow(object):
     def setupUi(self, Gobblet):
         
         player1 = "bahaa"
-        player2 = "Som3a"
+        player2 = "radwa"
         mode = "PVP"
         difficulty1 = ""
         difficulty2 = "EASY"
@@ -726,31 +726,16 @@ class BoardWindow(object):
         #wait for the player to choose a button from the board
         for btn in boardButtons:
             btn.mousePressEvent = lambda event, board_button=btn: self.placeButton(event, board_button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, button, playerRound,player1,player2,game_instance, mode)
-               
-            
-
-    # def is_collision(self,board_button, btn, pressedbutton):
-    #     rect1 = board_button.geometry()
-    #     rect2 = btn.geometry()
-    #     # return rect1.intersects(rect2)
-    #     if(rect1.intersects(rect2)):
-    #             if(btn.width() < pressedbutton.width()):
-    #                     return False
-    #             else:
-    #                    return True
 
     def placeButton(self, event, board_button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, button, playerRound,player1,player2,game_instance, mode):
-
-        #Check for collisions with other buttons on the board
-        # for btn in Player1_WhiteButtons + Player2_BlackButtons:
-        #     if self.is_collision(board_button, btn, button):
-        #         return  # Do not place the button if there is a collision
 
         if(playerRound == "player1"):
             game_instance.make_move(game_instance.FirstPlayerGobbletsArray[Player1_WhiteButtons.index(button)], game_instance.BoardItemsArray[boardButtons.index(board_button)])
         elif(playerRound == "player2"):
             game_instance.make_move(game_instance.SecondPlayerGobbletsArray[Player2_BlackButtons.index(button)], game_instance.BoardItemsArray[boardButtons.index(board_button)])
-        game_instance.check_state()
+        
+        if(game_instance.InvalidMoveFlag == True):
+            return
         
         # Set the position of the button on the board
         buttonWidth = button.width()
@@ -773,7 +758,18 @@ class BoardWindow(object):
         for btn in Player1_WhiteButtons + Player2_BlackButtons:
                 if(btn.width() == 30):
                         btn.lower()
-        
+        for btn in boardButtons:
+               btn.lower()
+               btn.setStyleSheet(
+                      "QPushButton {"
+            "   background-color: transparent;"  # Set a transparent background
+            "   border: none;"  # No border
+            "   border-radius: 0px;"  # No border-radius for the button
+            "   padding: 0px;"  # No padding
+            "   background-image: url(:/Images/board_button.png);"  # Use a background image with curved lines
+            "}"
+               )
+        self.background.lower()
 
         # QMessageBox if there is a winner or Draw
         if (game_instance.GameState != "OnGoing"):
@@ -787,25 +783,17 @@ class BoardWindow(object):
                 infoBox.setText(f"{player1} Won !!")
             elif(game_instance.GameState == "Player2Won"):
                 infoBox.setText(f"{player2} Won !!")
+            elif(game_instance.GameState == "Draw"):
+                infoBox.setText("Draw !!")
             infoBox.setWindowTitle("Game State")
             infoBox.setEscapeButton(QMessageBox.Close)
             infoBox.exec_()
+            # time.sleep(2)
             self.restart_game(self.Gobblet)
         
         ################################### Player Turn Switch ###################################
         # Disable all buttons on the board
-        for btn in boardButtons:
-               btn.lower()
-               btn.setStyleSheet(
-                      "QPushButton {"
-            "   background-color: transparent;"  # Set a transparent background
-            "   border: none;"  # No border
-            "   border-radius: 0px;"  # No border-radius for the button
-            "   padding: 0px;"  # No padding
-            "   background-image: url(:/Images/board_button.png);"  # Use a background image with curved lines
-            "}"
-               )
-        self.background.lower()
+        
         for btn in boardButtons:
             btn.setEnabled(False)
         
@@ -928,6 +916,7 @@ class BoardWindow(object):
         button = self.Player2_Size4_Stack3
         board_button = self.Button3
         self.placeButton(event, board_button, Player1_WhiteButtons, Player2_BlackButtons, boardButtons, button, playerRound,player1,player2,game_instance, mode)
+        
 
 
     def retranslateUi(self, Gobblet):
