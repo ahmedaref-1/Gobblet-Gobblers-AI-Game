@@ -186,7 +186,7 @@ class Game:
 
         # Repeat the pattern of checks for other specific board positions, consider refactoring for clarity
         # Check if it is possible to move the gobblet to the specified position for specific board positions
-        elif (current_gobblet.is_on_top_of_stack() and not current_gobblet.is_on_board() and
+        elif (current_gobblet.is_on_top_of_stack() and not current_gobblet.is_on_board() and  current_gobblet.is_possible_gobblet_movement(required_position) and
               (self.BoardItemsArray[1].CurrentOpponentIndex is not None) and (
                       (self.BoardItemsArray[1].CurrentOpponentIndex == self.BoardItemsArray[0].CurrentOpponentIndex ==
                        self.BoardItemsArray[2].CurrentOpponentIndex) or (self.BoardItemsArray[1].CurrentOpponentIndex ==
@@ -198,7 +198,7 @@ class Game:
 
         # Repeat the pattern of checks for other specific board positions, consider refactoring for clarity
         # Check if it is possible to move the gobblet to the specified position for specific board positions
-        elif (current_gobblet.is_on_top_of_stack() and not current_gobblet.is_on_board() and
+        elif (current_gobblet.is_on_top_of_stack() and not current_gobblet.is_on_board() and  current_gobblet.is_possible_gobblet_movement(required_position) and
               (self.BoardItemsArray[5].CurrentOpponentIndex is not None) and (
                       (self.BoardItemsArray[5].CurrentOpponentIndex == self.BoardItemsArray[4].CurrentOpponentIndex ==
                        self.BoardItemsArray[6].CurrentOpponentIndex) or (self.BoardItemsArray[5].CurrentOpponentIndex ==
@@ -210,7 +210,7 @@ class Game:
 
         # Repeat the pattern of checks for other specific board positions, consider refactoring for clarity
         # Check if it is possible to move the gobblet to the specified position for specific board positions
-        elif (current_gobblet.is_on_top_of_stack() and not current_gobblet.is_on_board() and
+        elif (current_gobblet.is_on_top_of_stack() and not current_gobblet.is_on_board() and  current_gobblet.is_possible_gobblet_movement(required_position) and
               (self.BoardItemsArray[9].CurrentOpponentIndex is not None) and (
                       (self.BoardItemsArray[9].CurrentOpponentIndex == self.BoardItemsArray[8].CurrentOpponentIndex ==
                        self.BoardItemsArray[10].CurrentOpponentIndex) or (
@@ -223,7 +223,7 @@ class Game:
 
         # Repeat the pattern of checks for other specific board positions, consider refactoring for clarity
         # Check if it is possible to move the gobblet to the specified position for specific board positions
-        elif (current_gobblet.is_on_top_of_stack() and not current_gobblet.is_on_board() and
+        elif (current_gobblet.is_on_top_of_stack() and not current_gobblet.is_on_board() and  current_gobblet.is_possible_gobblet_movement(required_position) and
               (self.BoardItemsArray[13].CurrentOpponentIndex is not None) and (
                       (self.BoardItemsArray[13].CurrentOpponentIndex == self.BoardItemsArray[12].CurrentOpponentIndex ==
                        self.BoardItemsArray[14].CurrentOpponentIndex) or (
@@ -236,7 +236,7 @@ class Game:
 
         # Repeat the pattern of checks for other specific board positions, consider refactoring for clarity
         # Check if it is possible to move the gobblet to the specified position for specific board positions
-        elif (current_gobblet.is_on_top_of_stack() and not current_gobblet.is_on_board() and
+        elif (current_gobblet.is_on_top_of_stack() and not current_gobblet.is_on_board() and  current_gobblet.is_possible_gobblet_movement(required_position) and
               (self.BoardItemsArray[4].CurrentOpponentIndex is not None) and (
                       (self.BoardItemsArray[4].CurrentOpponentIndex == self.BoardItemsArray[0].CurrentOpponentIndex ==
                        self.BoardItemsArray[8].CurrentOpponentIndex) or (self.BoardItemsArray[4].CurrentOpponentIndex ==
@@ -248,7 +248,7 @@ class Game:
 
         # Repeat the pattern of checks for other specific board positions, consider refactoring for clarity
         # Check if it is possible to move the gobblet to the specified position for specific board positions
-        elif (current_gobblet.is_on_top_of_stack() and not current_gobblet.is_on_board() and
+        elif (current_gobblet.is_on_top_of_stack() and not current_gobblet.is_on_board() and  current_gobblet.is_possible_gobblet_movement(required_position) and
               (self.BoardItemsArray[5].CurrentOpponentIndex is not None) and (
                       (self.BoardItemsArray[5].CurrentOpponentIndex == self.BoardItemsArray[1].CurrentOpponentIndex ==
                        self.BoardItemsArray[9].CurrentOpponentIndex) or (self.BoardItemsArray[5].CurrentOpponentIndex ==
@@ -260,7 +260,7 @@ class Game:
 
         # Repeat the pattern of checks for other specific board positions, consider refactoring for clarity
         # Check if it is possible to move the gobblet to the specified position for specific board positions
-        elif (current_gobblet.is_on_top_of_stack() and not current_gobblet.is_on_board() and
+        elif (current_gobblet.is_on_top_of_stack() and not current_gobblet.is_on_board() and  current_gobblet.is_possible_gobblet_movement(required_position) and
               (self.BoardItemsArray[6].CurrentOpponentIndex is not None) and (
                       (self.BoardItemsArray[6].CurrentOpponentIndex == self.BoardItemsArray[2].CurrentOpponentIndex ==
                        self.BoardItemsArray[10].CurrentOpponentIndex) or (
@@ -273,7 +273,7 @@ class Game:
 
         # Repeat the pattern of checks for other specific board positions, consider refactoring for clarity
         # Check if it is possible to move the gobblet to the specified position for specific board positions
-        elif (current_gobblet.is_on_top_of_stack() and not current_gobblet.is_on_board() and
+        elif (current_gobblet.is_on_top_of_stack() and not current_gobblet.is_on_board() and  current_gobblet.is_possible_gobblet_movement(required_position) and
               (self.BoardItemsArray[7].CurrentOpponentIndex is not None) and (
                       (self.BoardItemsArray[7].CurrentOpponentIndex == self.BoardItemsArray[3].CurrentOpponentIndex ==
                        self.BoardItemsArray[11].CurrentOpponentIndex) or (
@@ -286,7 +286,7 @@ class Game:
 
         # Repeat the pattern of checks for other specific board positions, consider refactoring for clarity
         # Check if it is possible to move the gobblet to the specified position for specific board positions
-        elif (current_gobblet.is_on_top_of_stack() and not current_gobblet.is_on_board() and
+        elif (current_gobblet.is_on_top_of_stack() and not current_gobblet.is_on_board() and  current_gobblet.is_possible_gobblet_movement(required_position) and
               (self.BoardItemsArray[5].CurrentOpponentIndex is not None) and (
                       (self.BoardItemsArray[5].CurrentOpponentIndex == self.BoardItemsArray[0].CurrentOpponentIndex ==
                        self.BoardItemsArray[10].CurrentOpponentIndex) or (
@@ -299,7 +299,7 @@ class Game:
 
         # Repeat the pattern of checks for other specific board positions, consider refactoring for clarity
         # Check if it is possible to move the gobblet to the specified position for specific board positions
-        elif (current_gobblet.is_on_top_of_stack() and not current_gobblet.is_on_board() and
+        elif (current_gobblet.is_on_top_of_stack() and not current_gobblet.is_on_board() and  current_gobblet.is_possible_gobblet_movement(required_position) and
               (self.BoardItemsArray[6].CurrentOpponentIndex is not None) and (
                       (self.BoardItemsArray[6].CurrentOpponentIndex == self.BoardItemsArray[3].CurrentOpponentIndex ==
                        self.BoardItemsArray[9].CurrentOpponentIndex) or (self.BoardItemsArray[6].CurrentOpponentIndex ==
