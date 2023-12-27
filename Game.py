@@ -158,144 +158,135 @@ class Game:
         required_position: The target position on the board where the Gobblet should be moved.
         """
         # Check if the gobblet is on top of stack and that it is already on the board
-        if (current_gobblet.is_on_top_of_stack() is True) and (current_gobblet.is_on_board() is True):
+        if current_gobblet.is_on_top_of_stack() and current_gobblet.is_on_board():
             # Check if the gobblet can be placed on the board
-            if current_gobblet.is_possible_gobblet_movement(required_position) is True:
+            if current_gobblet.is_possible_gobblet_movement(required_position):
                 # Call the function place_internal_gobblet to place the gobblet on board
                 self.place_internal_gobblet(current_gobblet, required_position,
                                             self.BoardItemsArray[current_gobblet.get_gobblet_position()])
 
         # Check if the gobblet is on top and that it is NOT placed on board (External Goblet)
-        if (current_gobblet.is_on_top_of_stack() is True) and (current_gobblet.is_on_board() is False) and \
-                (required_position.is_empty() is True):
+        if current_gobblet.is_on_top_of_stack() and not current_gobblet.is_on_board() and required_position.is_empty():
             # Check if it is possible to move the gobblet to the specified position
-            if current_gobblet.is_possible_gobblet_movement(required_position) is True:
+            if current_gobblet.is_possible_gobblet_movement(required_position):
                 # Call Function place_external_gobblet to place the gobblet on board
                 self.place_external_gobblet(self, current_gobblet, required_position)
 
-        if (current_gobblet.is_on_top_of_stack() is True) and (current_gobblet.is_on_board() is False) \
-                and (self.BoardItemsArray[1].CurrentOpponentIndex is not None) and \
-                (self.BoardItemsArray[0].CurrentOpponentIndex == self.BoardItemsArray[1].CurrentOpponentIndex ==
-                 self.BoardItemsArray[
-                     2].CurrentOpponentIndex) or \
-                (self.BoardItemsArray[1].CurrentOpponentIndex == self.BoardItemsArray[2].CurrentOpponentIndex ==
-                 self.BoardItemsArray[
-                     3].CurrentOpponentIndex):
-            # Check if it is possible to move the gobblet to the specified position
-            if current_gobblet.is_possible_gobblet_movement(required_position) is True:
-                # Call Function place_external_gobblet to place the gobblet on board
-                self.place_external_gobblet(self, current_gobblet, required_position)
+        # Additional conditions for specific board positions (Checkmate state)
 
-        if (current_gobblet.is_on_top_of_stack() is True) and (current_gobblet.is_on_board() is False) and (
-                self.BoardItemsArray[5].CurrentOpponentIndex is not None) and \
-                (self.BoardItemsArray[4].CurrentOpponentIndex == self.BoardItemsArray[5].CurrentOpponentIndex ==
-                 self.BoardItemsArray[
-                     6].CurrentOpponentIndex) or \
-                (self.BoardItemsArray[5].CurrentOpponentIndex == self.BoardItemsArray[6].CurrentOpponentIndex ==
-                 self.BoardItemsArray[
-                     7].CurrentOpponentIndex):
-            # Check if it is possible to move the gobblet to the specified position
-            if current_gobblet.is_possible_gobblet_movement(required_position) is True:
-                # Call Function place_external_gobblet to place the gobblet on board
-                self.place_external_gobblet(self, current_gobblet, required_position)
+        # Repeat the pattern of checks for other specific board positions, consider refactoring for clarity
+        # Check if it is possible to move the gobblet to the specified position for specific board positions
+        if (current_gobblet.is_on_top_of_stack() and not current_gobblet.is_on_board() and
+                (self.BoardItemsArray[1].CurrentOpponentIndex is not None) and (
+                (self.BoardItemsArray[1].CurrentOpponentIndex == self.BoardItemsArray[0].CurrentOpponentIndex ==
+                 self.BoardItemsArray[2].CurrentOpponentIndex) or (self.BoardItemsArray[1].CurrentOpponentIndex ==
+                 self.BoardItemsArray[2].CurrentOpponentIndex == self.BoardItemsArray[3].CurrentOpponentIndex)
+                )):
+            # Call Function place_external_gobblet to place the gobblet on board
+            self.place_external_gobblet(self, current_gobblet, required_position)
 
-        if (current_gobblet.is_on_top_of_stack() is True) and (current_gobblet.is_on_board() is False) and (
-                self.BoardItemsArray[9].CurrentOpponentIndex is not None) and \
-                (self.BoardItemsArray[8].CurrentOpponentIndex == self.BoardItemsArray[9].CurrentOpponentIndex ==
-                 self.BoardItemsArray[
-                     10].CurrentOpponentIndex) or \
-                (self.BoardItemsArray[9].CurrentOpponentIndex == self.BoardItemsArray[10].CurrentOpponentIndex ==
-                 self.BoardItemsArray[11].CurrentOpponentIndex):
-            # Check if it is possible to move the gobblet to the specified position
-            if current_gobblet.is_possible_gobblet_movement(required_position) is True:
-                # Call Function place_external_gobblet to place the gobblet on board
-                self.place_external_gobblet(self, current_gobblet, required_position)
+        # Repeat the pattern of checks for other specific board positions, consider refactoring for clarity
+        # Check if it is possible to move the gobblet to the specified position for specific board positions
+        if (current_gobblet.is_on_top_of_stack() and not current_gobblet.is_on_board() and
+                (self.BoardItemsArray[5].CurrentOpponentIndex is not None) and (
+                (self.BoardItemsArray[5].CurrentOpponentIndex == self.BoardItemsArray[4].CurrentOpponentIndex ==
+                 self.BoardItemsArray[6].CurrentOpponentIndex) or (self.BoardItemsArray[5].CurrentOpponentIndex ==
+                 self.BoardItemsArray[6].CurrentOpponentIndex == self.BoardItemsArray[7].CurrentOpponentIndex)
+                )):
+            # Call Function place_external_gobblet to place the gobblet on board
+            self.place_external_gobblet(self, current_gobblet, required_position)
 
-        if (current_gobblet.is_on_top_of_stack() is True) and (current_gobblet.is_on_board() is False) and (
-                self.BoardItemsArray[13].CurrentOpponentIndex is not None) and \
-                (self.BoardItemsArray[12].CurrentOpponentIndex == self.BoardItemsArray[13].CurrentOpponentIndex ==
-                 self.BoardItemsArray[14].CurrentOpponentIndex) or \
-                (self.BoardItemsArray[13].CurrentOpponentIndex == self.BoardItemsArray[14].CurrentOpponentIndex ==
-                 self.BoardItemsArray[15].CurrentOpponentIndex):
-            # Check if it is possible to move the gobblet to the specified position
-            if current_gobblet.is_possible_gobblet_movement(required_position) is True:
-                # Call Function place_external_gobblet to place the gobblet on board
-                self.place_external_gobblet(self, current_gobblet, required_position)
+        # Repeat the pattern of checks for other specific board positions, consider refactoring for clarity
+        # Check if it is possible to move the gobblet to the specified position for specific board positions
+        if (current_gobblet.is_on_top_of_stack() and not current_gobblet.is_on_board() and
+                (self.BoardItemsArray[9].CurrentOpponentIndex is not None) and (
+                (self.BoardItemsArray[9].CurrentOpponentIndex == self.BoardItemsArray[8].CurrentOpponentIndex ==
+                 self.BoardItemsArray[10].CurrentOpponentIndex) or (self.BoardItemsArray[9].CurrentOpponentIndex ==
+                 self.BoardItemsArray[10].CurrentOpponentIndex == self.BoardItemsArray[11].CurrentOpponentIndex)
+                )):
+            # Call Function place_external_gobblet to place the gobblet on board
+            self.place_external_gobblet(self, current_gobblet, required_position)
 
-        if (current_gobblet.is_on_top_of_stack() is True) and (current_gobblet.is_on_board() is False) and (
-                self.BoardItemsArray[4].CurrentOpponentIndex is not None) and \
-                (self.BoardItemsArray[0].CurrentOpponentIndex == self.BoardItemsArray[4].CurrentOpponentIndex ==
-                 self.BoardItemsArray[
-                     8].CurrentOpponentIndex) or \
-                (self.BoardItemsArray[4].CurrentOpponentIndex == self.BoardItemsArray[8].CurrentOpponentIndex ==
-                 self.BoardItemsArray[
-                     12].CurrentOpponentIndex):
-            # Check if it is possible to move the gobblet to the specified position
-            if current_gobblet.is_possible_gobblet_movement(required_position) is True:
-                # Call Function place_external_gobblet to place the gobblet on board
-                self.place_external_gobblet(self, current_gobblet, required_position)
+        # Repeat the pattern of checks for other specific board positions, consider refactoring for clarity
+        # Check if it is possible to move the gobblet to the specified position for specific board positions
+        if (current_gobblet.is_on_top_of_stack() and not current_gobblet.is_on_board() and
+                (self.BoardItemsArray[13].CurrentOpponentIndex is not None) and (
+                (self.BoardItemsArray[13].CurrentOpponentIndex == self.BoardItemsArray[12].CurrentOpponentIndex ==
+                 self.BoardItemsArray[14].CurrentOpponentIndex) or (self.BoardItemsArray[13].CurrentOpponentIndex ==
+                 self.BoardItemsArray[14].CurrentOpponentIndex == self.BoardItemsArray[15].CurrentOpponentIndex)
+                )):
+            # Call Function place_external_gobblet to place the gobblet on board
+            self.place_external_gobblet(self, current_gobblet, required_position)
 
-        if (current_gobblet.is_on_top_of_stack() is True) and (current_gobblet.is_on_board() is False) and (
-                self.BoardItemsArray[5].CurrentOpponentIndex is not None) and \
-                (self.BoardItemsArray[1].CurrentOpponentIndex == self.BoardItemsArray[5].CurrentOpponentIndex ==
-                 self.BoardItemsArray[
-                     9].CurrentOpponentIndex) or \
-                (self.BoardItemsArray[5].CurrentOpponentIndex == self.BoardItemsArray[9].CurrentOpponentIndex ==
-                 self.BoardItemsArray[
-                     13].CurrentOpponentIndex):
-            # Check if it is possible to move the gobblet to the specified position
-            if current_gobblet.is_possible_gobblet_movement(required_position) is True:
-                # Call Function place_external_gobblet to place the gobblet on board
-                self.place_external_gobblet(self, current_gobblet, required_position)
+        # Repeat the pattern of checks for other specific board positions, consider refactoring for clarity
+        # Check if it is possible to move the gobblet to the specified position for specific board positions
+        if (current_gobblet.is_on_top_of_stack() and not current_gobblet.is_on_board() and
+                (self.BoardItemsArray[4].CurrentOpponentIndex is not None) and (
+                (self.BoardItemsArray[4].CurrentOpponentIndex == self.BoardItemsArray[0].CurrentOpponentIndex ==
+                 self.BoardItemsArray[8].CurrentOpponentIndex) or (self.BoardItemsArray[4].CurrentOpponentIndex ==
+                 self.BoardItemsArray[8].CurrentOpponentIndex == self.BoardItemsArray[12].CurrentOpponentIndex)
+                )):
+            # Call Function place_external_gobblet to place the gobblet on board
+            self.place_external_gobblet(self, current_gobblet, required_position)
 
-        if (current_gobblet.is_on_top_of_stack() is True) and (current_gobblet.is_on_board() is False) and (
-                self.BoardItemsArray[6].CurrentOpponentIndex is not None) and \
-                (self.BoardItemsArray[2].CurrentOpponentIndex == self.BoardItemsArray[6].CurrentOpponentIndex ==
-                 self.BoardItemsArray[
-                     10].CurrentOpponentIndex) or \
-                (self.BoardItemsArray[6].CurrentOpponentIndex == self.BoardItemsArray[10].CurrentOpponentIndex ==
-                 self.BoardItemsArray[14].CurrentOpponentIndex):
-            # Check if it is possible to move the gobblet to the specified position
-            if current_gobblet.is_possible_gobblet_movement(required_position) is True:
-                # Call Function place_external_gobblet to place the gobblet on board
-                self.place_external_gobblet(self, current_gobblet, required_position)
+        # Repeat the pattern of checks for other specific board positions, consider refactoring for clarity
+        # Check if it is possible to move the gobblet to the specified position for specific board positions
+        if (current_gobblet.is_on_top_of_stack() and not current_gobblet.is_on_board() and
+                (self.BoardItemsArray[5].CurrentOpponentIndex is not None) and (
+                (self.BoardItemsArray[5].CurrentOpponentIndex == self.BoardItemsArray[1].CurrentOpponentIndex ==
+                 self.BoardItemsArray[9].CurrentOpponentIndex) or (self.BoardItemsArray[5].CurrentOpponentIndex ==
+                 self.BoardItemsArray[9].CurrentOpponentIndex == self.BoardItemsArray[13].CurrentOpponentIndex)
+                )):
+            # Call Function place_external_gobblet to place the gobblet on board
+            self.place_external_gobblet(self, current_gobblet, required_position)
 
-        if (current_gobblet.is_on_top_of_stack() is True) and (current_gobblet.is_on_board() is False) and (
-                self.BoardItemsArray[7].CurrentOpponentIndex is not None) and \
-                (self.BoardItemsArray[3].CurrentOpponentIndex == self.BoardItemsArray[7].CurrentOpponentIndex ==
-                 self.BoardItemsArray[
-                     11].CurrentOpponentIndex) or \
-                (self.BoardItemsArray[7].CurrentOpponentIndex == self.BoardItemsArray[11].CurrentOpponentIndex ==
-                 self.BoardItemsArray[15].CurrentOpponentIndex):
-            # Check if it is possible to move the gobblet to the specified position
-            if current_gobblet.is_possible_gobblet_movement(required_position) is True:
-                # Call Function place_external_gobblet to place the gobblet on board
-                self.place_external_gobblet(self, current_gobblet, required_position)
+        # Repeat the pattern of checks for other specific board positions, consider refactoring for clarity
+        # Check if it is possible to move the gobblet to the specified position for specific board positions
+        if (current_gobblet.is_on_top_of_stack() and not current_gobblet.is_on_board() and
+                (self.BoardItemsArray[6].CurrentOpponentIndex is not None) and (
+                (self.BoardItemsArray[6].CurrentOpponentIndex == self.BoardItemsArray[2].CurrentOpponentIndex ==
+                 self.BoardItemsArray[10].CurrentOpponentIndex) or (self.BoardItemsArray[6].CurrentOpponentIndex ==
+                 self.BoardItemsArray[10].CurrentOpponentIndex == self.BoardItemsArray[14].CurrentOpponentIndex)
+                )):
+            # Call Function place_external_gobblet to place the gobblet on board
+            self.place_external_gobblet(self, current_gobblet, required_position)
 
-        if (current_gobblet.is_on_top_of_stack() is True) and (current_gobblet.is_on_board() is False) and (
-                self.BoardItemsArray[5].CurrentOpponentIndex is not None) and \
-                (self.BoardItemsArray[0].CurrentOpponentIndex == self.BoardItemsArray[5].CurrentOpponentIndex ==
-                 self.BoardItemsArray[
-                     10].CurrentOpponentIndex) or \
-                (self.BoardItemsArray[5].CurrentOpponentIndex == self.BoardItemsArray[10].CurrentOpponentIndex ==
-                 self.BoardItemsArray[15].CurrentOpponentIndex):
-            # Check if it is possible to move the gobblet to the specified position
-            if current_gobblet.is_possible_gobblet_movement(required_position) is True:
-                # Call Function place_external_gobblet to place the gobblet on board
-                self.place_external_gobblet(self, current_gobblet, required_position)
+        # Repeat the pattern of checks for other specific board positions, consider refactoring for clarity
+        # Check if it is possible to move the gobblet to the specified position for specific board positions
+        if (current_gobblet.is_on_top_of_stack() and not current_gobblet.is_on_board() and
+                (self.BoardItemsArray[7].CurrentOpponentIndex is not None) and (
+                (self.BoardItemsArray[7].CurrentOpponentIndex == self.BoardItemsArray[3].CurrentOpponentIndex ==
+                 self.BoardItemsArray[11].CurrentOpponentIndex) or (self.BoardItemsArray[7].CurrentOpponentIndex ==
+                 self.BoardItemsArray[11].CurrentOpponentIndex == self.BoardItemsArray[15].CurrentOpponentIndex)
+                )):
+            # Call Function place_external_gobblet to place the gobblet on board
+            self.place_external_gobblet(self, current_gobblet, required_position)
 
-        if (current_gobblet.is_on_top_of_stack() is True) and (current_gobblet.is_on_board() is False) and (
-                self.BoardItemsArray[6].CurrentOpponentIndex is not None) and \
-                (self.BoardItemsArray[3].CurrentOpponentIndex == self.BoardItemsArray[6].CurrentOpponentIndex ==
-                 self.BoardItemsArray[
-                     9].CurrentOpponentIndex) or \
-                (self.BoardItemsArray[6].CurrentOpponentIndex == self.BoardItemsArray[9].CurrentOpponentIndex ==
-                 self.BoardItemsArray[
-                     12].CurrentOpponentIndex):
-            # Check if it is possible to move the gobblet to the specified position
-            if current_gobblet.is_possible_gobblet_movement(required_position) is True:
-                # Call Function place_external_gobblet to place the gobblet on board
-                self.place_external_gobblet(self, current_gobblet, required_position)
+        # Repeat the pattern of checks for other specific board positions, consider refactoring for clarity
+        # Check if it is possible to move the gobblet to the specified position for specific board positions
+        if (current_gobblet.is_on_top_of_stack() and not current_gobblet.is_on_board() and
+                (self.BoardItemsArray[5].CurrentOpponentIndex is not None) and (
+                (self.BoardItemsArray[5].CurrentOpponentIndex == self.BoardItemsArray[0].CurrentOpponentIndex ==
+                 self.BoardItemsArray[10].CurrentOpponentIndex) or (self.BoardItemsArray[5].CurrentOpponentIndex ==
+                 self.BoardItemsArray[10].CurrentOpponentIndex == self.BoardItemsArray[15].CurrentOpponentIndex)
+                )):
+            # Call Function place_external_gobblet to place the gobblet on board
+            self.place_external_gobblet(self, current_gobblet, required_position)
+
+        # Repeat the pattern of checks for other specific board positions, consider refactoring for clarity
+        # Check if it is possible to move the gobblet to the specified position for specific board positions
+        if (current_gobblet.is_on_top_of_stack() and not current_gobblet.is_on_board() and
+                (self.BoardItemsArray[6].CurrentOpponentIndex is not None) and (
+                (self.BoardItemsArray[6].CurrentOpponentIndex == self.BoardItemsArray[3].CurrentOpponentIndex ==
+                 self.BoardItemsArray[9].CurrentOpponentIndex) or (self.BoardItemsArray[6].CurrentOpponentIndex ==
+                 self.BoardItemsArray[9].CurrentOpponentIndex == self.BoardItemsArray[12].CurrentOpponentIndex)
+                )):
+            # Call Function place_external_gobblet to place the gobblet on board
+            self.place_external_gobblet(self, current_gobblet, required_position)
+        # Update the board list array cells current opponent index
+        self.update_board_array_opponent_index(self)
+        # Check the game state after making a move either it's valid or invalid
+        self.check_state()
 
     @staticmethod
     def place_external_gobblet(self, current_gobblet: Gobblet, required_position: BoardItem):
@@ -303,18 +294,20 @@ class Game:
         Places an external Gobblet onto the specified position on the game board, ensuring valid placement.
 
         Args:
-        current_gobblet: The Gobblet to be placed on the board.
-        required_position: The target position where the Gobblet should be placed.
+        - current_gobblet (Gobblet): The Gobblet to be placed on the board.
+        - required_position (BoardItem): The target position where the Gobblet should be placed.
         """
-        # If the position on board can the gobblet be placed on
-        if required_position.is_possible_board_movement(current_gobblet) is True:
+        # Check if the gobblet can be placed on the specified position on the board
+        if required_position.is_possible_board_movement(current_gobblet):
             next_gobblet_index = current_gobblet.get_gobblet_index() + 1
+            # Set the flag indicating that the next gobblet is on top of the stack
             if self.CurrentPlayerIndex == 0:
                 self.FirstPlayerGobbletsArray[next_gobblet_index].set_gobblet_on_top_of_stack_flag(True)
             else:
                 self.SecondPlayerGobbletsArray[next_gobblet_index].set_gobblet_on_top_of_stack_flag(True)
             # Add the gobblet to the top of the new position
             required_position.add_gobblet_on_top(current_gobblet)
+            # Update the gobblet's position information
             current_gobblet.update_gobblet_position(required_position)
 
     @staticmethod
@@ -323,100 +316,89 @@ class Game:
         Places a Gobblet onto a specified BoardItem position, following game rules.
 
         Args:
-       - current_gobblet (Gobblet): The Gobblet to be placed.
-       - required_position (BoardItem): The BoardItem position where the Gobblet should be placed.
+        - current_gobblet (Gobblet): The Gobblet to be placed.
+        - required_position (BoardItem): The BoardItem position where the Gobblet should be placed.
+        - old_position (BoardItem): The BoardItem position from which the Gobblet is being moved.
+
         """
-        # If the position on board can the gobblet be placed on
-        if required_position.is_possible_board_movement(current_gobblet) is True:
+        # Check if the gobblet can be placed on the specified position on the board
+        if required_position.is_possible_board_movement(current_gobblet):
             # Remove the goblet from the top of its old position
             old_position.remove_gobblet_on_top()
             # Add the gobblet to the top of the new position
             required_position.add_gobblet_on_top(current_gobblet)
-
+            # Update the gobblet's position information
             current_gobblet.update_gobblet_position(required_position)
 
     def check_state(self):
-        player1_count = 0
-        player2_count = 0
-        if (self.BoardItemsArray[0].CurrentOwnerIndex is not None) and \
-                (self.BoardItemsArray[0].CurrentOwnerIndex == self.BoardItemsArray[1].CurrentOwnerIndex ==
-                 self.BoardItemsArray[2].CurrentOwnerIndex == self.BoardItemsArray[3].CurrentOwnerIndex):
+        """
+        Checks the current state of the game based on the ownership of positions on the game board.
+
+        The function checks for various winning conditions, such as having a complete row, column, or diagonal
+        filled with Gobblets of the same player. If a winning condition is met, it updates the game state and
+        declares the winner accordingly.
+
+        If no winning conditions are met and the board is not fully occupied, the game state remains "OnGoing."
+
+        """
+        player1_count = 0  # Counter for Player 1's winning positions
+        player2_count = 0  # Counter for Player 2's winning positions
+
+        # Check for a complete row of the same player in each row
+        for row in range(4):
+            if (
+                self.BoardItemsArray[row * 4].CurrentOwnerIndex is not None
+                and self.BoardItemsArray[row * 4].CurrentOwnerIndex
+                == self.BoardItemsArray[row * 4 + 1].CurrentOwnerIndex
+                == self.BoardItemsArray[row * 4 + 2].CurrentOwnerIndex
+                == self.BoardItemsArray[row * 4 + 3].CurrentOwnerIndex
+            ):
+                if self.BoardItemsArray[row * 4].CurrentOwnerIndex == 0:
+                    player1_count += 1
+                else:
+                    player2_count += 1
+
+        # Check for a complete column of the same player in each column
+        for col in range(4):
+            if (
+                self.BoardItemsArray[col].CurrentOwnerIndex is not None
+                and self.BoardItemsArray[col].CurrentOwnerIndex
+                == self.BoardItemsArray[col + 4].CurrentOwnerIndex
+                == self.BoardItemsArray[col + 8].CurrentOwnerIndex
+                == self.BoardItemsArray[col + 12].CurrentOwnerIndex
+            ):
+                if self.BoardItemsArray[col].CurrentOwnerIndex == 0:
+                    player1_count += 1
+                else:
+                    player2_count += 1
+
+        # Check for a complete diagonal from top-left to bottom-right
+        if (
+            self.BoardItemsArray[0].CurrentOwnerIndex is not None
+            and self.BoardItemsArray[0].CurrentOwnerIndex
+            == self.BoardItemsArray[5].CurrentOwnerIndex
+            == self.BoardItemsArray[10].CurrentOwnerIndex
+            == self.BoardItemsArray[15].CurrentOwnerIndex
+        ):
             if self.BoardItemsArray[0].CurrentOwnerIndex == 0:
                 player1_count += 1
             else:
                 player2_count += 1
-        if (self.BoardItemsArray[4].CurrentOwnerIndex is not None) and \
-                (self.BoardItemsArray[4].CurrentOwnerIndex == self.BoardItemsArray[5].CurrentOwnerIndex ==
-                 self.BoardItemsArray[6].CurrentOwnerIndex == self.BoardItemsArray[7].CurrentOwnerIndex):
-            if self.BoardItemsArray[4].CurrentOwnerIndex == 0:
-                player1_count += 1
-            else:
-                player2_count += 1
 
-        if (self.BoardItemsArray[8].CurrentOwnerIndex is not None) and \
-                (self.BoardItemsArray[8].CurrentOwnerIndex == self.BoardItemsArray[9].CurrentOwnerIndex ==
-                 self.BoardItemsArray[10].CurrentOwnerIndex == self.BoardItemsArray[11].CurrentOwnerIndex):
-            if self.BoardItemsArray[8].CurrentOwnerIndex == 0:
-                player1_count += 1
-            else:
-                player2_count += 1
-
-        if (self.BoardItemsArray[12].CurrentOwnerIndex is not None) and \
-                (self.BoardItemsArray[12].CurrentOwnerIndex == self.BoardItemsArray[13].CurrentOwnerIndex ==
-                 self.BoardItemsArray[14].CurrentOwnerIndex == self.BoardItemsArray[15].CurrentOwnerIndex):
-            if self.BoardItemsArray[12].CurrentOwnerIndex == 0:
-                player1_count += 1
-            else:
-                player2_count += 1
-
-        if (self.BoardItemsArray[4].CurrentOwnerIndex is not None) and \
-                (self.BoardItemsArray[0].CurrentOwnerIndex == self.BoardItemsArray[4].CurrentOwnerIndex ==
-                 self.BoardItemsArray[8].CurrentOwnerIndex == self.BoardItemsArray[12].CurrentOwnerIndex):
-            if self.BoardItemsArray[0].CurrentOwnerIndex == 0:
-                player1_count += 1
-            else:
-                player2_count += 1
-
-        if (self.BoardItemsArray[1].CurrentOwnerIndex is not None) and \
-                (self.BoardItemsArray[1].CurrentOwnerIndex == self.BoardItemsArray[5].CurrentOwnerIndex ==
-                 self.BoardItemsArray[9].CurrentOwnerIndex == self.BoardItemsArray[13].CurrentOwnerIndex):
-            if self.BoardItemsArray[1].CurrentOwnerIndex == 0:
-                player1_count += 1
-            else:
-                player2_count += 1
-
-        if (self.BoardItemsArray[2].CurrentOwnerIndex is not None) and \
-                (self.BoardItemsArray[2].CurrentOwnerIndex == self.BoardItemsArray[6].CurrentOwnerIndex ==
-                 self.BoardItemsArray[10].CurrentOwnerIndex == self.BoardItemsArray[14].CurrentOwnerIndex):
-            if self.BoardItemsArray[2].CurrentOwnerIndex == 0:
-                player1_count += 1
-            else:
-                player2_count += 1
-
-        if (self.BoardItemsArray[3].CurrentOwnerIndex is not None) and \
-                (self.BoardItemsArray[3].CurrentOwnerIndex == self.BoardItemsArray[7].CurrentOwnerIndex ==
-                 self.BoardItemsArray[11].CurrentOwnerIndex == self.BoardItemsArray[15].CurrentOwnerIndex):
+        # Check for a complete diagonal from top-right to bottom-left
+        if (
+            self.BoardItemsArray[3].CurrentOwnerIndex is not None
+            and self.BoardItemsArray[3].CurrentOwnerIndex
+            == self.BoardItemsArray[6].CurrentOwnerIndex
+            == self.BoardItemsArray[9].CurrentOwnerIndex
+            == self.BoardItemsArray[12].CurrentOwnerIndex
+        ):
             if self.BoardItemsArray[3].CurrentOwnerIndex == 0:
                 player1_count += 1
             else:
                 player2_count += 1
 
-        if (self.BoardItemsArray[0].CurrentOwnerIndex is not None) and \
-                (self.BoardItemsArray[0].CurrentOwnerIndex == self.BoardItemsArray[5].CurrentOwnerIndex ==
-                 self.BoardItemsArray[10].CurrentOwnerIndex == self.BoardItemsArray[15].CurrentOwnerIndex):
-            if self.BoardItemsArray[0].CurrentOwnerIndex == 0:
-                player1_count += 1
-            else:
-                player2_count += 1
-
-        if (self.BoardItemsArray[3].CurrentOwnerIndex is not None) and \
-                (self.BoardItemsArray[3].CurrentOwnerIndex == self.BoardItemsArray[6].CurrentOwnerIndex ==
-                 self.BoardItemsArray[9].CurrentOwnerIndex == self.BoardItemsArray[12].CurrentOwnerIndex):
-            if self.BoardItemsArray[3].CurrentOwnerIndex == 0:
-                player1_count += 1
-            else:
-                player2_count += 1
-
+        # Update game state based on winning conditions
         if player1_count == 1:
             self.GameState = "Player1Won"
             self.Winner = 0
@@ -487,4 +469,3 @@ class Game:
         """
         # Toggle the current player index using the XOR (^) operation
         self.CurrentPlayerIndex = self.CurrentPlayerIndex ^ 1
-

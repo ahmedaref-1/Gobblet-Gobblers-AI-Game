@@ -86,7 +86,7 @@ class BoardItem:
         if not self.is_full() and gobblet.Size > self.OnTopGobbletSize:
             if not self.is_empty():
                 # Set the IsOnTop flag of the Gobblet on top of the stack to False.
-                self.GobbletsStack[-1].set_on_top_of_stack_flag(False)
+                self.GobbletsStack[-1].set_gobblet_on_top_of_stack_flag(False)
 
             # Append the new Gobblet to the stack.
             self.GobbletsStack.append(gobblet)
