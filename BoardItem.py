@@ -120,7 +120,7 @@ class BoardItem:
             if self.NumberOfGobbletsInStack == 0:
                 self.CurrentOwnerIndex = None
             else:
-                self.CurrentOwnerIndex = self.GobbletsStack[-1].CurrentOwnerIndex
+                self.CurrentOwnerIndex = self.GobbletsStack[-1].OwnerIndex
 
             # Update the size of the Gobblet on top of the stack.
             # If the stack is empty, set the OnTopGobbletSize to None.
@@ -131,7 +131,7 @@ class BoardItem:
 
             # Set the IsOnTop flag of the Gobblet on top of the stack to True.
             if self.NumberOfGobbletsInStack > 0:
-                self.GobbletsStack[-1].set_on_top_of_stack_flag(True)
+                self.GobbletsStack[-1].set_gobblet_on_top_of_stack_flag(True)
 
     def get_owner_index(self):
         """

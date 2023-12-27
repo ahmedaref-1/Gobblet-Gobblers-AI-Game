@@ -170,7 +170,6 @@ class Game:
             else:
                 self.InvalidMoveFlag = True
 
-
         # Check if the gobblet is on top and that it is NOT placed on board (External Goblet)
         elif current_gobblet.is_on_top_of_stack() and not current_gobblet.is_on_board() and required_position.is_empty():
             # Check if it is possible to move the gobblet to the specified position
@@ -179,7 +178,6 @@ class Game:
                 self.place_external_gobblet(self, current_gobblet, required_position)
             else:
                 self.InvalidMoveFlag = True
-
 
         # Additional conditions for specific board positions (Checkmate state)
 
@@ -194,7 +192,6 @@ class Game:
             # Call Function place_external_gobblet to place the gobblet on board
             self.place_external_gobblet(self, current_gobblet, required_position)
 
-
         # Repeat the pattern of checks for other specific board positions, consider refactoring for clarity
         # Check if it is possible to move the gobblet to the specified position for specific board positions
         elif (current_gobblet.is_on_top_of_stack() and not current_gobblet.is_on_board() and
@@ -205,7 +202,6 @@ class Game:
                 )):
             # Call Function place_external_gobblet to place the gobblet on board
             self.place_external_gobblet(self, current_gobblet, required_position)
-
 
         # Repeat the pattern of checks for other specific board positions, consider refactoring for clarity
         # Check if it is possible to move the gobblet to the specified position for specific board positions
@@ -229,7 +225,6 @@ class Game:
             # Call Function place_external_gobblet to place the gobblet on board
             self.place_external_gobblet(self, current_gobblet, required_position)
 
-
         # Repeat the pattern of checks for other specific board positions, consider refactoring for clarity
         # Check if it is possible to move the gobblet to the specified position for specific board positions
         elif (current_gobblet.is_on_top_of_stack() and not current_gobblet.is_on_board() and
@@ -240,7 +235,6 @@ class Game:
                 )):
             # Call Function place_external_gobblet to place the gobblet on board
             self.place_external_gobblet(self, current_gobblet, required_position)
-
 
         # Repeat the pattern of checks for other specific board positions, consider refactoring for clarity
         # Check if it is possible to move the gobblet to the specified position for specific board positions
@@ -253,7 +247,6 @@ class Game:
             # Call Function place_external_gobblet to place the gobblet on board
             self.place_external_gobblet(self, current_gobblet, required_position)
 
-
         # Repeat the pattern of checks for other specific board positions, consider refactoring for clarity
         # Check if it is possible to move the gobblet to the specified position for specific board positions
         elif (current_gobblet.is_on_top_of_stack() and not current_gobblet.is_on_board() and
@@ -264,7 +257,6 @@ class Game:
                 )):
             # Call Function place_external_gobblet to place the gobblet on board
             self.place_external_gobblet(self, current_gobblet, required_position)
-
 
         # Repeat the pattern of checks for other specific board positions, consider refactoring for clarity
         # Check if it is possible to move the gobblet to the specified position for specific board positions
@@ -277,7 +269,6 @@ class Game:
             # Call Function place_external_gobblet to place the gobblet on board
             self.place_external_gobblet(self, current_gobblet, required_position)
 
-
         # Repeat the pattern of checks for other specific board positions, consider refactoring for clarity
         # Check if it is possible to move the gobblet to the specified position for specific board positions
         elif (current_gobblet.is_on_top_of_stack() and not current_gobblet.is_on_board() and
@@ -288,7 +279,6 @@ class Game:
                 )):
             # Call Function place_external_gobblet to place the gobblet on board
             self.place_external_gobblet(self, current_gobblet, required_position)
-
 
         # Repeat the pattern of checks for other specific board positions, consider refactoring for clarity
         # Check if it is possible to move the gobblet to the specified position for specific board positions
