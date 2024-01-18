@@ -12,6 +12,10 @@ class Game:
         Represents the Gobblet Gobblers game.
 
         """
+        # To store the number of exact moves between 2 players
+        self.draw_index = 0
+        # Turn index , if even this indicates player 1 if odd this indicates player 2
+        self.turn = 0
         # List containing names of both players
         self.PlayerNames = ["Player1", "Player2"]
         # State of the game (OnGoing, Draw, Player1Won, Player2Won)
@@ -327,9 +331,27 @@ class Game:
             self.InvalidMoveFlag = True
         # Update the board list array cells current opponent index
         self.update_board_array_opponent_index(self)
+
+        # Checking if the 2 players do same 4 consecutive moves
+        if self.turn %2 is 0 and self.turn >=2:
+           player1_move = self.CurrentBoardPositionIndex - self.PreviousBoardPositionIndex
+        
+        if self.turn %2 is 1 and self.turn >=3:
+           player2_move = self.CurrentBoardPositionIndex - self.PreviousBoardPositionIndex
+
+        # Check after player's 2 turn
+        if self.turn %2 is 1 and self.turn >=3:
+        # Else condition to ensure consecutive moves 
+            if player1_move == player2_move:
+                self.draw_index = self.draw_index + 1
+            else:
+                self.draw_index = 0   
+
         # Check the game state
         self.check_state()
 
+        # Increment the turn index every round
+        self.turn = self.turn + 1 
         # If the move is valid alternate player
         if self.InvalidMoveFlag is not True or self.SkipRoundFlag is True:
             self.alternate_current_player_index(self)
@@ -445,7 +467,7 @@ class Game:
                 player2_count += 1
 
         # Update game state based on winning conditions
-        if player1_count == 1 and player2_count == 1:
+        if (player1_count == 1 and player2_count == 1) or self.draw_index==4:
             self.GameState = "Draw"
             self.Winner = None
         elif player1_count == 1:
