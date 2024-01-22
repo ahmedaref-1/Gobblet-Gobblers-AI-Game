@@ -1,2 +1,0 @@
-pyinstaller --noconsole --onefile GameView.py
-pyrcc5 -o Images.py Images.qrc
