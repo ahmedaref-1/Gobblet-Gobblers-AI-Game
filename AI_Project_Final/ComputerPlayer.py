@@ -702,11 +702,14 @@ class ComputerPlayer:
     def get_action(self, state: State) -> MoveID :
 
         if self.level == "EASY" :
-            time_limit = 0.5
+            time_limit = 0
+            depth = 1
         if self.level == "MEDIUM" :
             time_limit = 0.75
+            depth = 2
         if self.level == "HARD" :
             time_limit = 1.5
+            depth = 3
 
         # if self.level == "EASY" :
         # return random.choice(state.all_valid_moves())
@@ -793,8 +796,6 @@ class ComputerPlayer:
                 self.OpponentGobbletsArray[i] = state.game.SecondPlayerGobbletsArray[i].get_gobblet_position()
         
         actions_scores = []        
-        
-        depth = 2
         
         all_next_moves = state.all_valid_moves()
         while True:
